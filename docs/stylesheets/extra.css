@@ -1,9 +1,9 @@
-/*
 :root {
-  --md-primary-fg-color:        #dc4d01;
-  --md-primary-fg-color--light: #dc4d01;
+  --md-primary-fg-color:        #287a51;
+  --md-primary-fg-color--light: #287a51;
+  --md-accent-fg-color:         #287a51;
+  --md-accent-fg-color--light:  #287a51;
 }
-*/
 
 article p, article li {
   font-family: "Lora", serif;

@@ -79,8 +79,8 @@ theme:
     - toc.integrate
     - content.code.annotate
     - content.code.copy
-  palette:
-    primary: dark purple
+#  palette:
+#   primary: 'deep purple'
   shortcuts:
     previous: 72 #h
     next: 76 #l
@@ -122,8 +122,8 @@ markdown_extensions:
       alternate_style: true 
   - pymdownx.tilde
   - pymdownx.emoji:
-      emoji_index: !!python/name:materialx.emoji.twemoji
-      emoji_generator: !!python/name:materialx.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg
 
 extra_javascript:
   - javascripts/config.js
