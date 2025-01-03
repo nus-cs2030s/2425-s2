@@ -71,7 +71,6 @@ nav:
     - Exercise 8: 'exercises/ex8-task.md'
     - Exercise 9: 'exercises/ex9-task.md'
 
-  #      - JavaDoc : 'javadoc.md'
 theme: 
   name: material
   features: 
@@ -80,9 +79,8 @@ theme:
     - toc.integrate
     - content.code.annotate
     - content.code.copy
-      #  palette:
-      #    primary: deep orange
-      #    accent: deep orange
+  palette:
+    primary: dark purple
   shortcuts:
     previous: 72 #h
     next: 76 #l
@@ -90,7 +88,7 @@ theme:
 
 site_name: CS2030S Programming Methodology II
 # repo_url: https://github.com/nus-cs1010/1819-s1
-site_url: https://nus-cs2030s.github.io/2324-s2
+site_url: https://nus-cs2030s.github.io/2425-s2
 copyright: Copyright by Department of Computer Science, National University of Singapore 2024
 # remote_branch: gh-pages
 use_directory_urls: false
