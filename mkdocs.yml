@@ -79,8 +79,9 @@ theme:
     - toc.integrate
     - content.code.annotate
     - content.code.copy
-#  palette:
-#   primary: 'deep purple'
+  palette:
+    primary: custom
+    accent: custom
   shortcuts:
     previous: 72 #h
     next: 76 #l
