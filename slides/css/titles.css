@@ -1,0 +1,27 @@
+.subtitles h1 {
+  border-bottom: 1px solid var(--nbkclr);
+}
+
+.end {
+  background-color: #222;
+  color: #fff;
+}
+.end .remark-inline-code {
+  font-size: 48px;
+  font-weight: 700;
+}
+.end .remark-slide-number {
+  display: none;
+}
+
+.full-b {
+  background-color: #000;
+  color: #fff;
+}
+.full-b .remark-inline-code {
+  font-size: 48px;
+  font-weight: 700;
+}
+.full-b .remark-slide-number {
+  display: none;
+}

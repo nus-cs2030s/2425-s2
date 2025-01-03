@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 2</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 2
+
+### 22 January 2024
+---
+class: middle,left
+
+### Announcements:
+
+- Self Diagnostic Quiz 2 (out after the lecture)
+- Exercise 0
+- Problem Set 0
+- Practice Quizzes on Vim and PE
+- Read the announcements! (pls)
+
+---
+class: middle
+### The CS2030S Ticketing System™
+
+[https://mysoc.nus.edu.sg/app/cs2030s](https://mysoc.nus.edu.sg/app/cs2030s)
+
+Your first choice for administrative questions and to contact the teaching team.
+
+---
+class:middle, wide
+
+### Lab and Recitation Registration
+
+Academic staff are *not* in charge of this process so appeal using CourseReg. The add / swap period ends on Tue, 23 Jan, 5pm. If you do not secure a slot:
+
+- Please submit an appeal through CourseReg under the Add/Change Tutorial Class category. 
+
+- Register for any slot that has availability and does not clash with your timetable. 
+
+---
+class:middle, wide
+
+### Lab and Recitation Registration
+
+Only file a ticket on the CS2030S Ticketing System if both statements below are true for you:
+
+- Cannot secure a tutorial / lab / recitation slot AFTER the Add / Swap period
+
+- Cannot appeal for any slot with vacancy, as all remaining slots with vacancy have timetable clashes.
+
+---
+class:middle
+
+### Vim and Unix Clinics
+
+Almost daily until 29 Jan, at 2 - 3 PM, in AS6 #05-10 Meeting Room 6.  
+
+Please book an appointment via Canvas Calendar.
+
+---
+class:middle
+
+### Vim Bootcamp
+
+Saturday, Jan 27, 2024 at 10:00AM on Zoom. 
+
+Meeting link is on Canvas.
+
+---
+class: middle,left
+
+### Topics to cover today:
+
+- Information Hiding, Tell Don't Ask
+- Class fields and methods
+- Composition
+- The Heap and the Stack
+- Inheritance
+- Overriding
+
+(Unit 5 to Unit 12)
+
+---
+class: middle
+
+.small[```Java
+class Circle {
+	double x;
+	double y;
+	double r;
+  
+	double getArea() {
+	  return 3.141592653589793 * r * r;
+	}
+}
+```]
+
+---
+class: top,center
+
+### Abstraction Barrier
+
+---
+class: middle,left
+
+### Information Hiding
+
+New Java syntax: _access modifiers_
+
+- private
+- public
+
+---
+class: middle
+
+New Java keyword: **this**
+
+```Java
+this.x = x;
+```
+
+---
+class: middle,left
+
+### Constructor
+
+.small[```Java
+public Circle(double x, double y, double r) {
+    this.x = x;
+    this.y = y;
+    this.r = r;
+}
+```]
+---
+class: middle
+
+### Accessors and Mutators 
+
+.small[```Java
+public double getR() {
+	return this.r;
+}
+
+public void setR(double r) {
+	this.r = r;
+}
+```
+]
+
+---
+class: middle,left
+
+### Checking if a point is in a circle
+
+.small[```Java
+double cX = c.getX();
+double cY = c.getY();
+double r = c.getR();
+boolean isInCircle = ((x - cX) * (x - cX) + 
+                     (y - cY) * (y - cY)) 
+                     <= r * r;
+```]
+---
+class: middle,left
+
+### Tell, Don't Ask
+
+.small[```Java
+boolean isInCircle = c.contains(x, y);
+```]
+
+---
+class: middle,left
+
+.small[```Java
+c.contains(x, y);
+```]
+
+`c` is called the target of method invocation `contains`
+
+---
+class: middle,left
+
+### Class Fields and Methods
+
+Java keyword `static`
+
+---
+class: middle,left
+
+### Class Fields
+
+.tiny[```Java
+class Math {
+	:
+	public static final double PI = 3.141592653589793;
+	:
+	:
+}
+```]
+
+---
+class: middle,left
+
+### Class Methods
+
+.small[```Java
+public static int getNumOfCircles() {
+    return Circle.lastId;
+}
+```
+]
+---
+class: middle, left
+
+### `main`
+
+.small[```Java
+public static void main(String[] args) {
+	System.out.println("Hello World!");
+}
+```
+]
+---
+class: middle,center
+
+### Composition
+
+### Models the "has-a" relationship
+
+---
+class: middle,center
+
+## Stack and Heap
+
+---
+class: top,center
+
+### Aliasing
+
+---
+class: middle,center
+
+### Inheritance
+
+### Models the "is-a" relationship
+
+In Java, we use the `extends` keyword.
+
+---
+class: middle
+
+### Our first subtyping rule for Reference Types
+
+If `S` inherits from `T`, then `S` $<:$ `T`.
+
+Reminder:  Subtyping is Reflexive and Transitive
+
+---
+class: middle,wide
+
+### Subtyping with Reference Types
+
+If `ColoredCircle` $<:$ `Circle`
+
+.small[```Java
+ColoredCircle c = new Circle(p, 0); // error
+Circle c = new ColoredCircle(p, 0, blue); // OK
+```]
+
+---
+class: middle,wide
+
+### Compile-Time Type vs. Run-Time Type
+
+.small[```Java
+Circle c = new ColoredCircle(p, 0, blue);
+c = new Circle(p, 0);
+```]
+
+---
+class: middle,wide
+
+### Ok, but what is at the top of this class hierarchy?
+
+---
+class: middle,center
+
+### java.lang.Object
+
+### The mother of all classes!
+
+Now a chance to have a look at the [java documentation!](https://docs.oracle.com/en/java/javase/17/docs/api/index.html)
+
+---
+class: middle,center
+
+### java.lang.Object
+
+We will discuss two methods:
+
+`toString()`
+
+`equals(Object obj)`
+
+---
+class: middle,center
+
+### Method Signature
+
+The method name, type of arguments, order of arguments, and number of arguments.
+
+---
+class: middle,center
+
+### Overriding
+
+`@Override`
+---
+class: middle,left
+
+### Topics covered today:
+
+- Information Hiding, Tell Don't Ask
+- Class fields and methods
+- Composition
+- The Heap and the Stack
+- Inheritance
+- Overriding
+
+(Unit 5 to Unit 12)
+
+---
+class: middle
+
+### Reminders:
+
+- Do the Self-Diagnostic Quiz!
+- Follow the module policies
+- Exercise 0
+- Problem Set 0
+
+---
+class: middle
+
+### Reminders:
+
+- Practice Quizzes on Vim and PE
+- The CS2030S Ticketing System™
+- Lab and Recitation Registration
+- Vim and Unix Clinics
+
+---
+class: middle
+
+### Reminders:
+
+Don't just **read** the examples given... have a **play** around with them. Try changing something and see what happens.
+
+You can not learn effectively without trying it yourself!
+
+---
+class: bottom
+
+.tiny[
+Version: v1.1
+
+Last Updated: Mon Jan 29 10:49:20 +08 2024
+]
+</textarea>
+
+<script src="https://thisisadi.yoga/remark/js/remark.js" type="text/javascript"></script>
+<script src="https://thisisadi.yoga/remark/plugins/qanvas/init.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	qanvas: {
+  		pensize: 2
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

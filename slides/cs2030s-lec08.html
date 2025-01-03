@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 8</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 8
+
+### 18 March 2024
+---
+class: middle, center
+
+## Announcements
+---
+class: middle,left
+
+### Quick Recap
+
+- Immutable Classes
+- Nested Classes
+
+---
+class: middle,left
+
+### Topics covered today:
+
+- Pure Functions
+- Lambdas 
+- Lazy Evaluation
+
+(Unit 30 to Unit 32)
+
+---
+class: middle
+
+
+A function, in mathematics, refers to a mapping from a set of inputs (the domain) to a set of output values (the codomain) 
+
+---
+class: middle
+
+## Pure Functions?
+
+- deterministic
+- referential transparency
+- no side effects?
+
+---
+class: middle
+
+## Side Effects
+
+Don't:
+- print to the screen
+- write to files
+- throw exceptions
+- change other variables
+- modify the values of the arguments
+
+---
+class: middle
+```Java
+int square(int i) {
+  return i * i;
+}
+  
+int incrCount(int i) {
+  return this.count + i;
+}
+```
+---
+
+class: middle
+```Java
+int add(int i, int j) {
+  return i + j;
+}
+
+int div(int i, int j) {
+  return i / j;
+}
+
+```
+---
+
+class: middle
+```Java
+int add(int i, int j) {
+  System.out.println(i + j);
+  return i + j;
+}
+
+int dice() {
+  return rand.nextInt(6) + 1;
+}
+
+```
+---
+class: middle
+
+## Functions as First-Class Citizens
+
+---
+class: middle
+
+- assign a function to a variable
+- pass functions to other functions
+- return function from a function
+
+Sadly in Java, methods are not first class :(
+---
+class: middle, wide
+.small[
+```Java
+Transformer<Integer, Integer> sq = new Transformer<>() {
+	@Override
+	public Integer transform(Integer x) {
+	  return x * x;
+	}
+};
+```
+]
+---
+class: middle
+
+## Lambda Expressions 
+### We meet again.
+
+---
+class: middle
+
+## Syntax
+
+No parameters: `() -> line`
+
+One parameter: `x -> line`
+
+Multiple parameters: `(x, y) -> line`
+
+Multi-line body: `x -> {line1; return line2;}`
+
+---
+class: middle, wide
+.small[
+```Java
+Transformer<Integer, Integer> sq = x -> x * x;
+```
+]
+---
+class: middle, wide
+```Java
+public int add(int x, int y) {
+  return x + y;
+}
+```
+---
+class: middle
+
+## Curried Functions
+
+---
+class: middle
+
+## Lambda as Closure
+
+---
+class: middle, center
+
+## Lambda as an Abstraction Barrier
+
+---
+class: middle, center
+
+# `Box<T>`
+
+# `Maybe<T>`
+
+---
+class: middle 
+.tiny[
+```Java
+// Version 0.1 (eager evaluation)
+
+class Logger {
+  enum LogLevel { INFO, WARNING, ERROR };
+
+  public static LogLevel currLogLevel = LogLevel.WARNING;
+
+  static void log(LogLevel level, String msg) {
+    if (level.compareTo(Logger.currLogLevel) >= 0) {
+      System.out.println(" [" + level + "] " + msg);
+    }
+  }
+}
+```
+]
+---
+class: middle 
+
+## How to be lazy
+
+- Procrastinate until the last minute
+- Never repeat yourself (memoization)
+
+---
+class: middle center
+
+# Let's be `Lazy<T>`
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sat Mar 16 15:00:00 +08 2024
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

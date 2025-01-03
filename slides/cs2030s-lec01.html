@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 1</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 1
+
+### 15 January 2024
+---
+class: middle,center
+
+## Academic Staff
+
+<b>Boyd</b> Anderson<br>
+<b>Ashish</b> Dandekar<br> 
+Ooi <b>Wei Tsang</b><br>
+
+`cs2030s@comp.nus.edu.sg`
+
+Prefix your email subject with [CS2030s]
+
+---
+class: middle,center
+
+## Recitation Instructors
+
+<b>Enzio</B> Kam<br>
+Tan <b>Yugin</b><br>
+Meng Han<br>
+Ooi <b>Wei Tsang</b><br>
+<b>Ashish</b> Dandekar<br> 
+<b>Boyd</b> Anderson<br>
+
+---
+class: middle,center
+
+## A big teaching team!
+
+60 UG Tutors<br>
+2 GAP Tutors<br>
+
+---
+class: middle,center
+
+## Administrative Matters
+
+---
+class: middle,center
+
+
+CS2030S Canvas $\blacktriangleright$ 
+
+[Course Policies](https://canvas.nus.edu.sg/courses/52799/assignments/syllabus)  
+
+[Course Schedule](https://canvas.nus.edu.sg/courses/52799/pages/course-schedule) 
+
+---
+class: middle, wide
+
+## Course Resources
+
+Our [course handbook and notes:](https://nus-cs2030s.github.io/2324-s2/)
+
+[Ed Discussion forum](https://edstem.org/us/courses/50692/discussion/) for discussing course concepts.
+
+The CS2030S Ticketing System™ for other enquiries is coming soon!
+
+---
+class: middle,center
+
+<center>
+<div style="position: relative; width:400px">
+<canvas id="assessment"></canvas>
+</div>
+</center>
+
+.smaller[*Note: The 1% for PE0 is awarded on the condition that students do not have full marks for PE1 + PE2.]
+---
+class: middle,center
+
+.cols[
+.fifty[
+.tiny[
+### Formative
+&nbsp;            | Percentage    
+-----------------:|:--------------
+Quizzes           | 5%
+Programming Assignments | 5%
+Problem Sets      | 0%
+Past Year Papers  | 0%
+]]
+
+.fifty[
+.tiny[
+### Summative
+&nbsp;            | Percentage    
+-----------------:|:--------------
+Midterm           | 20%
+Final             | 30%
+2$\times$ Practical Exams   | 40%
+]]]
+
+
+---
+class: middle
+
+### Labs
+
+The most important and useful component of CS2030S.
+
+We have many programming questions. Practice and learn.
+
+---
+class: middle
+
+# Plagiarism Policy
+
+---
+class: middle
+
+# Use of AI
+
+---
+
+class:middle
+### Important Dates
+
+.smaller[
+Assessment         | Date                       | Time
+:------------------|:-------------------------- |:-------------
+Midterm | Mon, 4 Mar | 12 - 2 PM
+Practical Exam 1   | Sat, 9 Mar| Time: TBD
+Practical Exam 2   | Sat, 13 Apr| Time: TBD
+Final | Thu, 2 May | 1 - 3 PM
+]
+
+---
+class: middle
+
+### Recitations and Lab Sessions
+
+- Start in Week 3
+- Face-to-face lessons
+- Registration starts this week: manage via CourseReg
+
+---
+class:middle
+
+### Lab and Recitation Registration
+
+First, Don't Panic! 
+
+Everyone will get a lab and a recitation.
+
+Academic staff are not in charge of this process so use CourseReg.
+
+---
+class: middle
+
+### Vim and Unix Clinics
+
+- Start this Thursday
+- Look out for our emails/announcements
+
+---
+class: middle
+
+### "Catch-Up" Sessions
+
+- About every three or so weeks
+- Saturday 10 AM - 12 PM, online
+- Q&amp;A format
+
+---
+class:middle
+
+### Not "bell-curved"
+
+- Your grade is based solely on your marks
+
+- Not relative to others in the class.
+
+---
+class: middle
+
+### Take care of yourself
+
+Mental wellness is important.
+
+If you can't cope or is falling behind, talk to us.
+
+---
+class: middle,center
+
+## Why CS2030<sub>s</sub>?
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.001.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.002.png" width="700">
+
+---
+class: middle
+
+Real-world software is complex, evolves continuously, and is a product of team work. 
+
+---
+class: middle
+
+CS2030S teaches you how to write better code, where "better" means:
+
+- more human-friendly
+- easier to change and maintain
+- fewer crashes
+
+through programming paradigms, idioms, and language design.
+
+---
+class: middle
+
+CS2030S is not a course about 
+
+- algorithms or efficiency
+- software design 
+- Java language and libraries
+
+---
+class: middle,center
+
+## Running Our Programs
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.003.png" width="600">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.005.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.006.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.007.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.008.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.009.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.010.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.011.png" width="800">
+
+---
+class: middle,center
+
+<img src="figures/cs2030s-lec01/cs2030s-lec01.012.png" width="800">
+
+---
+class: middle
+
+The compiler is our friend
+
+- it helps us catch errors early
+- but can only be based on the code
+- not by running it
+
+---
+class: middle,center
+
+### A well-designed programming language should help us catch errors during compilation phase as soon as possible.
+
+---
+class: middle,center
+
+### Variable: Abstraction over Data
+
+---
+class: middle
+
+### Recall Typed Source from CS1101S
+
+```javascript
+let x : number = 1;
+```
+
+```javascript
+function f(x : number): number { 
+	return x;
+}
+```
+
+---
+class: middle
+
+### The _type_ of a variable decides the computation that can be performed on a variable.
+
+---
+class: middle
+
+### _Type system_: A set of rules about types of variables, expression, functions, and their interactions.
+
+---
+class: middle
+
+### Static vs. Dynamic Types 
+
+---
+class: middle
+
+### Dynamically Typed
+
+```javascript
+let x = 4;
+x = "5"; // Ok
+```
+
+---
+class: middle
+
+### Statically Typed
+
+```Java
+int x;
+x = 4;
+x = "5" // Error
+```
+
+---
+class: middle
+
+### When a dynamically type language is annoying:
+
+```Python
+i = 0
+while i < 100:
+   i = something_slow()
+print("i is " + i)
+```
+
+---
+class: middle,center
+
+### Java is a _statically typed_ language.
+
+---
+class: middle
+
+### The type assigned to variable during declaration is called the _compile-time type_.
+
+---
+class: middle
+
+## Strong vs. Weak Typing 
+
+---
+class: middle
+
+### in C (weak typing)
+
+```C
+int x;
+x = 4;
+x = (int)"5"; // okay, fine..
+```
+
+---
+class: middle
+
+### in Java (strong typing)
+
+```C
+int x;
+x = 4;
+x = (int)"5"; // error
+```
+
+---
+class: middle
+
+### Primitive Types in Java
+
+- `byte`, `short`,  `int`, `long` 
+- `float`, `double`
+- `char`
+- `boolean`
+
+---
+class: middle
+
+### Primitive types in Java do not share their values
+
+```Java
+int i = 10;
+int j = i;
+i = i + 1;
+```
+
+---
+class: middle
+
+### Subtype and Supertype
+
+A type $T$ is a _subtype_ of $S$ ($T <: S$) if:
+
+- a piece of code written for variables of type $S$ can also safely be used on variables of type $T$. 
+
+$S$ is a _supertype_ of $T$.
+
+---
+class: middle
+
+### Subtyping Among Java Primitive Types
+
+- `byte` $<:$ `short` $<:$ `int` $<:$ `long`
+- `long` $<:$ `float` $<:$ `double`
+- `char` $<:$ `int`
+
+---
+class: middle
+
+### Subtyping is Reflexive and Transitive
+
+- $T <: T$
+- if $S <: T$ and $T <: U$, then $S <: U$.
+
+---
+class: middle
+
+### Java Widening Type Conversion 
+
+Java allows putting a value of type $T$ into a variable of type $S$ iff $T <: S$.
+
+---
+class: middle,center
+
+### Function: Abstraction over Computation
+
+---
+class: middle
+
+.small[
+```javascript
+let i = 10;
+let fac10 = 1;
+while (i >= 0) {
+  fac10 = fac10 * i;
+  i = i - 1;
+}
+i = 5;
+let fac5 = 1;
+while (i >= 0) {
+  fac5 = fac5 * i;
+  i = i - 1;
+}
+```
+]
+
+---
+class: middle
+
+.small[
+```javascript
+function factorial(i) {
+	let fac = 1;
+	while (i >= 0) {
+        fac = fac * i;
+        i = i - 1;
+	}
+	return fac;
+}
+const fac10 = factorial(10);
+const fac5 = factorial(5);
+```
+]
+
+---
+class: top,center
+
+### Function as an abstraction barrier
+
+---
+class: middle,center
+
+### Abstraction: Composite Data Type
+
+---
+class: middle
+
+.small[
+```javascript
+function circle(x, y, r) {
+    function dispatch(q) {
+        if (q === "x") {
+            return x;
+        } else if (q === "y") {
+            return y;
+        } else if (q === "r") {
+            return r;
+        }
+    }
+    return dispatch;
+}
+```
+]
+
+---
+class: middle
+
+```javascript
+const c = circle(1, 1, 5);
+c("x"); // returns 1
+c("y"); // returns 1
+c("r"); // returns 5
+const area = circle_get_area(c);
+```
+
+---
+class: middle, wide
+
+```javascript
+function circle_get_area(c) {
+    return math_PI * c("r") * c("r");
+}
+```
+
+---
+class: middle
+
+```C
+typedef struct {
+	double x;
+	double y;
+	double r;
+} circle;
+```
+
+---
+class: middle
+
+```C
+circle c;
+c.x = 1.0;
+c.y = 1.0;
+c.r = 5.0;
+double area = circle_get_area(c);
+```
+
+---
+class: middle
+
+```C
+double circle_get_area(circle c) {
+	return 3.1415926 * c.r * c.r;
+}
+```
+
+---
+class: middle, center
+
+### Encapsulation: bundle related variables and functions together to create a _class_
+
+---
+class: middle
+
+In Java, the keyword `class` allows us to define a new class named `Circle`.
+
+```Java
+class Circle {
+    double x;
+    double y;
+    double r;
+}
+```
+
+---
+class: middle
+
+```Java
+class Circle {
+    double x;
+    double y;
+    double r;
+    
+    double getArea() {
+      return 3.1415926 * r * r;
+    }
+}
+```
+
+---
+class: middle
+
+In Java classes:
+
+ - Functions are known as _methods_
+ 
+ - The bundled data in the class are known as _fields_ (or members, or states, or attributes)
+
+---
+class: middle
+
+Objects are instances of a class.
+
+In Java, the keyword `new` creates (or _instantiates_) an object of a given class.
+```Java
+Circle c = new Circle();
+```
+
+---
+class: middle
+
+Unlike before, we can now call the method `getArea` on the `Circle` object rather than passing it to the method.
+```Java
+Circle c = new Circle();
+c.r = 10;
+double area = c.getArea();
+```
+
+---
+class: middle, center
+
+# Object-Oriented Programming (OOP)
+
+---
+class: middle
+
+A program runs by instantiating objects of different classes.
+
+These objects interact with each other by calling each others' methods.
+
+---
+class: middle
+
+### An Example: Modelling a Bank
+
+Classes: Nouns?
+
+Fields: Attributes of our Nouns?
+
+Methods: Verbs in our system?
+
+---
+class: middle
+
+### An Example: Modelling a Bank
+
+Classes: `BankAccount`, `Customer`, `Teller`, ...
+
+Fields: `balance`, `creditRating`, `accountNumber`, ...
+
+Methods: `withdraw`, `deposit`, `takeOutLoan`, ...
+
+---
+class: middle
+### Java Reference Types
+
+Everything else that is not a primitive type. Our new `Circle` class is an example.
+
+---
+class: middle, wide
+A reference variable stores only the reference to the value not the value itself.
+```Java
+Circle c1 = new Circle();
+Circle c2 = c1;
+System.out.println(c2.r); // print 0
+c1.r = 10.0;
+System.out.println(c2.r); // print 10.0
+```
+
+---
+class: middle
+
+What about sub/supertype relationships among Java Reference Types?
+
+How do Reference types fit into the Type System?
+
+We will get there don't worry!
+
+---
+class: middle, wide
+
+What happens if we don't initialise our reference variable?
+
+```Java
+Circle c1;
+c1.r = 10.0;  // NullPointerException
+```
+
+All non-initialised variables will have the special reference value `null`.
+
+---
+class: middle, wide
+
+## Reminders:
+
+- Submit your Github username
+- Join the Ed forum
+- Read Units 0 to 4
+
+---
+class: middle, wide
+
+## Reminders:
+
+- Look out for emails about the Unix and Vim clinics
+- Read the notes on PE environment, Unix, Vim, and GitHub setup
+- Take the end of lecture _Diagnostic Quiz_
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sun Jan 14 15:21:33 +08 2024
+]
+</textarea>
+
+<!-- <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script> -->
+
+<script src="https://thisisadi.yoga/remark/js/remark.js" type="text/javascript"></script>
+<script src="https://thisisadi.yoga/remark/plugins/qanvas/init.js" type="text/javascript"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	qanvas: {
+  		pensize: 3
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+
+	var ctx = document.getElementById('assessment').getContext('2d');
+	var data = {
+			datasets: [{ data: [5, 5, 20, 30, 1, 14, 25],
+					borderColor: '#eee',
+					backgroundColor: [
+							'rgba(255, 100, 0, 1)',
+							'rgba(100, 255, 0, 1)',
+							'rgba(100, 0, 255, 1)',
+							'rgba(100, 255, 255, 1)',
+							'rgba(255, 255, 100, 1)',
+							'rgba(255, 100, 255, 1)',
+							'rgba(255, 0, 100, 1)',
+						],
+				}],
+			// These labels appear in the legend and in the tooltips when hovering different arcs
+			labels: [ 'Quizzes (5%)', 'Labs (5%)', 'Midterm (20%)', 'Final (30%)', 'PE0 (1%)*', 'PE1 (15%)', 'PE2 (25%)' ]
+		};
+
+	// For a pie chart
+	var myPieChart = new Chart(ctx, {
+			type: 'pie',
+			data: data,
+			options: {
+					tooltips: {
+							mode: 'nearest',
+							intersect: false
+						},
+					borderWidth: 1,
+					defaultFontStyle: 'Roboto',
+					responsive: true,
+					plugins: {
+							legend: {
+									position: 'right',
+									labels: {
+											font: {
+													size: 20,
+													family: 'Roboto',
+												},
+											color: '#fff',
+										}
+								}
+						}
+				}
+		});
+
+</script>
+</script>
+</body>
+</html>

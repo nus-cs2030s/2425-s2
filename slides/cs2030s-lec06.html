@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 6</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 6
+
+### 19 February 2024
+---
+class: middle
+
+### Announcements:
+
+- Past-Year Midterm Test Papers
+- Mid-Semester Feedback Survey
+- Exercise 4 after the recess week
+- More practice PE questions released after PE0
+
+---
+class: middle
+
+### PE0
+
+ - Conducted during this week's lab session
+ - Learn the PE procedure
+ - Solving a programming question
+ - Scope for PE0 up to Unit 22 only 
+ - Attend your official lab session to take PE0
+ - No makeup for PE0 will be arranged
+ 
+
+---
+class: middle
+
+### Reminder:
+
+ - Instructions for Midterm 
+ - Instructions for PE1 
+
+---
+class: middle
+
+### "Catch-Up" Session 
+
+- Saturday, 24 Feb, 10 AM - 12 PM
+- Post your questions: [https://pigeonhole.at/PRETTYGENERIC](https://pigeonhole.at/PRETTYGENERIC)
+
+---
+class: middle
+
+## Plagiarism :(
+
+---
+class: middle,left
+
+### Quick Recap
+
+- Generics
+- Type Erasure
+- Unchecked Warnings
+
+---
+class: middle,left
+
+### Topics covered today:
+
+- Wildcards
+- Type Inference
+
+(Unit 26 to Unit 27)
+---
+class: middle
+
+### Subtyping is Reflexive and Transitive
+
+- $T <: T$
+- if $S <: T$ and $T <: U$, then $S <: U$.
+
+---
+class: middle,wide
+
+Let $C(T)$ be a complex type based on type $T$. 
+
+We say a complex type $C$ is:
+
+- _covariant_ if $S <: T$ implies $C(S) <: C(T)$.
+- _contravariant_ if $T <: S$ implies $C(S) <: C(T)$.
+- _invariant_ if $C$ is neither covariant nor contravariant.
+
+---
+class: middle,center
+
+## Generics are *invariant*
+
+---
+class: middle,center
+
+## Continuing with our `Seq<T>`
+
+---
+class: middle,wide
+
+.tiny[
+```Java
+class A {
+  // version 0.5 (with Seq<T>)
+  public static <T> boolean contains(Seq<T> seq, T obj) {
+    for (int i = 0; i < seq.getLength(); i++) {
+      T curr = seq.get(i);
+      if (curr.equals(obj)) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+]
+---
+class: middle,wide
+
+.small[
+```Java
+Seq<Shape> shapeSeq;
+Seq<Circle> circleSeq;
+Shape shape;
+Circle circle;
+ :
+A.<Shape>contains(shapeSeq, shape); // ok
+A.<Circle>contains(circleSeq, circle); // ok
+```
+]
+---
+class: middle,wide
+
+.small[
+```Java
+A.<Circle>contains(shapeSeq, circle); 
+// compilation error
+
+A.<Shape>contains(circleSeq, shape); 
+// compilation error
+A.<Circle>contains(circleSeq, shape); 
+// compilation error
+```
+]
+---
+class: middle,wide
+
+.tiny[
+```Java
+class A {
+  public static <S, T extends S> boolean contains(Seq<T> seq, S obj) { 
+    for (int i = 0; i < seq.getLength(); i++) {
+      T curr = seq.get(i);
+      if (curr.equals(obj)) {
+        return true;
+      }
+    }
+    return false;
+  }
+}
+```
+]
+---
+class: middle
+
+### `copyFrom` and `copyTo`
+
+.small[
+```Java
+Seq<Circle> circleSeq;
+Seq<Shape> shapeSeq;
+  :
+shapeSeq.copyFrom(circleSeq); // error
+circleSeq.copyTo(shapeSeq); // error
+```
+]
+---
+class: middle
+
+### Upper-Bounded Wildcard
+
+```Java
+Seq<? extends Shape>  
+```
+
+`?` can be substituted by a subtype of `Shape`
+
+---
+class: middle
+
+- For any type `S`, `A<S>` <: `A<? extends S>`
+
+- Covariance: if `S` <: `T`, then  
+     `A<? extends S>` <: `A<? extends T>`
+
+---
+class: middle, wide
+
+`Seq<Circle>` <: `Seq<? extends Circle>`
+
+`Seq<? extends Circle>` <: `Seq<? extends Shape>`
+
+---
+class: middle
+
+### Lower-Bounded Wildcard
+
+```Java
+Seq<? super Shape>  
+```
+
+`?` can be substituted by a supertype of `Shape`
+
+---
+class: middle
+
+- For any type `S`, `A<S>` <: `A<? super S>`
+
+- Contravariance: if `S` <: `T`, then  
+     `A<? super T>` <: `A<? super S>`
+
+---
+class: middle, wide
+
+`Seq<Shape>` <: `Seq<? super Shape>`
+
+`Seq<? super Shape>` <: `Seq<? super Circle>`
+
+---
+class: middle
+
+## PECS
+
+Producer `extends`; Consumer `super`
+
+---
+class: middle
+
+### Unbounded Wildcard
+
+```Java
+Seq<?>  
+```
+
+`?` can be substituted by a type
+
+---
+class: middle
+
+- For any type S, `A<S>` <: `A<?>`
+- For any type S, `A<? super S>` <: `A<?>`
+- For any type S, `A<? extends S>` <: `A<?>`
+
+---
+class: middle
+
+### Revisiting Raw Types
+
+No need to use Raw Types any more.
+
+```Java
+a instanceof A<?> 
+```
+
+```Java
+new Comparable<?>[10];
+```
+
+---
+class: middle
+
+### Diamond Operator `<>`
+
+.small[
+```Java
+Pair<String,Integer> p = new Pair<>();
+```
+]
+
+---
+class: middle, wide
+
+.tiny[
+```Java
+class A {
+  public static <S> boolean contains(Seq<? extends S> seq, S obj) {
+    for (int i = 0; i < seq.getLength(); i++) {
+      S curr = seq.get(i);
+      if (curr.equals(obj)) {
+        return true;
+      }
+    }
+    return false;
+  }
+} 
+```
+]
+---
+class: middle
+
+### Type Inference
+
+Infer type argument automatically.  If there are multiple types that match, pick the _most specific one_.
+
+---
+class: Top
+
+.small[
+```Java
+A.contains(circleSeq, shape);
+```
+]
+
+.tiny[
+```Java
+... <S> boolean contains(Seq<? extends S> seq, S obj)
+```
+]
+
+---
+class: Top
+
+.small[
+```Java
+A.contains(stringArray, 123);
+```
+]
+
+.tiny[
+```Java
+... <T> boolean contains(T[] seq, T obj)
+```
+]
+
+---
+class: Top
+
+.small[
+```Java
+Shape s = A.findLargest(new Seq<Circle>(0));
+```
+]
+
+.tiny[
+```Java
+... <T extends GetAreable> T findLargest(Seq<? extends T> seq)
+```
+]
+
+---
+class: Top
+
+.tiny[
+```Java
+ColoredCircle s = A.findLargest(new Seq<Circle>(0));
+```
+]
+
+.tiny[
+```Java
+... <T extends GetAreable> T findLargest(Seq<? extends T> seq)
+```
+]
+
+---
+class: middle
+
+### Summary
+
+After solving for our type constraints:
+
+- `Type1 <: T <: Type2`, then `T` is inferred as `Type1`
+- `Type1 <: T`, then `T` is inferred as `Type1`
+- `T <: Type2`, then `T` is inferred as `Type2`
+
+where `Type1` and `Type2` are arbitrary types.
+
+---
+class: Top
+
+.small[
+```Java
+A.contains(shapeSeq, "Hello");
+```
+]
+
+.tiny[
+```Java
+... <S> boolean contains(Seq<? extends S> seq, S obj)
+```
+]
+
+---
+
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sunday Feb 18 16:30:00 +08 2024
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+  slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

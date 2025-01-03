@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 4</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 4
+
+### 5 February 2024
+---
+class: middle
+
+### Announcements
+
+- Office Hours are up!
+- Problem Set 2
+- Exercise 2 will release one day earlier and is due one day later than usual ❤️
+- Next Monday Lecture is a Recording
+---
+class: middle
+
+### Exercise 2
+
+- Builds on Exercise 1. 
+- Released early on Wednesday (7 Feb) due to CNY
+
+---
+class: middle
+
+### GEC1015/GEH1049 PE2 Conflict (April 13th)
+
+Please raise a ticket and let us know.
+
+
+---
+class: middle,left
+
+### Quick Recap
+
+- Overloading
+- LSP
+- Abstract Classes
+- Interfaces
+
+---
+class: middle,left
+
+### Topics covered today:
+
+- Wrapper Class
+- Variance
+- Exceptions
+
+(Unit 19 to Unit 22)
+
+---
+class: middle,center
+
+## Wrapper Classes
+
+---
+class: middle, wide
+
+.small[
+```Java
+boolean contains(Object[] array, Object obj) {
+  for (Object curr : array) {
+    if (curr.equals(obj)) {
+      return true;
+    }
+  }
+  return false;
+}
+```
+]
+
+
+---
+class: middle,left
+
+### Wrapper Classes are Reference Types!
+
+```Java
+Integer i = Integer.valueOf(4);
+int j = i.intValue();
+```
+
+---
+class: middle,left
+
+### Auto-boxing and Unboxing
+
+```Java
+Integer i = 4;
+int j = i;
+```
+
+---
+class: middle,center
+
+## Type Casting
+
+---
+class: middle,wide
+
+.small[
+```Java
+GetAreable findLargest(GetAreable[] array) {
+  double maxArea = 0;
+  GetAreable maxObj = null;
+  for (GetAreable curr : array) {
+    double area = curr.getArea();
+    if (area > maxArea) {
+      maxArea = area;
+      maxObj = curr;
+    }
+  }
+  return maxObj;
+}
+
+```
+]
+
+---
+class: middle,center
+
+## Variance of Types
+
+---
+class: middle,wide
+
+Let $C(T)$ be a complex type based on type $T$. 
+
+We say a complex type $C$ is:
+
+- _covariant_ if $S <: T$ implies $C(S) <: C(T)$.
+- _contravariant_ if $T <: S$ implies $C(S) <: C(T)$.
+- _invariant_ if $C$ is neither covariant nor contravariant.
+
+---
+class: middle,center
+
+### Java array is covariant
+
+---
+class: middle,wide
+
+```Java
+Integer[] ints;
+Object[] objects;
+objects = ints; // Compiles as 
+                // Integer[] <: Object[]
+ints = objects; // Error
+```
+---
+class: middle,wide
+
+```Java
+Integer[] ints = new Integer[]{1, 2};
+Object[] objects;
+objects = ints;
+objects[0] = "Oh dear";
+```
+
+---
+class: middle,center
+
+Let's consider writing a method that reads in a single integer value from a file.
+
+What can go wrong?
+
+---
+class: middle,center
+
+# Exceptions
+
+---
+class: middle,center
+
+## `try`-`catch`-`finally`
+
+---
+class: middle
+
+.small[
+```Java
+try {
+  // do something
+} catch (an exception parameter) {
+  // handle exception
+} finally {
+  // clean up code
+  // even if no exception was thrown
+}
+```
+]
+
+---
+class: middle,center
+
+## Exception Hierarchy
+
+---
+background-image: url(figures/cs2030s-lec04/exception/exception.004.png)
+
+---
+background-image: url(figures/cs2030s-lec04/exception/exception.001.png)
+
+---
+class: middle,center
+
+## Checked vs. Unchecked Exceptions
+
+---
+class: middle,center
+
+## Control Flow of Exceptions
+
+---
+class: middle
+
+.small[```Java
+try {
+  ...
+  m1();
+  ...
+} catch (E1 e) {
+  ...
+} catch (E2 e) {
+  ...
+} finally {
+  ...
+}
+```]
+
+---
+class: middle
+.tiny[```Java
+void m1() {
+  ...
+  m2();
+  ...
+}
+
+void m2() {
+  m3();
+  ...
+}
+
+void m3() {
+  ...
+  m4();
+}
+
+void m4() {
+  ...
+  throw new E2();
+  ...
+}
+```]
+
+---
+background-image: url(figures/cs2030s-lec04/exception/exception.002.png)
+
+---
+background-image: url(figures/cs2030s-lec04/exception/exception.003.png)
+
+
+---
+class: middle,center
+
+## Creating our own Exceptions
+
+---
+class: middle,center
+
+## Best Practices for Exception Handling
+
+---
+class: middle
+
+### Do use catching exceptions to clean up
+
+.tiny[```Java
+public void m2() throws E2 {
+  try {
+    // setup resources
+    m3();
+  }
+  catch (E2 e) {
+    throw e;
+  }
+  finally {
+    // clean up resources
+  }
+}
+```]
+
+---
+background-image: url(figures/cs2030s-lec04/catch-them-all.png)
+
+
+---
+class: middle
+
+### Do NOT catch-them-all!
+
+```Java
+try {
+  // your code
+}
+catch (Exception e) {
+  // do nothing
+}
+```
+
+---
+class: middle
+
+### Do NOT use Exception as a Control Flow Mechanism
+
+```Java
+try {
+  obj.doSomething();
+} catch (NullPointerException e) {
+  doTheOtherThing();
+}
+```
+
+---
+class: middle
+
+### Do NOT Overreact
+
+```Java
+try {
+  // your code
+}
+catch (Exception e) {
+  System.exit(0); 
+}
+```
+
+---
+class: middle,left
+
+### Reminders
+
+- Be sure to do your quizzes!
+- Remember: Play with the examples we give you :)
+
+---
+class: middle,left
+background-color: darkred
+
+If I don't see you beforehand:
+
+## Happy Lunar New Year!
+
+---
+
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sat Feb 03 20:00:00 +08 2024
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+  slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
