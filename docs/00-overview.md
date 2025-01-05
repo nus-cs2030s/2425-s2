@@ -3,8 +3,6 @@
 !!! abstract "Learning Objectives"
 
     After this unit, students should
-    
-    - understand the aims of CS2030/S.
     - understand how the key concepts covered in CS2030/S are related to each other.
 
 ## What is This Module About?
@@ -13,11 +11,6 @@ CS2030/S is designed for students who have gone through a typical basic programm
 
 The first aim of CS2030/S is to change the students' mindset and to make them learn to write software that will continue to evolve as software requirements change and to write software that will be read and modified by other programmers (including their future selves).
 
-!!! quote
-    _"Always code as if the guy who ends up maintaining your code will be a violent psychopath who knows where you live. Code for readability."_
-    
-    John Woods.
-
 The second aim of CS2030/S is to level up the complexity of programs that the students write, from the order of hundreds of lines to thousands of lines.  CS2030/S bridges the
 students between writing toy programs to solve specific problems in CS1010 and writing larger real-world software in their later modules, such as CS2103 Software Engineering.
 
@@ -25,14 +18,6 @@ A programming language is a medium in which programmers can express their intent
 
 The final aim of CS2030/S is to introduce students to programming language concepts and to bridge them from introductory programming to advanced modules such as programming language design and implementation.  Part of CS2030/S introduces students to the design decisions behind some of the constraints and the workings behind the programming language compilation and execution, giving them a glimpse inside the programming system that so far has been mostly treated as a black box in introductory modules.
 
-!!! info "Priority"
-    When writing programs to solve problems, the general priority should be the following:
-
-    1. *Correctness*: Can your program run and solve the problem correctly?
-    2. *Efficiency*: Can your program solve the problem efficiently?
-    3. *Maintainability*: Can your program be maintained and improved upon by multiple people?
-
-    The priority in CS1010 is correctness.  CS2040/S teaches you about how to increase efficiency while CS2030/S focuses more on maintainability.  However, you should never sacrifice correctness.
 
 ## The Choice of Java
 
@@ -46,7 +31,7 @@ This is not a module on Java programming.  We will not comprehensively cover Jav
 
 This is not a module on software engineering either.  Software engineering is a broad discipline on its own and deserves another module.  Rather, this module is about the programming principles and constructs on top of which programmers can design better software.  To motivate the importance of these principles and constructs and see how they can be used, we will inevitably cover some of the software engineering design principles, such as Liskov Substitution Principle (the L in SOLID), Tell-Don't-Ask, Composition over Inheritance, etc.  However, we will not comprehensively cover object-oriented design or software design in general (e.g., we will not cover S, O, I, and D in SOLID).
 
-Finally, CS2030/S is not a module that focuses on computational efficiency.  We have CS2040/S for that.  In CS2030/S, although reducing computational cost still plays a role, this is not the only cost that matters.  CS2030/S is also concerned with the human cost of debugging or maintaining software.  In striving for simpler software that is easier to maintain and extend, we may have to sacrifice computational efficiency.
+Finally, CS2030/S is not a module that focuses on computational efficiency.  We have CS2040/S for that.  In CS2030/S, although reducing computational cost still plays a role, this is not the only cost that matters.  CS2030/S is also concerned with the _human cost_ of debugging or maintaining software.  In striving for simpler software that is easier to maintain and extend, we may have to sacrifice computational efficiency.
 
 ## Taming Complexity in Software Development
 
@@ -128,6 +113,6 @@ A reason CS2030/S chooses to use Java is due to its type system.  CS2030/S will 
 
 ### Eliminating Side Effects
 
-We have discussed how functions can compartmentalize computations and limit their complexity within their body.  For this approach to be effective, the function must not have any side effects &mdash; such as updating a variable that is not within the function.  Such functions is called _pure _functions_.  Being side-effect-free is one of the key principles of the functional programming paradigm and is something that we will explore to kick off the section on functional paradigm in CS2030/S.
+We have discussed how functions can compartmentalize computations and limit their complexity within their body.  For this approach to be effective, the function must not have any side effects &mdash; such as updating a variable that is not within the function.  Such functions is called _pure functions_.  Being side-effect-free is one of the key principles of the functional programming paradigm and is something that we will explore to kick off the section on functional paradigm in CS2030/S.
 
 A related idea in object-oriented programming we will cover in CS2030/S is _immutability_ &mdash; once we create an object, the object cannot be changed.  In order to update an object, we need to create a new one.  With immutability and pure functions, we can guarantee that the same function invoked on the same objects will always return the same value.  This certainty can help in understanding and reasoning about the code behavior.
