@@ -12,9 +12,9 @@
 
 ## Software Program
 
-A software program is a collection of data variables and instructions on how to modify these variables.  To dictate these instructions to the computer, programmers usually write down the instructions using a programming language, expressing their instructions in code that is made up of keywords, symbols, and names.  
+A software program is a collection of data variables and instructions on how to modify these variables.  To dictate these instructions to the computer, programmers usually write down the instructions using a programming language, expressing their instructions in code that is made up of keywords, symbols, and names.
 
-A programming language is a formal language that helps programmers specify _precisely_ what the instructions are at a higher level of _abstraction_ (_i.e._, at a higher conceptual level) so that a programmer only needs to write a few lines of code to give complex instructions to the computer.  
+A programming language is a formal language that helps programmers specify _precisely_ what the instructions are at a higher level of _abstraction_ (_i.e._, at a higher conceptual level) so that a programmer only needs to write a few lines of code to give complex instructions to the computer.
 
 
 ## Compiled vs. Interpreted Programs
@@ -40,15 +40,40 @@ Tombstone Diagrams or T-diagrams consist of combinations of the following four c
 
 These components are represented in T-diagrams as shown in the figure below:
 
-![Compiler 001](figures/compiler/compiler.001.png){ width=500 }
+<!--
+compiler-0.png:   PNG image data, 2538 x 2858, 8-bit colormap, non-interlaced
+compiler-1.png:   PNG image data, 1529 x 1688, 8-bit colormap, non-interlaced
+compiler-2.png:   PNG image data, 2875 x 1338, 8-bit colormap, non-interlaced
+compiler-3.png:   PNG image data, 1208 x 1679, 8-bit colormap, non-interlaced
+compiler-4.png:   PNG image data, 1221 x 1679, 8-bit colormap, non-interlaced
+compiler-5.png:   PNG image data, 2863 x 1917, 8-bit colormap, non-interlaced
+Divide by 7 to get the width below
+-->
+
+<figure markdown="span">
+<br>
+![Compiler 001](figures/compiler/compiler-0.png){ width=362 }
+  <figcaption></figcaption>
+</figure>
 
 We can treat these components like "puzzle pieces" and build diagrams to describe various execution, compilation, or interpreted processes.  For example, in the diagram below, a Python script `Hello.py` is being interpreted by the Python interpreter running on the x86-64 architecture.
 
-![Compiler 002](figures/compiler/compiler.002.png){ width=375 }
+<figure markdown="span">
+<br>
+![Compiler 002](figures/compiler/compiler-1.png){ width=218 }
+  <figcaption></figcaption>
+<br>
+</figure>
+
 
 *Note:* In order for the diagram to be valid, adjacent connected diagram components need to match. This can be seen in the diagram below (highlighted with blue boxes).
 
-![Compiler 006](figures/compiler/compiler.006.png){ width=700 }
+<figure markdown="span">
+<br>
+![Compiler 006](figures/compiler/compiler-5.png){ width=409 }
+  <figcaption></figcaption>
+<br>
+</figure>
 
 Since CS2030/S uses Java, we will now look at the two approaches to execute a Java program in more detail (without worrying about how to write a single line of Java first).
 
@@ -62,7 +87,13 @@ $ javac Hello.java
 
 into the command line.  `javac` is the Java compiler.  This step will either lead to the bytecode called `Hello.class` being created or generate some errors.  This process can be seen in the figure below, where the `Hello.java` program is compiled from Java to the JVM language (_bytecode_). The Java compiler `javac` in this diagram is implemented in the x86-64 machine language.
 
-![Compiler 003](figures/compiler/compiler.003.png){ width=700 }
+<figure markdown="span">
+<br>
+![Compiler 003](figures/compiler/compiler-2.png){ width=410 }
+  <figcaption></figcaption>
+<br>
+</figure>
+
 
 Assuming that there is no error in compilation, we can now run
 
@@ -72,7 +103,13 @@ $ java Hello
 
 to invoke the JVM `java` and execute the bytecode contained in the file `Hello.class`. This can be seen in the figure below, where the `Hello.class` program is interpreted from JVM language (_bytecode_) to the x86-64 machine language.
 
-![Compiler 004](figures/compiler/compiler.004.png){ width=375 }
+<figure markdown="span">
+<br>
+![Compiler 004](figures/compiler/compiler-3.png){ width=172 }
+  <figcaption></figcaption>
+<br>
+</figure>
+
 
 [^1]: The `$` represents the command prompt in a shell and you do not need to type this.
 
@@ -94,7 +131,12 @@ Beginners tend to confuse between `javac` and `java`, and whether to add the ext
 
 Java (version 8 or later) comes with an interpreter called `jshell` that can read Java statements, evaluate them, and print the results[^3]. `jshell` is useful for learning and experimenting with Java.   This can be seen in the figure below, where the `Hello.java` program is interpreted from Java directly to the x86-64 machine language. 
 
-![Compiler 005](figures/compiler/compiler.005.png){ width=375 }
+<figure markdown="span">
+<br>
+![Compiler 005](figures/compiler/compiler-4.png){ width=174 }
+  <figcaption></figcaption>
+<br>
+</figure>
 
 To run `jshell` in interactive mode, we type
 

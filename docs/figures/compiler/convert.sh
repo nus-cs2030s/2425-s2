@@ -1,3 +1,4 @@
 #!/bin/bash
-# Using ImageMagick for better quality images
-convert -density 300 compiler.pdf compiler.png
+# Run after exported from Keynote.app
+pdfcrop compiler.pdf
+magick convert -density 300 compiler-crop.pdf compiler.png
