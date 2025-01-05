@@ -103,6 +103,20 @@ $ java Hello
 
 to invoke the JVM `java` and execute the bytecode contained in the file `Hello.class`. This can be seen in the figure below, where the `Hello.class` program is interpreted from JVM language (_bytecode_) to the x86-64 machine language.
 
+!!! warning "Passing in filename instead of class name"
+
+    A common mistake is to invoke `java` with the filename (including the `.class` extension) instead:
+    ```
+    $ java Hello.class
+    ```
+
+    This will result in an error:
+    ```
+    Error: Could not find or load main class Hello.class
+    Caused by: java.lang.ClassNotFoundException: Hello.class
+    ```
+    
+
 <figure markdown="span">
 <br>
 ![Compiler 004](figures/compiler/compiler-3.png){ width=172 }
@@ -113,19 +127,19 @@ to invoke the JVM `java` and execute the bytecode contained in the file `Hello.c
 
 [^1]: The `$` represents the command prompt in a shell and you do not need to type this.
 
-Beginners tend to confuse between `javac` and `java`, and whether to add the extension `.java` or `.class` when compiling and executing a Java program.  Do take note and refer back here if needed[^2].
+Beginners tend to confuse between `javac` and `java`, and whether to add the extension `.java` or `.class` when compiling and executing a Java program.  Do take note and refer back here if needed.
 
-[^2]: To add to the confusion, Java 11 introduces a shortcut where we can run `java Hello.java` directly.  This command causes `Hello.java` to be compiled and executed in a single step.  We won't do this in CS2030/S (i) to avoid confusion and (ii) to show you the steps explicitly.
 
-!!! failure "Common Mistakes"
-    A common mistake when compiling and running a Java program is to use the `java` command on a `.java` file instead of the `javac` command.
-    To make matters worse, you can **sometimes** run the `.java` program using the `java` command seemingly bypassing the need for compilation using the `javac` command.
-    This feature is called ["Launch Single-File Source-Code Programs"](https://openjdk.org/jeps/330).
-    In general, avoid the following command:
-
+!!! note "java Hello.java"
+    
+    To add to the confusion, Java 11 introduces a shortcut where we can run:
     ```
     $ java Hello.java
     ```
+
+    directly in certain cases.  This command causes `Hello.java` to be compiled and executed in a single step. This feature is described in more details in the document ["Launching Single-File Source-Code Programs"](https://dev.java/learn/single-file-program/) from Oracle.
+    
+    We won't do this in CS2030/S (i) to avoid confusion and (ii) to show you the steps explicitly.
 
 ### Interpreting a Java program
 
@@ -174,7 +188,7 @@ While `jshell` is a convenient way to test things out and play with new Java con
 !!! quote
     _"One man's program is another program's data."_
 
-    Olivier Danvy
+    -- Olivier Danvy
 
 The compiler does more than just translate source code into machine code or bytecode.  The compiler also needs to parse the source code written and check if it follows the precise specification of the programming language (called _grammar_) used, and produces a _syntax error_ if the grammar is violated.  It therefore can detect any syntax error before the program is run.
 
@@ -182,4 +196,4 @@ It is much better for a programmer to detect any error in its code during compil
 
 The power of the compiler, however, is limited.  A compiler can only read and analyze the source code without actually running it.  Without running the program, the compiler cannot always tell if a particular statement in the source code will ever be executed; it cannot always tell what values a variable will take.
 
-To deal with this, the compiler can either be _conservative_, and report an error as long as _there is a possibility_ that a particular statement is incorrect; or, the compiler can be more _permissive_, reporting an error only if _there _is no _possibility_ that a particular statement is correct.  If there is a possibility that a particular statement is correct, it does not throw an error but relies on the programmer to do the right thing.  We will further contrast these two behaviors later in this module.
+To deal with this, the compiler can either be _conservative_, and report an error as long as _there is a possibility_ that a particular statement is incorrect; or, the compiler can be more _permissive_, reporting an error only if _there _is no possibility_ that a particular statement is correct.  If there is a possibility that a particular statement is correct, it does not throw an error but relies on the programmer to do the right thing.  We will further contrast these two behaviors later in this module.
