@@ -103,7 +103,7 @@ To access the fields and the methods, we use the `.` notation.  For example, `ob
 
 Let us take a moment to appreciate the example `Circle` v0.1 above.  This is a reasonable example as the method `getArea` is computing the area of the circle with the radius as specified in the field `r`.  So, we can clearly see that the method is associated with the data.  Let's now add another method `factorial` to `Circle`:
 
-```Java title="Circle v0.11 with Irrelevant Method"
+```Java title="Circle v0.1.1 with Irrelevant Method"
 class Circle {
   double x;
   double y;
