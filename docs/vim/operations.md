@@ -1,8 +1,5 @@
 # Vim HOWTO: Common Code Editing Operations
 
-!!! Notes "Work in Progress"
-    This article is a work-in-progress that aims to eventually replace the article "Vim Tips" next AY.  As such, you will find some overlaps between the two articles.
-
 ## Vim as a Source Code Editor
 
 A source code editor is more than a text editor.  A source code editor is designed and optimized for common operations performed by a programmer while programming.  In this article, we summarize some common operations that you will likely perform and how you will perform them in Vim.
@@ -162,6 +159,8 @@ You can edit multiple lines in VISUAL BLOCK mode.  This is useful for commenting
 
 First, move the cursor at the beginning of a line.  Go into VISUAL BLOCK mode with CTRL-V or CTRL-Q[^1], then select the lines that you want to comment.
 
+[^1]: If this does not work, it means that your terminal or OS is intercepting the shortcut keys for other purposes.  For instance, CTRL-V might be interpreted as "paste" in Windows.  You need to remap the hotkeys either in Vim or your app/OS.
+
 Type SHIFT-I to insert in VISUAL BLOCK mode, type `// ` and then `ESC` to go back to NORMAL mode.  The text `// ` would be inserted in front of each line selected.
 
 To uncomment, select `// ` on each line that you wish to uncomment, and `x` to delete them.
@@ -222,6 +221,7 @@ If there are only a few lines and you can count the size of the scope within whi
 Suppose your cursor is far away and you have the line number turned on.  Let say the method above appears at Lines 125 to 131.  You can issue the command `:125,131s/time/joinTime`.
 
 Alternatively, you can use VISUAL-LINE mode.  Place the cursor at the beginning of the method, and press SHIFT-V.  This enters the VISUAL-LINE mode.  Now, navigate to select the scope within which you want to search and replace (`5j` or `}` works in this case), and press `:`.  You will see that the command prompt is pre-filled with `:'<,'>` to signify the selected range.  Continue typing `s/time/joinTime` and ENTER.
+
 
 ### Changing all occurrences in a file
 

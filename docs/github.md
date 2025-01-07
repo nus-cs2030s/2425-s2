@@ -114,7 +114,7 @@ Remember that `cat` just dumps the content of the file to the standard output.  
 ssh-ed25519 AAAZC3NzaC1lZDI1NTE8AAAAIDdmwMpRrhRB95u7CTahehtBEeOdhSxDQdlpCxBK3KCP ooiwt@comp.nus.edu.sg
 ```
 
-I showed the above as an example, don't use my public key for your GitHub.  Otherwise, I will have access to your account :)
+I showed the above as an example, don't use my public key for your GitHub.  Otherwise, I will have access to your account.
 
 After entering the title and key above, click the green "Add SSH key" button to add the key you entered.  If prompted, confirm your GitHub password.
 
@@ -145,7 +145,7 @@ Note that you need to connect with the username `git`.  Do not use your GitHub u
 
 We have created an empty lab for you to test if you can correctly retrieve future lab files from GitHub.  Complete the following steps:
 
-- Click here [https://classroom.github.com/a/uOrkMKIa](https://classroom.github.com/a/uOrkMKIa).  You should see a page that looks like the following:
+- Click here [https://classroom.github.com/a/35k4fcsd](https://classroom.github.com/a/35k4fcsd).  You should see a page that looks like the following:
 
 ![accept](figures/accept-assignment-demo.png){: style="width:500px"}
 
