@@ -193,7 +193,7 @@ class Booking {
 However, if we want to leave open the possibility that we may need to store more information about an airport in the future (e.g., location, name), then it is better to model it as a class even if it contains only a single property for now.
 
 
-## Visualizing Classes with Class Diagram (Part 1)"
+## Visualizing Classes with Class Diagram (Part 1)
 
 A useful diagram to have when trying to visualize a class is called the class diagram.  A class diagram uses a rectangle to represent a class, with three segments representing the name, the fields, and the methods.
 
@@ -201,19 +201,17 @@ In between each segment, we draw a line to clearly delimit each segment.  For th
 
 Additionally, we omit the implementation of the method and record only the minimal information needed.  Otherwise, there is no difference between class diagram and code.  What we want is to have a diagram that captures the essence of a class so that we can reason about our design without actually writing the code.
 
-For instance, the class `Circle` v0.1 can be represented as follows:
+For instance, the class `Circle` v0.1 can be represented as follows[^4]:
 
-![Class Diagram 01](figures/ClassDiagram01.png){ width=400px }
+[^4]: We follow the UML (Unified Modeling Language) standard for drawing class diagrams in our notes, but UML is outside the syllabus of CS2030/S.  Our goal here is merely to use diagrams to help us visualize the OO design.  In the context of CS2030/S, the actual convention of how to draft the diagrams need not be precise.  For details about UML Class Diagram, see the [Wikipedia page](https://en.wikipedia.org/wiki/Class_diagram).
 
 ``` mermaid
-  class Address{
-    +String street
-    +String city
-    +String state
-    +int postalCode
-    +String country
-    -validate()
-    +outputAsLabel()
+classDiagram
+  class Circle {
+    x : double
+    y : double
+    r : double
+    getArea() : double
   }
 ```
 
