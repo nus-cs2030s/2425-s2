@@ -192,33 +192,6 @@ class Booking {
 
 However, if we want to leave open the possibility that we may need to store more information about an airport in the future (e.g., location, name), then it is better to model it as a class even if it contains only a single property for now.
 
-
-## Visualizing Classes with Class Diagram (Part 1)
-
-A useful diagram to have when trying to visualize a class is called the class diagram.  A class diagram uses a rectangle to represent a class, with three segments representing the name, the fields, and the methods.
-
-In between each segment, we draw a line to clearly delimit each segment.  For the best result, the order in which the fields and methods appear should be identical to how they appear in the code.
-
-Additionally, we omit the implementation of the method and record only the minimal information needed.  Otherwise, there is no difference between class diagram and code.  What we want is to have a diagram that captures the essence of a class so that we can reason about our design without actually writing the code.
-
-For instance, the class `Circle` v0.1 can be represented as follows[^4]:
-
-[^4]: We follow the UML (Unified Modeling Language) standard for drawing class diagrams in our notes, but UML is outside the syllabus of CS2030/S.  Our goal here is merely to use diagrams to help us visualize the OO design.  In the context of CS2030/S, the actual convention of how to draft the diagrams need not be precise.  For details about UML Class Diagram, see the [Wikipedia page](https://en.wikipedia.org/wiki/Class_diagram).
-
-``` mermaid
-classDiagram
-  class Circle {
-    x : double
-    y : double
-    r : double
-    getArea() : double
-  }
-```
-
-We will improve upon this class diagram with additional details while keeping the amount of information minimal to avoid information overload.
-
-We encourage you to practice drawing class diagrams from code and writing code from class diagrams.  This will be a useful design tool when dealing with larger programs, especially those involving multiple files.  Class diagram lets you see, at a glance, the classes and their relationships in a program across multiple files.
-
 ## Reference Types in Java
 
 We mentioned in [Unit 2](02-type.md) that there are two kinds of types in Java.  You have been introduced to the primitive types.  Everything else in Java is a reference type.
@@ -262,4 +235,3 @@ Remember to _always instantiate a reference variable_ before using it.
 ## Further Readings
 
 - Oracle's Java Tutorial on [Classes](https://docs.oracle.com/javase/tutorial/java/javaOO/classes.html) and [Objects](https://docs.oracle.com/javase/tutorial/java/javaOO/objects.html).
-- [Class Diagram](https://en.wikipedia.org/wiki/Class_diagram).  The version that we will introduce in CS2030/S is a simpler version that is sufficient for the purpose of this course.
