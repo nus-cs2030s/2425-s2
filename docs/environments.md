@@ -1,58 +1,65 @@
 # The CS2030S Programming Environment
 
+![architecture](figures/pe-nodes-architecture/pe-nodes-architecture.001.png)
+<div align="center">Figure 1: The CS2030S Programming Environment.  TL;DR: All work should be done on the PE nodes.  You can access the nodes via `ssh` through lab PCs or your personal devices.  If you need to access them outside SoC, you need to go through SoC VPN.</div>
+
 ## Java version
 
 Java is a language that continues to evolve.  A new version is released every six months.  For CS2030S, we will _only_ use Java 17, the most recent version with long-term support.  Specifically, we use `openjdk 17.0.8.1 2023-08-24` on Ubuntu 20.04.5.
 
 ## PE Hosts
 
-The school has provided a list of computing servers for you to use, with all the required software for CS2030S installed.  You can access them remotely via `ssh`, or Secure SHell.  The hosts are named `pe111`, `pe112`, ..., `pe120`.  (`pe` stands for "programming environment").  We will refer to these servers generally as the _PE hosts._
+The school has provided a list of computing servers with the above environments for you to use (:material-alpha-a-circle: in Figure 1).  The hosts are named `pe111`, `pe112`, ... , `pe119`.  (`pe` stands for "programming environment").  We will refer to these servers generally as the _PE hosts._
 
-For this semester, the three servers `pe115`, `pe116`, and {++`pe120`++} are not available.
+!!! note "pe115 and pe116"
+    For this semester, two servers `pe115` and `pe116` are not available.
 
-You can choose which of the eight hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `stu1`).  If you notice that one host is crowded, you can use another host to spread out the load.
+You can choose which of the seven hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `stu`).  If you notice that one host is crowded, you can use another host to spread out the load.
 
-While you can complete the programming assignments on your computers, the practical exams are done in a controlled environment using servers similar to the PE hosts.  It is therefore advisable for you to familiarize yourself with accessing the PE servers via `ssh` and edit your program with either `vim`, `micro` or `emacs` (`vim` is recommended and supported).
+For simplicity, the following guide uses `pe111` in all examples.  Do keep in mind that you can use other PE hosts for CS1010 to spread out the load.
 
 ## Accessing the PE Hosts
 
-### Basic Requirements
+While you can complete the programming assignments on your own computers, the practical exams are done in a controlled environment using servers similar to the PE hosts.  It is therefore advisable for you to familiarize yourself with accessing the PE servers via `ssh` and edit your program with either `vim`, `micro` or `emacs` (`vim` is recommended and supported).
 
-1. You should be familiar with the terms Unix, command-line interface, command prompt, terminal, and shell.  Read this [background article](unix/background.md) if you don't.
+### Account
 
-1. You need to have an SoC Unix account.  If you do not have one, you can [apply for one online](https://mysoc.nus.edu.sg/~newacct/).
+Basic requirements:
+
+1. To access the hosts, you need an SoC Unix account.  If you do not have one, you can [apply for one online](https://mysoc.nus.edu.sg/~newacct/).
 
 2. Once you have an account, you need to [activate your access to the PE hosts](https://mysoc.nus.edu.sg/~myacct/services.cgi), which are part of the SoC computer clusters.
 
-3. You need a command line `ssh` client.  Windows 10, macOS, and Linux users should already have it installed by default.
+3. To access PE Hosts from your computer (:material-alpha-c-circle: or :material-alpha-d-circle: in Figure 1) you need
 
-4. You need a good [terminal emulator](unix/background.md#what-is-a-terminal).  For Microsoft Windows users, you can use either PowerShell or [Windows Terminal](https://docs.microsoft.com/en-us/windows/terminal/); Mac users can use the default [Terminal](https://support.apple.com/en-sg/guide/terminal/welcome/mac) or [iTerm2](https://iterm2.com/index.html).  
+    - a command line `ssh` client.  Windows 10/11, macOS, and Linux users should already have `ssh` installed by default.  If your OS does come with `ssh` (i.e., it cannot find the `ssh` command when you type `ssh` into your terminal), look for instructions on how to install OpenSSH client on your operating system.
+   - a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS1010 recommends either PowerShell (pre-installed) or [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?ocid=webpdpshare).  For macOS users, CS2030S recommends [iTerm2](https://iterm2.com/).
 
 ### The Command to SSH
 
-To connect to a remote host, run the following in your terminal on your local computer:
+You can access the PE hosts remotely via `ssh` (Secure SHell).
 
+To connect to a remote host, run the following in your terminal on your local computer:
 ```
 ssh <username>@<hostname>
 ```
 
 Replace `<username>` with your SoC Unix username and `<hostname>` with the name of the host you want to connect to. For instance, I would do:
-
 ```
 ssh ooiwt@pe112.comp.nus.edu.sg
 ```
 
 if I want to connect to `pe112.comp.nus.edu.sg`.
 
-After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC Unix password.  Note that nothing is shown on the screen when your password is entered.
+After the command above, follow the instructions on the screen.  The first time you ever connect to `pe112.comp.nus.edu.sg`, you will be warned that you are connecting to a previously unknown host.  Answer `yes`.  After that, you will be prompted with your SoC Unix password.  Note that nothing is shown on the screen when your password is being entered.
 
 <script id="asciicast-4rtH1KENV6QOdKtlY0T7mce0M" src="https://asciinema.org/a/4rtH1KENV6QOdKtlY0T7mce0M.js" async></script>
 
 ### Accessing The PE Hosts from Outside SoC
 
-The PE hosts can only be accessed from _within_ the School of Computing networks.  If you want to access it from outside, you need to connect through SoC VPN.
+The PE hosts can only be accessed from within the School of Computing networks.  If you want to access it from outside, you need to connect through SoC VPN (:material-alpha-d-circle: in Figure 1).
 
-First, you need to set up a Virtual Private Network (VPN) (See [instructions here](https://dochub.comp.nus.edu.sg/cf/guides/network/vpn)).  The staff at the IT helpdesk in COM1, Level 1, will be able to help you with setting up if needed.
+First, you need to set up a Virtual Private Network (VPN) (See [instructions here](https://dochub.comp.nus.edu.sg/cf/guides/network/vpn)).  The staff at the IT helpdesk in COM1, Level 1, will be able to help you with setting up if needed.  You can also contact them via the NUS IT RT system at [https://rt.comp.nus.edu.sg](https://rt.comp.nus.edu.sg).
 
 !!! note "SoC VPN vs NUS VPN"
 
@@ -62,9 +69,22 @@ First, you need to set up a Virtual Private Network (VPN) (See [instructions her
 
     When you setup the SoC VPN client, please make sure that you download and install "FortiClient VPN Only", and not "FortiClient".  The latter is a commercial product that would stop working after the free trial is over.   On the other hand, "FortiClient VPN" is a free product.
 
-### Troubleshooting
+### Accessing The PE Hosts from SoC Lab PCs
 
-Some common error messages and what they mean:
+CS1010 practical exams will be conducted in the programming labs in COM1, COM4, and AS6 using the Ubuntu environment on the lab PCs.  Students are advised to use the lab PCs during regular lab sessions to familiarize themselves with the environment (:material-alpha-b-circle: in Figure 1).  
+
+To access the PE hosts from the lab PCs during lab sessions:
+
+- Boot into Ubuntu if the PC is not already running Ubuntu
+- Log into the PC using the SoC Unix account
+- Launch the terminal and use `ssh` command above.
+
+!!! warning
+    The local home directory on the lab PCs will be cleaned regularly.  _Do not expect that files stored in the lab PCs to be persistent_.  You can copy your files to external drive, to your home directory on the PE hosts, or to a cloud storage.
+    
+### Troubleshooting SSH Connection
+
+Some common error messages you may receive when you `ssh` and what they mean:
 
 1. > `ssh: Could not resolve hostname pe1xx.comp.nus.edu.sg`
 
@@ -92,22 +112,22 @@ Some common error messages and what they mean:
 
 ## Copying Files between PE Nodes and Local Computer
 
-Secure copy, or `scp`, is one way to transfer files between the programming environments and your local computer.  `scp` behaves just like `cp` (see [Unix: Essentials](unix/essentials.md)).  The command takes in two arguments, the source, and the destination.  The difference is that we use the `<username>@<hostname>:<filename>` notation to specify a file on a remote host.
+Secure copy, or `scp`, is one way to transfer files between the programming environments and your local computer.  `scp` behaves just like `cp` (see [Unix: Essentials](unix/essentials.md)).  The command takes in two arguments, the source and the destination.  The difference is that we use the `<username>@<hostname>:<filename>` notation to specify a file on a remote host.
 
-Let's say you want to transfer a set of C files from the directory `lab01` to your local computer.  Then, on the local computer, run:
+Let's say you want to transfer a set of Java files from the directory `ex1` to your local computer.  Then, on the local computer, run:
 
 ```bash
-ooiwt@macbook:~$ scp ooiwt@pe111.comp.nus.edu.sg:~/lab01/*.java .
+ooiwt@macbook:~$ scp ooiwt@pe111.comp.nus.edu.sg:~/ex1/*.java .
 ```
 
 !!! warning
     If you have files with the same name in the remote directory, the files will be overwritten without warning.  I have lost my code a few times due to `scp`.  
 
 The expression `*.java` is a regular expression that means all files with a filename ending with `.java` (see [Advanced Topics on Unix](unix/advanced.md)).
-You can copy specific files as well.  For instance, to copy the file `Hello.java` from your local computer to your `~/lab01` directory:
+You can copy specific files as well.  For instance, to copy the file `Hello.java` from your local computer to your `~/ex1` directory:
 
 ```bash
-ooiwt@macbook:~$ scp Hello.java ooiwt@pe111.comp.nus.edu.sg:~/lab01
+ooiwt@macbook:~$ scp Hello.java ooiwt@pe111.comp.nus.edu.sg:~/ex1
 ```
 
 `scp` supports `-r` (recursive copy) as well.
@@ -121,16 +141,14 @@ The next step is not required but is a time-saver and a huge quality-of-life imp
 Our goal here is to set up a pair of public/private keys for authentication so that you do not need to type your password every time you log into a PE host.
 
 You can use the following command on your local computer to generate a pair of keys:
-
 ```
 ssh-keygen -t rsa
 ```
 
-This command will generate two keys, a private key `id_rsa`, and a public key `id_rsa.pub`.  {++You will be prompted for a passphrase.  This is the passphrase to protect your private key on your local computer.  You can enter an empty passphrase (at the cost of weaker security) to avoid being prompted for the passphrase whenever you access the private key[^1].++} 
-
+This command will generate two keys, a private key `id_rsa`, and a public key `id_rsa.pub`.  You will be prompted for a passphrase.  This is the passphrase to protect your private key on your local computer.  You can enter an empty passphrase (at the cost of weaker security) to avoid being prompted for the passphrase whenever you access the private key[^1].
 Keep the private key `id_rsa` on your local machine in the hidden `~/.ssh` directory and copy the public key `id_rsa.pub` to your account on PE `pe111`.
 
-There are two methods to do this.  {++You only need to apply one of them.++}
+There are two methods to do this.  You only need to apply one of them.
 
 ### Method 1: Using `ssh-copy-id`
 

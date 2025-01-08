@@ -15,12 +15,11 @@ In the ideal case, the code above the abstraction barrier would just call the pr
 
 Consider the case of `Circle` in Unit 4, where we modify the radius `r` directly with `c.r = 10`.  In doing so, we, as the client to `Circle`, make an explicit assumption of how `Circle` implements a circle.  The implementation details have been leaked outside the abstraction barrier.   Now, if the implementer wishes to change the representation of the `Circle`, to say, store the diameter, instead. 
 
-```Java
-// Circle using Diameter
+```Java title="Circle v0.1.2 with Diameter"
 class Circle {
   double x;
   double y;
-  double d; // d for diameter
+  double d; // diameter
 
   double getArea() {
     return 3.141592653589793 * d * d / 4.0;
@@ -51,8 +50,6 @@ class Circle {
 ```
 
 [^1]: The other access modifier is `protected`.  Again, we do not want to worry about this modifier for now.
-
-So, as a quick summary, the two access modifiers are shown below.
 
 Now the fields `x`, `y`, and `r` are hidden behind the abstraction barrier of the class `Circle`.  Note that these fields are not accessible and modifiable outside of the class `Circle`, but they can be accessed and modified within `Circle` (inside the abstraction barrier), such as in the methods `getArea`.
 
