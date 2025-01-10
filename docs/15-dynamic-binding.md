@@ -36,7 +36,7 @@ curr.equals(obj)
 ```
 above, the target `curr` has the compile-time type `Object`.
 
-Let's generalize the compile-time type of the target to $C$.  To determine the method descriptor, the compiler searches for all methods that can be correctly invoked on the given argument.
+Let's generalize the compile-time type of the target to $C$.  To determine the method descriptor, the compiler searches for all methods in $C$ (including inherited methods) that can be correctly invoked on the given argument.  Methods inherited from $C$'s supertypes are included in the search.
 
 In the example above, we look at the class `Object`, and there is only one method called `equals`.  The method can be correctly invoked with one argument of type `Object`.
 
