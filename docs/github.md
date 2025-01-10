@@ -5,7 +5,6 @@
 1. You should already have your SoC Unix account, cluster access, and SoC VPN set up, and be able to `ssh` into one of the PE hosts.  If you are not able to do this, please look at the guide on [programming environments](environments.md).
 2. You should feel comfortable running basic UNIX commands.  If you have not gone through the UNIX guide and got your hands dirty, please [look at the guide and play with the various basic Unix commands](unix/essentials.md).
 3. You should already have a GitHub account and can log into [GitHub.com](https://www.github.com).
-4. {++You know how to create and edit a file in Vim++}
 
 ## Purpose
 
@@ -13,37 +12,45 @@ You will be using `git` (indirectly) for retrieving skeleton code and submitting
 
 ## 1. Setting up `.gitconfig`
 
-Create and edit a file called `.gitconfig` in **your home directory on the PE host**, with the following content:
+Run the following commands to configure `git`:
 
-```text
-[user]
-  name = Your Name
-  email = Your Email
-[github]  
-  user = Your GitHub Username
+```Bash
+git config --global user.name <your name>
+git config --global user.email <your email>
+git config --global github.user <your github user name>
 ```
 
 Your email should be whatever you used to sign up on GitHub (which may not be your SoC or NUS email).
 
-For example, a sample `.gitconfig` looks like this:
+For example, 
 
-```text
-[user]
-  name = Elsa
-  email = queen@arendelle.gov
-[github]  
-  user = elsasnow16
+```
+git config --global user.name "Ah Beng"
+git config --global user.email "ahbeng@example.com"
+git config --global github.user "ahbeng123"
 ```
 
-After saving this file, run:
+After the above, you can check if the configuration is set correctly by running the following commands:
 
 ```
 git config --get github.user
 ```
 
-It should return your GitHub username.
+It should print your GitHub username as already set.  If there is a typo, you can rerun the corresponding command to edit the configuration.
 
-It should print your GitHub username as already set.  If there is a typo, you need to edit `.gitconfig` again and reload it by repeating the command above.
+You can also check the file `~/.gitconfig` by running:
+```
+cat ~/.gitconfig
+```
+
+It should show something like:
+```
+[user]
+    name = Ah Beng
+    email = ahbeng@example.com
+[github]
+    user = ahbeng123
+```
 
 ## 2. Setting up Password-less Login
 
