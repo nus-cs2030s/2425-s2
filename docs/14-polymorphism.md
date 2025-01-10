@@ -182,3 +182,9 @@ boolean contains(Object[] array, Object obj) {
 which is not scalable since every time we add a new class, we have to come back to this method and add a new branch to the `if-else` statement!
 
 As this example has shown, polymorphism allows us _to write succinct code that is future-proof_.  By dynamically deciding which method implementation to execute during run-time, the implementer can write short yet very general code that works for existing classes as well as new classes that might be added in the future by the client, without even the need to re-compile.
+
+!!! note "Different Types of Polymorphism"
+    The term polymorphism is used in different contexts to mean different things.  In CS2030S, when we refer to the term "polymorphism", we are referring to, more precisely, _subtype polymorphism_ (also known as inclusion polymorphism). 
+
+    In other literature, you may come across two other types of polymorphism.  Generics (Unit 23) is also called _parametric polymorphism_.  Method overloading (Unit 13) is sometimes refer to as _ad-hoc polymorphism_.  We don't use these terms in CS2030S.
+

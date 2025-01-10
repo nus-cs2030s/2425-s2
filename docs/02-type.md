@@ -13,9 +13,7 @@
 
 ## Data Abstraction: Variable
 
-One of the important abstractions that are provided by a programming language is the _variable_.  Data are stored in some location in computer memory.  But we should not be referring to the memory location all the time.  First, referring to something like `0xFA49130E` is not user-friendly; Second, the location may change.  A _variable_ is an abstraction that allows us to give a user-friendly name to a piece of data in memory.  We use the _variable name_ whenever we want to access the _value_ in that location, and a _pointer to the_ variable_ or _reference to the variable_ whenever we want to refer to the address of the location.
-
-![Variable](figures/Variable.png)
+One of the important abstractions that are provided by a programming language is the _variable_.  Data are stored in some location in computer memory.  However, we should not be referring to the memory location all the time.  First, referring to something like a memory address such as `0xFA49130E` is not user-friendly; Second, the location may change.  A _variable_ is an abstraction that allows us to give a user-friendly name to a piece of data in memory.  We use the _variable name_ whenever we want to access the _value_ in that location, and a _pointer to the variable_ or _reference to the variable_ whenever we wish to refer to the address of the location.
 
 ## Type
 
@@ -36,7 +34,7 @@ Java and Javascript, however,  would happily convert `4` into a string for you, 
 
 ### Dynamic vs. Static Type
 
-Python and Javascript are examples of _dynamically typed_ programming languages.  The same variable can hold values of different _unrelated_ types, and checking if the right type is used is done during the execution of the program.  Note that, the type is associated with the _values_, and the type of the variable changes depending on the value it holds.  For example, we can do the following:
+Python and Javascript are examples of _dynamically typed_ programming languages.  The same variable can hold values of different _unrelated_ types, and checking if the right type is used is done during _run time_ (i.e., during the execution of the program).  Note that, the type is associated with the _values_, and the type of the variable changes depending on the value it holds.  For example, we can do the following:
 
 === "Javascript"
 
@@ -52,7 +50,7 @@ Python and Javascript are examples of _dynamically typed_ programming languages.
     i = "5"      // ok, i is now a string
     ```
 
-Java, on the other hand, is a _statically typed_ language.  We need to _declare_ every variable we use in the program and specify its type.  A variable can only hold values of the same type as the type of the variable, so we can't assign, for instance, a string to a variable of type `int`.  Once a variable is _declared_ with a particular, the type of the variable cannot be changed.  In other words, the variable can only hold values of that declared type.
+Java, on the other hand, is a _statically typed_ language.  We need to _declare_ every variable we use in the program and specify its type.  A variable can only hold values of the same type as the type of the variable (or its subtype, as you will see later) so we can't assign, for instance, a string to a variable of type `int`.  Once a variable is _declared_ with a particular, the type of the variable cannot be changed.  In other words, the variable can only hold values of that declared type.
 
 ```Java
 int i;   // declare a variable of type int
@@ -62,18 +60,13 @@ i = "5"; // error, cannot assign a string to an `int`
 
 The type that a variable is assigned when we declare the variable is also known as the _compile-time type_.  During the compilation, this is the only type that the compiler is aware of.  The compiler will check if the compile-time type matches when it parses the variables, expressions, values, and function calls, and throw an error if there is a type mismatch.  This type-checking step helps to catch errors in the code early.
 
-!!! important "Types on Variable"
-    An important distinction between dynamic and static type is where the type gets **attached** to.  In static typing, the type is attached to the _variable_ such that the variable can only store values of that particular type (or its subtype as you will see later).  In fact, in Java, the type that is attached to a variable is the _declared_ type (_i,e._, the type written in the variable declaration also commonly known as compile-time type).
-
-    On the other hand, in a dynamically typed language, the type is attached to the _value_.  In other words, a variable can store anything but we can know what the type is because the type can be queried from the value.
-
 ### Strong Typing vs. Weak Typing
 
-A _type system_ of a programming language is a set of rules that governs how the types can interact with each other.  
+A _type system_ of a programming language is a set of rules that governs how the types can interact with each other.
 
-A programming language can be strongly typed or weakly typed.  There are no formal definitions of "strong" vs. "weak" typing of a programming language, and there is a spectrum of "strength" between the typing discipline of a language.  
+A programming language can be strongly typed or weakly typed.  There are no formal definitions of "strong" vs. "weak" typing of a programming language, and there is a spectrum of "strength" between the typing discipline of a language.
 
-Generally, a _strongly typed_ programming language enforces strict rules in its type system, to ensure _type safety_, i.e., to ensure that if there are any problems with the program, it is not due to the type.  For instance, catching an attempt at multiplying two strings.  One way to ensure type safety is to catch type errors during compile time rather than leaving it to runtime.
+Generally, a _strongly typed_ programming language enforces strict rules in its type system, to ensure _type safety_, i.e., to ensure that if there are any problems with the program, it is not due to the type.  For instance, catching an attempt at multiplying two strings.  One way to ensure type safety is to catch type errors during compile time rather than leaving it to run time.
 
 On the other hand, a _weakly typed_ (or loosely typed) programming language is more permissive in terms of typing checking.  C is an example of a static, weakly typed language.  In C, the following is possible:
 
@@ -99,11 +92,11 @@ we will get the following compile-time error message:
 |  incompatible types: java.lang.String cannot be converted to int
 ```
 
-because the compiler enforces a stricter rule and allows typecasting only if it makes sense.  More specifically, we will get a compilation error if the compiler can determine with **certainty** that such conversion can never happen successfully.
+because the compiler enforces a stricter rule and allows typecasting only if it makes sense.  More specifically, we will get a compilation error if the compiler can determine with _certainty_ that such conversion can never happen successfully.
 
 ## Type Checking with A Compiler
 
-In addition to checking for syntax errors, the compiler can check for type compilability according to the compile-time type, to catch possible errors as early as possible.  Such type-checking is made possible with static typing.  Consider the following Python program:
+In addition to checking for syntax errors, the compiler can check for type compatibility according to the compile-time type, to catch possible errors as early as possible.  Such type-checking is made possible with static typing.  Consider the following Python program:
 
 ```Python
 i = 0
@@ -113,7 +106,7 @@ while (i < 10):
 print("i is " + i)
 ```
 
-Since Python does not allow adding a string to an integer, there is a type mismatch error on Line 5.  The type mismatch error is only caught when Line 5 is executed after the program is run for a long time.  Since the type of the variable `i` can change during run time, Python (and generally, dynamically typed languages) cannot tell if Line 5 will lead to an error until it is evaluated during run time.  
+Since Python does not allow adding a string to an integer, there is a type mismatch error on Line 5.  The type mismatch error is only caught when Line 5 is executed after the program is run for a long time.  Since the type of the variable `i` can change during run time, Python (and generally, dynamically typed languages) cannot tell if Line 5 will lead to an error until it is evaluated during run time.
 
 In contrast, statically typed language like Java can detect type mismatch during compile time since the compile-time type of a variable is fixed.  As you will see later, Java allows "addition" or string and integer, and but multiplication of a string and an integer.  If we have the following code, Java can confidently produce compilation errors without even running a program: 
 
@@ -130,7 +123,7 @@ String s = "i is " * i;
 
 We now switch our focus to Java, particularly to the types supported.  There are two categories of types in Java, the _primitive types_ and the _reference types_.  We will first look at primitive types in this unit.
 
-Primitive types are types that hold numeric values (integers, floating-point numbers) as well as boolean values (`true` _and_ `false`).  
+Primitive types are types that hold numeric values (integers, floating-point numbers) as well as boolean values (`true` _and_ `false`).
 
 For storing integral values, Java provides four types, `byte`, `short`, `int`, and `long`, for storing 8-bit, 16-bit, 32-bit, and 64-bit signed integers respectively.  The type `char` stores 16-bit unsigned integers representing UTF-16 Unicode characters.
 
@@ -145,22 +138,25 @@ i = i + 1;
 
 `i` and `j` each store a copy of the value `1000` after Line 2.  Changing `i` on Line 3 does not change the content of `j`.
 
-| Kinds | Types | Sizes |
+| Kinds | Types | Sizes (in bits) |
 |-------|-------|-------|
-| Boolean | <ul><li>`boolean`</li></ul> | <ul><li>1-bit</li></ul> |
-| Character | <ul><li>`char`</li></ul> | <ul><li>16-bit</li></ul> |
-| Integral | <ul><li>`byte`</li><li>`short`</li><li>`int`</li><li>`long`</li></ul> | <ul><li>8-bit</li><li>16-bit</li><li>32-bit</li><li>64-bit</li></ul> |
-| Floating-Point | <ul><li>`float`</li><li>`double`</li></ul> | <ul><li>32-bit</li><li>64-bit</li></ul> |
+| Boolean | `boolean` | 1 |
+| Character | `char` | 16 |
+| Integral | `byte` | 8 | 
+|          | `short` | 16 | 
+|          | `int` | 32 |
+|          | `long` | 64 |
+| Floating-Point | `float` | 32 |
+|                | `double` | 64 |
 
 !!! info "Long and Float Constant"
-    To differentiate between a `long` and an `int` constant, you can use the suffix `L` to denote that the value is expected to be of `long` type.  This is important for large values beyond the range of `int`.  On the other hand, if the constant is a floating-point constant, by default it is treated as type `double`.  You need to add the suffix `f` to indicate that the value is to be treated as a `float` type.
+     By default, an integer literal (e.g., `888`) is assigned an `int` type. To differentiate between a `long` and an `int` constant, you can use the suffix `L` to denote that the value is expected to be of `long` type (e.g., `888L` is a `long`).  This is important for large values beyond the range of `int`.  On the other hand, if the constant is a floating-point constant, by default it is treated as type `double`.  You need to add the suffix `f` to indicate that the value is to be treated as a `float` type.
 
 ## Subtypes
 
 An important concept that we will visit repeatedly in CS2030/S is the concept of subtypes.
 
-!!! note "Subtype"
-    Let $S$ and $T$ be two types.  We say that $T$ is a _subtype_ of $S$ if _a piece of code written for variables of type $S$ can also safely be used on variables of type $T$_.  
+Let $S$ and $T$ be two types.  We say that $T$ is a _subtype_ of $S$ if _a piece of code written for variables of type $S$ can also safely be used on variables of type $T$_.
 
 We use the notation $T <: S$ or $S :> T$ to denote that $T$ is a subtype of $S$.  The subtyping relationship in general must satisfy two properties:
 
@@ -171,7 +167,10 @@ Additionally, in Java, you will find that the subtyping relationship also satisf
 
 - **Anti-Symmetry**: If $S <: T$ and $T <: S$, then $S$ must be the same type as $T$.
 
-We also use the term _supertype_ to denote the reversed relationship: if $T$ is a subtype of $S$, then $S$ is a supertype of $T$.
+Related to the subtype relationship, 
+
+- We use the term _supertype_ to denote the reversed relationship: if $T$ is a subtype of $S$, then $S$ is a supertype of $T$.
+- In specific scenarios, we use the term _proper subtype_ (or $<$) to denote a stricter subtyping: if $T <: S$ and $T \not = S$, then $T$ is a proper subtype of $S$, denoted as $T < S$.
 
 ### Subtyping Between Java Primitive Types
 
@@ -182,65 +181,43 @@ Considering the range of values that the primitive types can take, Java defines 
 
 Graphically, we can draw the subtyping relationship as an arrow from subtype to supertype.  In the case of Java primitive types, we can visualise the subtyping relationship as follows:
 
-![Primitive Subtype](figures/Primitive-Subtype.png)
+![Primitive Subtype](figures/Primitive-Subtype.png){ width=450px }
 
 !!! info "Long $<:$ Float?"
-    Why is `long` a subtype of `float`?  More specifically, `long` is 64-bit and `float` is only 32-bit.  Clearly, there are more values in `long` than in `float`!
+    Why is `long` a subtype of `float`?  More specifically, `long` is 64-bit, and `float` is only 32-bit.  There are more values in `long` than in `float`.
 
-    The resolution lies in the precision.  While it is indeed true that any (mathematical) integer can be converted into a (mathematical) real number by simply appending `.0` to the end, some `long` values cannot be represented _precisely_ as `float`.  Try the following and see what is printed.
+    The resolution lies in the _range_ of values that can be represented with `float` and `long`. `long` can represent every integer between -2<sup>63</sup> and 2<sup>63</sup>-1, a 19-digit number.  `float`, however, can represent floating point numbers as big as 38 digits in the integral part (although it can not represent _every_ floating point number and every integer values within the range).
 
-    ```Java
-    long l = 123456789L;
-    float f = l;
-    System.out.println(l);
-    System.out.println(f);
-    ``` 
-
-Given this, let us go back to the definition of subtype above and try to apply the definition to the code below that is written for variables of type `double`.
-
-=== "Written for Double"
+    Thus, a piece of code written to handle `float` can also handle `long` (since all `long` values can be represented with a `float`, albeit with possible loss of precision).
 
     ```Java
-    double x = 5.0;    // the type S is double
-    // code below is written assuming S = double
-    double y = x + x;
+    float add(float x) {
+      return x + x;
+    }
+
+    long x = 9223372036854775807L; 
+    float y = add(x); // ok
     ```
 
-=== "Used for Integer"
+    On the other hand, if a piece of code is written to handle `long`, then giving it a `float` value would be erroneous since the `float` value might have more than 19 digits in the integral part and cannot be represented by `long`.
 
     ```Java
-    int x = 5;         // the type S is now int
-    // code below is written assuming S = double
-    double y = x + x;  // still works! 
+    long add(long x) {
+      return x + x;
+    }
+
+    float x = 3.4e+38f;
+    long y = add(x); // error: incompatible types: possible lossy conversion from float to long
     ```
-
-=== "Common Mistakes"
-
-    ```Java
-    double x = 5.0;    // the type S is double
-    // code below is written assuming S = int
-    int y = x + x;     // oh no! it does not work!
-    ```
-
+    
 Valid subtype relationship is part of what the Java compiler checks for when it compiles.  Consider the following example:
 
-=== "Code"
-
-    ```Java
-    double d = 5.0;
-    int i = 5;
-    d = i;
-    i = d; // error
-    ```
-
-=== "What Compiler Sees"
-
-    ```Java
-    double d = 5.0;  // d::double <- 5.0::double
-    int i = 5;       // i::int    <- 5::int
-    d = i;           // d::double <- i::int (ok because int <: double)
-    i = d;           // i::int    <- d::double (error because double </: int)
-    ```
+ ```Java
+ double d = 5.0;
+ int i = 5;
+ d = i; // ok
+ i = d; // error
+ ```
 
 Line 4 above would lead to an error:
 
@@ -248,16 +225,19 @@ Line 4 above would lead to an error:
 |  incompatible types: possible lossy conversion from double to int
 ```
 
-but Line 3 is OK.  If you are still wondering why it does not work, you can click on the tab to see what the compiler "sees" in terms of compile-time type.
+but Line 3 is OK.
 
-As you can see, the compile-time type of the variable `d` is `double` because that is what we declared it as.  Similarly, the compile-time type of the variable `i` is `int`.  Since `double` is the supertype of `int`, it can also store `int`.  On the other hand, an `int` cannot store `double`.
+To understand why, let's consider the compile-type of `d` and `i`. The compile-time type of the variable `d` is `double` because that is what we declared it as.  Similarly, the compile-time type of the variable `i` is `int`.  `double` can hold a larger range of values than `int`, thus all values that can be represented by `i` can be represented by `d` (with possible loss of precision).  Using the terminology that you just learned, `double` is a supertype of `int`.  
+
+On Line 3, the Java compiler allows the value stored inside `i` to be copied to `d`.  The worst that could happen is that we lose a bit of precision.  On Line 4, however, we try to copy the value stored in `d` to `i`.  Since `d` is a `double`, it can store a value outside the range supported by `i` and can have order of magnitudes difference between them.  This would be a problem if the code is allowed to execute!
 
 This example shows how subtyping applies to type checking.  _Java allows a variable of type $T$ to hold a value from a variable of type $S$ only if $S <: T$_.  This step is called _widening type conversion_.  Such conversion can happen during assignment or parameter passing.
 
-!!! info "Why is it Called Widening?"
-    The term widening is easy to see for primitive types with the exception of `long` to `float`.  You can immediately see that the subtype has fewer number of bits than the supertype.  Therefore, the supertype can have more possible values.  Hence, the size (_i.e._, the number of possible values) is wider.
+The term "widening" is easy to see for primitive types --  the subtype has a narrower range of values than the supertype. The opposite conversion is called _narrowing_ because the size is narrower.
 
-    The opposite conversion is called _narrowing_ because the size is narrower.
+Some of the readers might notice that, in the example above, the value of `d` is 5.0, so, we can store the value as `5` in `i`, without any loss.  Or, in Line 3, we already copied the value stored in `i` to `d`, and we are just copying it back to `i`?   Since the value in `d` now can be represented by `i`, what is wrong with copying it back?  Why doesn't the compiler allow Line 4 to proceed?  
+
+The reason is that the compiler does not execute the code (which is when assigning 5.0 to `d` happens) and it (largely) looks at the code, statement-by-statement.  Thus, the line `i = d` is considered independently from the earlier code shown in the example.  In practice, Line 4 might appear thousands of lines away from earlier lines, or may even be placed in a different source file.  The values stored in `d` might not be known until run time (e.g., it might be an input from the user).
 
 ## Additional Readings
 
