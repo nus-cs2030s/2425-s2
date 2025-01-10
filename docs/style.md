@@ -38,7 +38,7 @@ Many major companies enforce coding styles, and some have published them.  For C
     if (x == 0) {
         x++;
         for (i = 0; i < x; i++) {
-        x += i;
+            x += i;
         }
     }
     ```
@@ -97,10 +97,6 @@ Many major companies enforce coding styles, and some have published them.  For C
             }
         }
         ```
-
-    !!! note "80 vs 100"
-        While we prefer lines to be limited to 80, we are OK if the length is up to 100.  Any longer, however, will be frowned upon.
-
 
 1. Indent comments at the same level as the surrounding code.  For multiple comments, align `*` with the previous line.
 
@@ -331,9 +327,15 @@ To automatically check for style violations, we use a tool called [`checkstyle`]
 Example of how to run:
 
 ```
-java -jar ~cs2030s/bin/checkstyle.jar -c ~cs2030s/bin/cs2030_checks.xml *.java
+java -jar ~cs2030s/bin/checkstyle.jar -c ~cs2030s/bin/checkstyle.xml *.java
 ```
 
 The exercises and exams may have different stylecheck configurations.  See the corresponding instructions in the exercises/exam papers.
 
 Hint: put the command into a `bash` script so that you do not need to type such a long string all the time.
+
+## Using `google-java-format`
+
+To automatically formar your code, we use a tool called [`google-java-format`](`https://github.com/google/google-java-format`)
+
+We will automatically format your code using this tool when you submit your code.  As such, what you submit may be look different from the version of code that you have written.
