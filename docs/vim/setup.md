@@ -1,11 +1,5 @@
 # Setting Up `vim` on PE Hosts
 
-!!! abstract "Learning Objectives"
-
-    Students should
-
-    - have `vim` installed on their account on PE nodes.
-
 ## `vim` Configuration
 
 Like many other Unix programs, you can configure your preferences by creating an `rc` (run commands) file in your home directory.  These `rc` files will be read by the corresponding programs and executed line-by-line as if the text is entered into the program through a keyboard.  You can view an `rc` file as a script that will be executed automatically whenever a program starts.
@@ -49,9 +43,9 @@ To recover the file from the backup folder, you can copy the file using
 $ cp ~/.backup/<filename> <destination>/<filename>
 ```
 
-## `vim` Plugins
+## `vim` Extensions
 
-CS2030S provides a minimal set of `vim` extensions by default for your labs and practical exams.  See the article on [`vim` plugins](plugins.md) for details.  
+CS2030S provides a minimal set of `vim` extensions by default for your programming exercises and practical exams.  See the article on [`vim` extensions](plugins.md) for details.  
 
 Additional `vim` extensions are installed under `~/.vim`.  To install these "official" CS2030S `vim` extensions, you can copy the `.vim` from cs2030s's home directory to your home directory.  On the PE host, run:
 
@@ -60,4 +54,4 @@ mkdir -p ~/.vim
 cp -r ~cs2030s/.vim/* ~/.vim
 ```
 
-You can test out the different color schemes according to the [instructions](plugins.md) to check if you have set up the plugins correctly.  The default CS2030S `.vimrc` uses the `molokai` color schemes.
+You can test out the different color schemes according to the [instructions](plugins.md) to check if you have set up the extensions correctly.  The default CS2030S `.vimrc` uses the `molokai` color schemes.

@@ -1,22 +1,15 @@
 # Vim Extensions on PE Hosts
 
-!!! abstract "Learning Objectives"
-
-    Students should
-
-    - understand plugins and color schemes.
-
-## Background
-
-CS2030S provides a minimal set of vim extensions (_i.e., plugins and color schemes_) officially.  At the beginning of the semester, students can install the same set of extensions following the [vim setup](setup.md) procedure.  The same set of official extensions will be made available during the practical exams.
+CS2030S provides a minimal set of vim extensions (i.e., plugins and color schemes) officially.  At the beginning of the semester, students can install the same set of extensions following the [vim setup](vim-setup.md) procedure.
+The same set of official extensions will be made available during the practical exams.
 
 Students are free to install any additional color schemes or plugins if they wish.  These additional extensions, however, are not allowed and will not be available during the practical exams.
 
-The following are the officially supported vim extensions in CS2030S.
+The following are the officially supported vim extensions in CS2030S.  Follow the instructions in our article [Setting Up Vim](vim/setup.md) to install them.
 
 ## Color Schemes
 
-We installed three color schemes `~cs2030s/.vim/colors`.
+We provided three color schemes in `~cs2030s/.vim/colors`.
 
 
 The three color schemes are:
@@ -51,4 +44,12 @@ The gruvbox color scheme
 
 ## Plugins
 
-We support the [Airline plugin](https://vimawesome.com/plugin/vim-airline-superman), which provides an informative status bar in vim.
+We support two plugins for CS2030S.
+
+### Airline
+The [Airline plugin](https://vimawesome.com/plugin/vim-airline-superman), which provides an informative status bar in vim.
+
+### Syntastic
+The plugin [syntastic](https://github.com/vim-syntastic/syntastic) automatically checks for syntax and style errors every time a file is saved (when you run `:w`).
+
+The syntastic configuration in the CS2030S `~/.vimrc` has been made to work with your PE hosts.
