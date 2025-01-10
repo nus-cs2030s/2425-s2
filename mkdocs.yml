@@ -42,7 +42,7 @@ nav:
     - 38. Threads: '38-thread.md'
     - 39. Asynchronous Programming: '39-async.md'
     - 40. Fork and Join: '40-forkjoin.md'
-  - Lab Guide:
+  - Programming Guide:
     - Programming Environments: 'environments.md'
     - GitHub Setup: 'github.md'
     - Unix CLI:
@@ -53,9 +53,8 @@ nav:
       - Background: 'vim/philosophy.md'
       - Setup: 'vim/setup.md'
       - Lessons: 'vim/quick-lessons.md'
-      - Tips: 'vim/tips.md'
-      - New Tips: 'vim/operations.md'
-      - Plugins: 'vim/plugins.md'
+      - Tips: 'vim/operations.md'
+      - Extensions: 'vim/plugins.md'
     - Java Guide: 
       - Coding Style: 'style.md'
   - Exercises: 
