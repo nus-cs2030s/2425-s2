@@ -309,10 +309,10 @@ class Bool {
 
 The code above compiles correctly now.  But, as a result, the behavior of the code is not as intuitive as before.  So please exercise this workaround with extreme caution.
 
-!!! note "Variable Capture in Javascript"
-    Those of you who did CS1101S or are otherwise familiar with Javascript might want to note that this is different from Javascript, which does not enforce the final/effectively final restriction in variable captures.  This is because there is no concept of primitive value in Javascript.
+!!! note "Variable Capture in JavaScript"
+    Those of you who did CS1101S or are otherwise familiar with JavaScript might want to note that this is different from JavaScript, which does not enforce the final/effectively final restriction in variable captures.  This is because there is no concept of primitive value in JavaScript.
     
-    Every single primitive type is automatically boxed in Javascript. The unboxed variant is not available to the programmer directly.  So, if we write `x = 1` in Javascript, the value `1` is boxed and put into the heap.  Then, the variable `x` in the stack points to this box in the heap, unlike Java primitive type.
+    Every single primitive type is automatically boxed in JavaScript. The unboxed variant is not available to the programmer directly.  So, if we write `x = 1` in JavaScript, the value `1` is boxed and put into the heap.  Then, the variable `x` in the stack points to this box in the heap, unlike Java primitive type.
 
 ### Anonymous Class
 

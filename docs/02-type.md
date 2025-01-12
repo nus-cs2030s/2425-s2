@@ -30,13 +30,13 @@ Python.  Suppose we have two variables `x` and `y`, storing the values `4` and `
 
 In the last instance above, you see that assigning a type to each variable helps to keep the program meaningful, as the operation `+` is not defined over an integer and a string in Python.
 
-Java and Javascript, however,  would happily convert `4` into a string for you, and return `45`.
+Java and JavaScript, however,  would happily convert `4` into a string for you, and return `45`.
 
 ### Dynamic vs. Static Type
 
-Python and Javascript are examples of _dynamically typed_ programming languages.  The same variable can hold values of different _unrelated_ types, and checking if the right type is used is done during _run time_ (i.e., during the execution of the program).  Note that, the type is associated with the _values_, and the type of the variable changes depending on the value it holds.  For example, we can do the following:
+Python and JavaScript are examples of _dynamically typed_ programming languages.  The same variable can hold values of different _unrelated_ types, and checking if the right type is used is done during _run time_ (i.e., during the execution of the program).  Note that, the type is associated with the _values_, and the type of the variable changes depending on the value it holds.  For example, we can do the following:
 
-=== "Javascript"
+=== "JavaScript"
 
     ```Javascript
     let i = 4;   // i is an integer
