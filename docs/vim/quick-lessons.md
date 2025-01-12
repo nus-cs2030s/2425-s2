@@ -239,7 +239,7 @@ Now try it with ++shift++ and see the difference in behavior.
 
 You can run `vimtutor` to learn more about `vim`.
 
-You can also check out [the tips that we have collected for CS1010](tips.md) or watch the various tutorials online.  
+You can also check out [the tips that we have collected for CS2030S](tips.md) or watch the various tutorials online.  
 
 Here are some useful resources on `vim`:
 
