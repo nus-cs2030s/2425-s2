@@ -14,9 +14,8 @@
 
 Now that we have our `Seq<T>` class, let's modify our generic `contains` method and replace the type of the argument `T[]` with `Seq<T>`.
 
-```Java
+```Java title="contains v0.5 (with Seq&lt;T&gt;)"
 class A {
-  // version 0.5 (with Seq<T>)
   public static <T> boolean contains(Seq<T> seq, T obj) {
     for (int i = 0; i < seq.getLength(); i++) {
       T curr = seq.get(i);
@@ -103,8 +102,7 @@ A.<Shape,Circle>contains(circleSeq, shape);
 
 Let's consider another example.  Let's add two methods `copyFrom` and `copyTo`, to `Seq<T>` so that we can copy to and from one sequence to another.
 
-```Java
-// version 0.4 (with copy)
+```Java title="Seq&lt;T&gt; v0.4 (with copy)"
 class Seq<T> {
   private T[] array;
 
@@ -263,8 +261,7 @@ circleSeq.copyTo(shapeSeq);
 ```
 
 Our new `Seq<T>` is now
-```Java
-// version 0.5 (with flexible copy using wildcards)
+```Java title="Seq&lt;T&gt; v0.5 (with flexible copy using wildcards)"
 class Seq<T> {
   private T[] array;
 
@@ -397,9 +394,8 @@ Intuitively, we can think of `Seq<?>`, `Seq<Object>`, and `Seq` as follows:
 
 Now, let's simplify our `contains` methods with the help of wildcards.  Recall that to add flexibility into the method parameter and allow us to search for a shape in a sequence of circles, we have modified our method into the following:
 
-```Java
-class A {
-  // version 0.6 (with Seq<T>)
+```Java title="contains v0.6 (with Seq&lt;T&gt;)"
+class A { 
   public static <S,T extends S> boolean contains(Seq<T> seq, S obj) {
     for (int i = 0; i < seq.getLength(); i++) {
       T curr = seq.get(i);
@@ -414,9 +410,8 @@ class A {
 
 Can we make this simpler using wildcards?  Since we want to search for an object of type `S` in a sequence of its subtype, we can remove the second parameter type `T` and change the type of `seq` to `Seq<? extends S>`:
 
-```Java
+```Java title="contains v0.7 (with wild cards)"
 class A {
-  // version 0.7 (with wild cards sequence)
   public static <S> boolean contains(Seq<? extends S> seq, S obj) {
     for (int i = 0; i < seq.getLength(); i++) {
       S curr = seq.get(i);

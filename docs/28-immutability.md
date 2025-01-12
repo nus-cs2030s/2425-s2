@@ -198,8 +198,7 @@ Such a design pattern is only safe when the class is immutable.  Consider the mu
 
 Immutable instances can also share their internals freely.  Consider an immutable implementation of our `Seq<T>`, called `ImmutableSeq<T>`.  Let's start with a simple version first.
 
-```Java
-// version 0.1
+```Java title="ImmutableSeq&lt;T&gt; v0.1"
 final class ImmutableSeq<T> {
   private final T[] array;
 
@@ -252,7 +251,7 @@ c.get(1) // returns 50
 
 A typical way to implement `subarray` is to allocate a new `T[]` and copy the elements over.  This operation can be expensive if our `ImmutableSeq` has millions of elements.  But, since our class is immutable and the internal field `array` is guaranteed not to mutate, we can safely let `b` and `c` refer to the same `array` from `a`, and only store the starting and ending index.
 
-```Java
+```Java title="ImmutableSeq&lt;T&gt; v0.2 (with sharing)"
 class ImmutableSeq<T> {
   private final int start;
   private final int end;
