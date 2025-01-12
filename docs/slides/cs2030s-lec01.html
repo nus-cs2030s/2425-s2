@@ -382,7 +382,7 @@ class: middle
 ```Java
 int x;
 x = 4;
-x = "5" // Error
+x = "5"; // Error
 ```
 
 ---
@@ -467,6 +467,27 @@ A type $T$ is a _subtype_ of $S$ ($T <: S$) if:
 $S$ is a _supertype_ of $T$.
 
 ---
+class: middle, wide
+
+.small[
+| Data Type | Size (in bits) | Minimum Value                  | Maximum Value                  |
+|-----------|----------------|--------------------------------|--------------------------------|
+| `byte`    | 8 bits         | -128                           | 127                            |
+| `long`    | 64 bits        | -9,223,372,036,854,775,808     | 9,223,372,036,854,775,807      |
+]
+---
+class: middle
+
+### `byte` $<:$ `long`
+
+```Java
+byte b = 10;
+long l = 9_223_372_036_854_775_807L;
+b = l; // type error!
+l = b; // OK!
+```
+
+---
 class: middle
 
 ### Subtyping Among Java Primitive Types
@@ -542,6 +563,11 @@ class: top,center
 class: middle,center
 
 ### Abstraction: Composite Data Type
+
+---
+class: middle
+
+## What defines a circle?
 
 ---
 class: middle
