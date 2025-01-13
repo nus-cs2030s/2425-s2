@@ -1,4 +1,4 @@
-### Vim
+# Vim
 
 - [The Philosophy of Vim](philosophy.md)
 - [Setting up Vim for CS2030S](setup.md)
