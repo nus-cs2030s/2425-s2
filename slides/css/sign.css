@@ -1,0 +1,9 @@
+.IMPORTANT {
+  content: url('../img/IMP.jpg');
+  position: absolute;
+  top: 15px;
+  right: 0px;
+  float: right;
+  width: 95px;
+  height: 88px;
+}
