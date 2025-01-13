@@ -55,6 +55,8 @@ nav:
       - Lessons: 'vim/quick-lessons.md'
       - Tips: 'vim/operations.md'
       - Extensions: 'vim/plugins.md'
+    - Micro: 
+      - Tips: 'micro/operations.md'
     - Java Guide: 
       - Coding Style: 'style.md'
   - Exercises: 
