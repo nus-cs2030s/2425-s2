@@ -1,8 +1,5 @@
 # Micro HOWTO: Common Code Editing Operations
 
-!!! Notes "Work in Progress"
-    This article is a work-in-progress.
-
 ## Micro as a Source Code Editor
 
 A source code editor is more than a text editor.  A source code editor is designed and optimized for common operations performed by a programmer while programming.  In this article, we summarize some common operations that you will likely perform and how you will perform them in Micro.
@@ -14,8 +11,6 @@ A source code editor is more than a text editor.  A source code editor is design
     “.. the ratio of time spent reading versus writing is well over 10 to 1. We are constantly reading old code as part of the effort to write new code." 
 
     ― Robert C. Martin, Clean Code: A Handbook of Agile Software Craftsmanship
-
-As a programmer, we spend a significant amount of time reading source code.  
 
 ### Navigation Within a File
 
