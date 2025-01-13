@@ -5,11 +5,11 @@
 
 ## Java version
 
-Java is a language that continues to evolve.  A new version is released every six months.  For CS2030S, we will _only_ use Java 17, the most recent version with long-term support.  Specifically, we use `openjdk 17.0.8.1 2023-08-24` on Ubuntu 20.04.5.
+Java is a language that continues to evolve.  A new version is released every six months.  For CS2030S, we will _only_ use Java 21, the most recent version with long-term support.  Specifically, we use `javac 21.0.5` on Ubuntu 20.04.6.
 
 ## PE Hosts
 
-The school has provided a list of computing servers with the above environments for you to use (:material-alpha-a-circle: in Figure 1).  The hosts are named `pe111`, `pe112`, ... , `pe119`.  (`pe` stands for "programming environment").  We will refer to these servers generally as the _PE hosts._
+The school has provided a list of computing servers with the above environments for you to use (:material-alpha-a-circle: in Figure 1).  The hosts are named `pe111`, `pe112`, ... , `pe118`.  (`pe` stands for "programming environment").  We will refer to these servers generally as the _PE hosts._
 
 !!! note "pe115 and pe116"
     For this semester, two servers `pe115` and `pe116` are not available.
