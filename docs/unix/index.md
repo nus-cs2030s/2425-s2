@@ -1,4 +1,4 @@
-## Using Unix CLI
+# Using Unix CLI
 
 - [Background and Philosophy of Unix](background.md)
 - [Essential Unix Commands](essentials.md)
