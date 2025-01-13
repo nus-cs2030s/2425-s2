@@ -16,7 +16,7 @@ The school has provided a list of computing servers with the above environments 
 
 You can choose which of the seven hosts to use.  You share the same home directory across all the hosts (this home directory, however, is different from that of `stu`).  If you notice that one host is crowded, you can use another host to spread out the load.
 
-For simplicity, the following guide uses `pe111` in all examples.  Do keep in mind that you can use other PE hosts for CS1010 to spread out the load.
+For simplicity, the following guide uses `pe111` in all examples.  Do keep in mind that you can use other PE hosts for CS2030S to spread out the load.
 
 ## Accessing the PE Hosts
 
@@ -33,7 +33,7 @@ Basic requirements:
 3. To access PE Hosts from your computer (:material-alpha-c-circle: or :material-alpha-d-circle: in Figure 1) you need
 
     - a command line `ssh` client.  Windows 10/11, macOS, and Linux users should already have `ssh` installed by default.  If your OS does come with `ssh` (i.e., it cannot find the `ssh` command when you type `ssh` into your terminal), look for instructions on how to install OpenSSH client on your operating system.
-   - a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS1010 recommends either PowerShell (pre-installed) or [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?ocid=webpdpshare).  For macOS users, CS2030S recommends [iTerm2](https://iterm2.com/).
+   - a [terminal emulator](unix-background.md#what-is-a-terminal).  The default terminal emulator that comes with Windows and Mac supports only basic features.  For Windows 10/11 users, CS2030S recommends either PowerShell (pre-installed) or [Windows Terminal](https://apps.microsoft.com/detail/9n0dx20hk701?ocid=webpdpshare).  For macOS users, CS2030S recommends [iTerm2](https://iterm2.com/).
 
 ### The Command to SSH
 
@@ -71,7 +71,7 @@ First, you need to set up a Virtual Private Network (VPN) (See [instructions her
 
 ### Accessing The PE Hosts from SoC Lab PCs
 
-CS1010 practical exams will be conducted in the programming labs in COM1, COM4, and AS6 using the Ubuntu environment on the lab PCs.  Students are advised to use the lab PCs during regular lab sessions to familiarize themselves with the environment (:material-alpha-b-circle: in Figure 1).  
+CS2030A practical exams will be conducted in the programming labs in COM1, COM4, and AS6 using the Ubuntu environment on the lab PCs.  Students are advised to use the lab PCs during regular lab sessions to familiarize themselves with the environment (:material-alpha-b-circle: in Figure 1).  
 
 To access the PE hosts from the lab PCs during lab sessions:
 
