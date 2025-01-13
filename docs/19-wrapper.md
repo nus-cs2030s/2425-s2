@@ -104,4 +104,4 @@ for (int i = 0; i < Integer.MAX_VALUE; i++) {
 
 As all primitive wrapper class objects are immutable, every time the sum in the first example above is updated, a new `Double` object gets created. Due to autoboxing and unboxing, the cost of creating objects becomes hidden and is often forgotten.
 
-The Java API in fact, provides multiple versions of the same method, one for all the reference types using `Object`, and one for each of the primitive types.  This decision does lead to multiple versions of the same code, but this trade-off comes with the benefit of better performance.  See the [Arrays](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Arrays.html) class for instance.
+The Java API in fact, provides multiple versions of the same method, one for all the reference types using `Object`, and one for each of the primitive types.  This decision does lead to multiple versions of the same code, but this trade-off comes with the benefit of better performance.  See the [Arrays](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Arrays.html) class for instance.

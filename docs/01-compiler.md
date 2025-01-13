@@ -162,7 +162,7 @@ on the command line, which causes an interactive prompt to appear:
 
 ```
 $ jshell
-|  Welcome to JShell -- Version 17
+|  Welcome to JShell -- Version 21.0.5
 |  For an introduction type: /help intro
 
 jshell>

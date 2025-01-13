@@ -4,7 +4,7 @@
 
 One of the goals of CS2030S is to move you away from the mindset that you are writing code that you will discard after it is done (_e.g., in CS1101S labs_) and you are writing code that no one else will read except you.  CS2030S prepares you to work in software engineering teams in many ways, and one of the ways is to get you to document your code.
 
-`javadoc` is a tool used to document Java code.  It automatically generates HTML documentation from the comments in your code.  The [Java API](https://docs.oracle.com/en/java/javase/17/docs/api/index.html) that you have seen are generated from `javadoc`.
+`javadoc` is a tool used to document Java code.  It automatically generates HTML documentation from the comments in your code.  The [Java API](https://docs.oracle.com/en/java/javase/21/docs/api/index.html) that you have seen are generated from `javadoc`.
 
 ## How to comment for javadoc
 
@@ -98,4 +98,4 @@ If you generate the documentation on your computer, you can view it by opening u
 
 ## See Also
 
-- [Oracle's `javadoc` guide](https://docs.oracle.com/en/java/javase/17/javadoc/javadoc.html)
+- [Oracle's `javadoc` guide](https://docs.oracle.com/en/java/javase/21/javadoc/javadoc.html)

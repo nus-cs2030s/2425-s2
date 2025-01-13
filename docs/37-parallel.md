@@ -140,14 +140,14 @@ list.parallelStream()
 
 The `forEach` lambda generates a side effect &mdash; it modifies `result`.  `ArrayList` is what we call a non-thread-safe data structure.  If two threads manipulate it at the same time, an incorrect result may result.
 
-There are three ways to resolve this.  One, we can use the [`.collect`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.function.Supplier,java.util.function.BiConsumer,java.util.function.BiConsumer)) method.
+There are three ways to resolve this.  One, we can use the [`.collect`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#collect(java.util.function.Supplier,java.util.function.BiConsumer,java.util.function.BiConsumer)) method.
 ```Java
 list.parallelStream()
     .filter(x -> isPrime(x))
     .collect(Collectors.toList())
 ```
 
-Second, we can use a thread-safe data structure.  Java provides several in `java.util.concurrent` package, including [`CopyOnWriteArrayList`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html).
+Second, we can use a thread-safe data structure.  Java provides several in `java.util.concurrent` package, including [`CopyOnWriteArrayList`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/concurrent/CopyOnWriteArrayList.html).
 
 ```Java
 List<Integer> result = new CopyOnWriteArrayList<>();
@@ -156,7 +156,7 @@ list.parallelStream()
     .forEach(x -> result.add(x));
 ```
 
-Lastly, in Java 17, there is a [`.toList`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#toList()) method that simply returns a list in the same order as the stream.
+Lastly, in Java 21, there is a [`.toList`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#toList()) method that simply returns a list in the same order as the stream.
 ```Java
 list.parallelStream()
     .filter(x -> isPrime(x))
@@ -196,7 +196,7 @@ IntStream.range(2_030_000, 2_040_000)
  
 How much time can we save by parallelizing the code above?
 
-Let's use the [`Instant`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Instant.html) and [`Duration`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/time/Duration.html) class from Java to help us:
+Let's use the [`Instant`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Instant.html) and [`Duration`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/time/Duration.html) class from Java to help us:
 
 ```Java
 Instant start = Instant.now();

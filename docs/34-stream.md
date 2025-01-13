@@ -16,21 +16,21 @@ Java provides its own version of functional interfaces that are comparable to ou
 
 | CS2030S                       | java.util.function                                                                                                                               |
 | ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `BooleanCondition<T>::test`   | [`Predicate<T>::test`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html#test&#40;T&#41;)           |
-| `Producer<T>::produce`        | [`Supplier<T>::get`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html#get&#40;&#41;)                |
-| `Consumer<T>::consume`        | [`Consumer<T>::accept`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html#accept&#40;T&#41;)         |
-| `Transformer<T, R>::transform` | [`Function<T, R>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html#apply&#40;T&#41;)         |
-| `Transformer<T, T>::transform` | [`UnaryOp<T>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/UnaryOperator.html)                        |
-| `Combiner<S, T, R>::combine`    | [`BiFunction<S, T, R>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html#apply&#40;T,U&#41;) |
+| `BooleanCondition<T>::test`   | [`Predicate<T>::test`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Predicate.html#test&#40;T&#41;)           |
+| `Producer<T>::produce`        | [`Supplier<T>::get`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Supplier.html#get&#40;&#41;)                |
+| `Consumer<T>::consume`        | [`Consumer<T>::accept`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html#accept&#40;T&#41;)         |
+| `Transformer<T, R>::transform` | [`Function<T, R>::apply`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Function.html#apply&#40;T&#41;)         |
+| `Transformer<T, T>::transform` | [`UnaryOp<T>::apply`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/UnaryOperator.html)                        |
+| `Combiner<S, T, R>::combine`    | [`BiFunction<S, T, R>::apply`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/BiFunction.html#apply&#40;T,U&#41;) |
 
 Besides, some of the abstractions we have built have similar counterparts in Java as well:
 
 | CS2030S               | Java version                                                                                                              |
 |-----------------------|---------------------------------------------------------------------------------------------------------------------------|
 |`Box<T>`               | N/A                                                                                                                       |
-|`Maybe<T>`             | [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)           |
+|`Maybe<T>`             | [`java.util.Optional<T>`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/Optional.html)           |
 |`Lazy<T>`              | N/A                                                                                                                       |
-|`InfiniteList<T>`      | [`java.util.stream.Stream<T>`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html) |
+|`InfiniteList<T>`      | [`java.util.stream.Stream<T>`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html) |
 
 We will focus this unit on `Stream` since the Java implementation of `Stream` is an infinite list with much more functionalities, some of which (such as parallel streams) are beyond what we can build ourselves in CS2030S.
 
@@ -52,7 +52,7 @@ A `Stream` is lazy, just like `InfiniteList`.
 A terminal operation is an operation on the stream that triggers the evaluation of the stream.  A typical way of writing code that operates on streams is to chain a series of intermediate operations together, ending with a terminal operation.  
 
 The `forEach` method is a terminal operation that takes in a stream and applies a lambda expression to each element.  
-The lambda expression to apply does not return any value.  Java provides the [`Consumer<T>`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html) functional interface for this.   Typical use is
+The lambda expression to apply does not return any value.  Java provides the [`Consumer<T>`](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/function/Consumer.html) functional interface for this.   Typical use is
 ```Java
 Stream.of(1, 2, 3).forEach(System.out::println);
 Stream.generate(() -> 1).forEach(System.out::println); // infinite loop
@@ -132,7 +132,7 @@ return result
 
 Note that there are constraints on the identity and accumulation function, which are placed due to the potential parallelization of `reduce`.   We will revisit this operation later.
 
-Java also overloaded `reduce` with two other versions &mdash; a simpler one (with `null` identity) and a more complex one, which supports a different returned type than the type of the elements in the stream.   You can read the [java API](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#reduce(T,java.util.function.BinaryOperator)) for details.
+Java also overloaded `reduce` with two other versions &mdash; a simpler one (with `null` identity) and a more complex one, which supports a different returned type than the type of the elements in the stream.   You can read the [java API](https://docs.oracle.com/en/java/javase/21/docs/api/java.base/java/util/stream/Stream.html#reduce(T,java.util.function.BinaryOperator)) for details.
 
 ### Element Matching
 
