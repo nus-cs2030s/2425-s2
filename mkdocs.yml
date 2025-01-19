@@ -60,7 +60,7 @@ nav:
     - Java Guide: 
       - Coding Style: 'style.md'
   - Exercises: 
-    - General Guide: 'exercises.md'
+    - General Guide: 'exercise.md'
 
 theme: 
   name: material
