@@ -1,0 +1,42 @@
+.remark-player-button {
+  position: fixed;
+  bottom: 5px;
+  right: 20px;
+  z-index: 10;
+}
+
+.remark-player-button-button {
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+}
+.remark-player-button-small {
+  font-size: 45px;
+}
+.remark-player-button-medium {
+  font-size: 60px;
+}
+.remark-player-button-large {
+  font-size: 75px;
+}
+.remark-player-button-btn {
+  opacity: 0.7;
+}
+.remark-player-button-btn:hover {
+  opacity: 1;
+}
+.remark-player-button-sep {
+  opacity: 0.1;
+  cursor: default;
+}
+.remark-player-button-off {
+  opacity: 0.2;
+  cursor: default;
+}
+
+
+@media print {
+  .remark-player-button {
+    display: none;
+  }
+}
