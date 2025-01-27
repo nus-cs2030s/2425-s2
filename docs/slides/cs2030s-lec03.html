@@ -7,11 +7,25 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
 
 <!-- CHANGE TITLE -->
-<title>CS2030S AY23/24 S2 Lecture 3</title>
+<title>CS2030S AY24/25 S2 Lecture 3</title>
 <meta charset="utf-8">
 </head>
 <body>
 <textarea id="source">
+class: middle
+
+### Announcements
+
+.small[
+- No Recitations and Lab Sessions this week.
+- Exercise 1 (and explainer video) will be released today. Exercise 2 and 3 build upon Exercise 1.
+- Reminder: Self Diagnostic Quiz 3 and Vim / PE Environment quizzes.
+- Practice PE0s will be released this week for your self study.
+- File a ticket for Timetable Clashes for PE1.
+  - Select the correct category.
+  - No need to file a ticket if it conflicts with your CS2030S recitations and labs.
+]
+---
 class: middle, center
 
 ## CS2030<sub>s</sub>
@@ -22,20 +36,7 @@ class: middle, center
 
 ## Lecture 3
 
-### 29 January 2024
----
-class: middle
-
-### Announcements
-
-.small[
-- Recitations and Lab Sessions start this week
-- Problem Set 1 will be released on Canvas later today.  Read and try it out before your recitation.
-- Exercise 0 is already out, try it if you have not done so already.
-- Exercise 1 will come out.
-- Reminder: Self Diagnostic Quiz 3
-- First Catch-Up Session this Saturday
-]
+### 27 January 2025
 ---
 class: middle,left
 
@@ -103,77 +104,10 @@ c = new Circle(p, 0);
 ---
 class: middle,center
 
-# Overloading
+# Overriding
 
-Methods with the same name but a differing method signature
+`equals` method
 
----
-class: middle,left
-
-.small[
-```Java
-public boolean contains(Point p) {
-  :
-}
-
-public boolean contains(double x, double y) {
-  :
-}
-```
-]
-
----
-class: middle,center
-
-# Polymorphism
-
-### _many_ _forms_
----
-class: middle,left
-
-.small[
-```Java
-void say(Object obj) {
-	System.out.println("Hi, I am " 
-                         + obj.toString());
-}
-```
-]
-
-.small[
-```Java
-Point p = new Point(0, 0);
-say(p);
-Circle c = new Circle(p, 4);
-say(c);
-```
-]
----
-class: middle,left
-
-.small[
-```Java
-void say(Object obj) {
-	System.out.println("Hi, I am " 
-                         + obj.toString());
-}
-```
-]
-
-Which `toString` method that executed is decided _during run-time_, depending on the run-time of `obj`.
-This is known as _dynamic binding_.
----
-class: middle,center
-
-# Polymorphism
-
-`equals(Object obj)`
----
-class: middle,center
-
-### But this is a lot of power, and with great power...
-
-### Lets consider an example
 ---
 class: middle,left
 
@@ -229,6 +163,88 @@ public boolean equals(Object obj) {
 }
 ```
 ]
+---
+class: middle,center
+
+# Overloading
+
+Methods with the same name but a different method signature
+
+---
+class: middle,left
+
+.small[
+```Java
+public boolean contains(Point p) {
+  :
+}
+
+public boolean contains(double x, double y) {
+  :
+}
+```
+]
+
+---
+class: middle,left
+
+.small[
+```Java
+public boolean equals(Circle o) {
+  :
+}
+
+public boolean equals(Object o) {
+  :
+}
+```
+]
+
+---
+class: middle,center
+
+# Polymorphism
+
+### _many_ _forms_
+---
+class: middle,left
+
+.small[
+```Java
+void say(Object obj) {
+	System.out.println("Hi, I am " 
+                         + obj.toString());
+}
+```
+]
+
+.small[
+```Java
+Point p = new Point(0, 0);
+say(p);
+Circle c = new Circle(p, 4);
+say(c);
+```
+]
+---
+class: middle,left
+
+.small[
+```Java
+void say(Object obj) {
+	System.out.println("Hi, I am " 
+                         + obj.toString());
+}
+```
+]
+
+Which `toString` method that executed is decided _during run-time_, depending on the run-time of `obj`.
+This is known as _dynamic binding_.
+---
+class: middle,center
+
+### But this is a lot of power, and with great power...
+
 ---
 class: middle,center
 
@@ -496,15 +512,23 @@ class: top,center
 ### Concrete vs Abstract
 
 ---
-
-class: middle
-
+class: middle,left
 ### Reminders
 
-- Recitations and Lab Sessions start this week
-- Play with the code given in the notes
-- Exercise 1, Problem Set 1, Self-Diagnostic Quiz 3
-- First Catch-Up Session this Saturday
+.small[
+- No Recitations and Lab Sessions this week.
+- Exercise 1 (and explainer video) will be released today. Exercise 2 and 3 build upon Exercise 1.
+- Reminder: Self Diagnostic Quiz 3 and Vim / PE Environment quizzes.
+- Practice PE0s will be released this week for your self study.
+- File a ticket for Timetable Clashes for PE1.
+  - Select the correct category.
+  - No need to file a ticket if it conflicts with your CS2030S recitations and labs.
+]
+---
+class: middle,left
+background-color: darkred
+
+## Happy Lunar New Year!
 
 ---
 class: bottom
@@ -512,7 +536,7 @@ class: bottom
 .tiny[
 Version: v1.0
 
-Last Updated: Sun Jan 27 20:00:00 +08 2024
+Last Updated: Sat Jan 25 18:00:00 +08 2025
 ]
 </textarea>
 
@@ -537,7 +561,7 @@ var slideshow = remark.create({
 	},
 	ratio: '16:9',
 	highlightStyle: 'ir-black',
-  slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+  slideNumberFormat: 'CS2030S AY24/25 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
 });
  // Setup MathJax
   MathJax.Hub.Config({
