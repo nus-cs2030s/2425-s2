@@ -1,7 +1,6 @@
 # Exercise 1: Simulation I
 
-- Deadline: 6 February 2024, Tuesday, 23:59 SGT
-- Difficulty Level: 3
+- Deadline: 5 February 2025, Wednesday, 23:59 SGT
 
 ## Prerequisite:
 
@@ -16,9 +15,9 @@ You are given six classes: five Java classes and one main `Ex1` class.  Two of t
 
 ## Background: Discrete Event Simulator
 
-A discrete event simulator is a piece of software that simulates a system (often modeled after the real world) with events and states. An event occurs at a particular time and each event alters the states of the system and may generate more events. A discrete event simulator can be used to study many complex real-world systems. The term discrete refers to the fact that the states remain unchanged between two events, and therefore, the simulator can jump from the time of one event to another, instead of following the clock in real time.
+A discrete event simulator is a piece of software that simulates a system (often modeled after the real world) with events and states. An event occurs at a particular time and each event alters the states of the system and may generate more events. A discrete event simulator can be used to study many complex real-world systems. The term discrete refers to the fact that the states remain unchanged between two events, and therefore, the simulator can jump from the time of one event to another, instead of following the clock in real-time.
 
-In Exercise 1, we provide you with three very generic classes: `Simulator`, which implements a discrete event simulator, `Event`, which encapsulates an event (with a time), and `Simulation`, which encapsulates the states we are simulating.  The `Event` and `Simulation` class can be extended to implement any actual simulation (network, road traffic, weather, pandemic, etc).
+In Exercise 1, we provide you with three very generic classes: `Simulator`, which implements a discrete event simulator, `Event`, which encapsulates an event (with a time), and `Simulation`, which encapsulates the states we are simulating.  The `Event` and `Simulation` classes can be extended to implement any actual simulation (network, road traffic, weather, pandemic, etc).
 
 ## Simulating a Bank
 
@@ -198,21 +197,3 @@ Use `vim -d` to compare your output with the expected output.
 ```
 vim -d OUT outputs/Ex1.3.out
 ```
-
-## Style (Optional)
-
-Make sure that your code following our [coding style](../style.md) is optional for Exercise 1.  If you would like to keep your code neat, tidy, and adhere to the CS2030S style, you can run 
-
-```
-java -jar ~cs2030s/bin/checkstyle.jar -c ex1_style.xml *.java
-```
-
-You should see the following output, with nothing in between the two lines.  Any style errors would appear in between the two.
-```
-Starting audit...
-Audit done.
-```
-
-## Documentation (Optional)
-
-Documenting your code with Javadoc is optional for Exercise 1.  It is, however, always a good practice to include comments to help readers understand your code.
