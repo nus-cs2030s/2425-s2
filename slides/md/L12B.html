@@ -1,0 +1,1725 @@
+layout: true
+class: basic, fadein, tabler, layout
+name: content
+<div class="header"></div>
+<div class="footer"><p>CS2030S: Programming Methodology II -- Adi Yoga Sidi Prabawa</p></div>
+
+---
+
+name: Lecture_12B
+class: bottom, titles
+
+# CS2030S
+## Programming Methodology II
+### Lecture 12B: Putting Things Together
+
+---
+
+name: Isolating_Moving_Parts
+class: middle, subtitles
+
+# Isolating Moving Parts
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+#### - Moving Parts
+]
+.rc[
+### Immutability
+#### .op0[No] Moving Parts
+.sssize[
+```java
+      class Circle {
+  private       double x;
+  private       double y;
+  private       double r;
+    :
+  public void   moveTo(double x, double y) {
+    this.x = x;
+    this.y = y;
+  }
+}
+```
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+#### - Moving Parts
+]
+.rc[
+### Immutability
+#### No Moving Parts
+.sssize[
+```java
+final class Circle {
+  private final double x;
+  private final double y;
+  private final double r;
+    :
+  public Circle moveTo(double x, double y) {
+    Circle res = new Circle(x, y, this.r);
+    return res;
+  }
+}
+```
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+#### - Moving Parts
+#### - Idea
+]
+.rc[
+### Immutability
+#### General Idea
+1. Make the class `final` .lnote[(subclass may give an .uline[illusion] of mutability)].
+2. Make the fields _immutable_.
+    - If the fields are proven to be _immutable_ .lnote[(e.g., primitive)], it is sufficient to add the keyword `final`.
+3. Returns a new instance instead of mutating the current instance.
+    - Should have no methods that returns `void` .lnote[(unless it is to print, etc)].
+
+##### Usage
+- Lab4 onwards
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+#### - Nested
+]
+.rc[
+### Encapsulation
+#### Nested Encapsulation
+.sssize[
+```java
+class Maybe<T> {
+    :
+  
+  private static class Some<T> extends Maybe<T> {
+      :
+  }
+  private static class None extends Maybe<Object> {
+      :
+  }
+}
+```
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+#### - Nested
+#### - Local
+]
+.rc[
+### Encapsulation
+#### Local Encapsulation
+.sssize[
+```java
+class Function {
+  public static <T,S,R> compose(Function<T,S> f1, Function<S,R> f2) {
+    return new Function<T,R>() {
+      @Override
+      public R apply(T t) {
+        return f2.apply(f1.apply(t));
+      }
+    }
+  }
+}
+```
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+]
+.rc[
+### Pure Functions
+.card.bg-b[
+##### Definition
+.content.tight[
+A pure function .lnote[(denoted mathematically as `f : X -> Y`)] is a mapping from the domain `X` to the codomain `Y`. For each `x` .math[∈] `X`, there is `y` .math[∈] `Y` such that `y = f(x)`.<br><br>
+
+__Requirement:__
+- Deterministic
+- Referentially transparent
+- No side-effect
+]
+]
+
+##### Side-Effects
+1. Print to monitor
+2. Write to files
+3. Throw exceptions
+4. Assign or mutate fields
+5. .lnote[... any other effects visible by the caller]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+]
+.rc[
+### Pure Functions
+#### Higher-Order Function
+##### Function as Object
+.col70[
+.sssize[
+```java
+class AddOneF {
+  Integer call(Integer x) { return x + 1; }
+}
+```
+]
+.sssize.op0[
+```java
+class AddOneF implements IntegerF {
+  Integer call(Integer x) { return x + 1; }
+}
+```
+]
+.sssize[
+```java
+Integer app(AddOneF f, Integer x) {
+  return f.call(x);
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+]
+.rc[
+### Pure Functions
+#### Higher-Order Function
+##### Function as Object
+.col70[
+.sssize[
+```java
+interface IntegerF {
+  Integer call(Integer x);
+}
+```
+]
+.sssize[
+```java
+class AddOneF implements IntegerF {
+  Integer call(Integer x) { return x + 1; }
+}
+```
+]
+.sssize[
+```java
+Integer app(IntegerF f, Integer x) {
+  return f.call(x);
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+]
+.rc[
+### Pure Functions
+#### Higher-Order Function
+##### Function as Object
+.col70[
+.sssize[
+```java
+interface IntegerF<T,R> {
+  R call(T x);
+}
+```
+]
+.sssize[
+```java
+class AddOneF implements IntegerF<Integer, Integer> {
+  Integer call(Integer x) { return x + 1; }
+}
+```
+]
+.sssize[
+```java
+Integer app(IntegerF<Integer, Integer> f, Integer x) {
+  return f.call(x);
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_01.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_02.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_03.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_04.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_05.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+##### Abstraction of Computation
+![Computation](img/12_Comp_06.png)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+.col50[
+##### Abstraction of Computation as Dependency
+![Computation](img/12_Comp_07.png)
+]
+.col50[
+##### Code
+.sssize[
+```java[copy=nones]
+public static Box  <Z> foo(Box  <X> x) {
+  Box  <Y> y = x.map(f);
+  Box  <Z> z = y.map(g);
+  return z;
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+.col50[
+##### Abstraction of Computation as Dependency
+![Computation](img/12_Comp_07.png)
+]
+.col50[
+##### Code
+.sssize[
+```java[copy=nones]
+public static Maybe<Z> foo(Maybe<X> x) {
+  Maybe<Y> y = x.map(f);
+  Maybe<Z> z = y.map(g);
+  return z;
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+.col50[
+##### Abstraction of Computation as Dependency
+![Computation](img/12_Comp_07.png)
+]
+.col50[
+##### Code
+.sssize[
+```java[copy=nones]
+public static Lazy <Z> foo(Lazy <X> x) {
+  Lazy <Y> y = x.map(f);
+  Lazy <Z> z = y.map(g);
+  return z;
+}
+```
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+.col50[
+##### Abstraction of Computation as Dependency
+![Computation](img/12_Comp_07.png)
+]
+.col50[
+##### Code
+.sssize[
+```java[copy=nones]
+public static Monad<Z> foo(Monad<X> x) {
+  Monad<Y> y = x.map(f);
+  Monad<Z> z = y.map(g);
+  return z;
+}
+```
+]
+
+.card.bg-y[
+##### Notes
+.content.tight[
+This one is actually a _functor_ because we are using `map`, but the idea is similar.
+For actual _monad_, we also need to compose the context.
+]
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+]
+.rc[
+### Pure Functions
+#### Higher-Abstraction
+.col50[
+##### Abstraction of Computation as Dependency
+![Computation](img/12_Comp_07.png)
+]
+.col50[
+##### Code
+.sssize[
+```java[copy=nones]
+public static Monad<Z> foo(Monad<X> x) {
+  return x
+          .map(f)
+          .map(g);
+}
+```
+]
+
+.card.bg-y[
+##### Notes
+.content.tight[
+This one is actually a _functor_ because we are using `map`, but the idea is similar.
+For actual _monad_, we also need to compose the context.
+]
+]
+]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+#### - Computation
+]
+.rc[
+### Pure Functions
+#### Focus on Computation
+> Once a computation has been abstracted as dependency, we can concentrate on what needs to be computed .lnote[(i.e., the computation and the dependency between computation)] rather on the minute details of how to compute.
+
+##### Concept Abstraction
+.col32[
+- `Maybe<T>`
+- `ComputableFuture<T>`
+- `Stream<T>`
+- `Try<T>`.cite[]
+]
+.col68.nol.deindent[
+- abstraction of `null` values .lnote[(remove checking of `null` values)]
+- abstraction of concurrent computation
+- abstraction of loops .lnote[(potentially infinite)]
+- abstraction of try-catch
+]
+]
+.rc[
+.ref[From PE2 practice.]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+#### - Computation
+#### - Exception
+]
+.rc[
+### Pure Functions
+#### Exception
+.col50[
+> "_If anything can go wrong, it will._" .right[Murphy's Law]
+]
+]
+.rc[
+![Murphy](img/12_Murphy_01.jpg)
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+#### - Computation
+#### - Exception
+]
+.rc[
+### Pure Functions
+#### Exception
+.col50[
+> "_If anything can go wrong, it will._" .right[Murphy's Law]
+]
+]
+.rc[
+##### Try-Catch-Finally
+.sssize[
+```java
+try {
+  return something(x); 
+} catch(Exc e) {
+  return catching(e);
+} finally {
+  // clean up code, even if no exception occurs
+}
+```
+]
+]
+.abs.lt80.wt20.top3[
+.img85[![Throwable](img/12_Exception_01.svg)]
+]
+
+---
+
+### Isolating Moving Parts
+
+.lc[
+### Immutability
+### Encapsulation
+### Pure Functions
+#### - Definition
+#### - Higher
+#### - Abstraction
+#### - Computation
+#### - Exception
+]
+.rc[
+### Pure Functions
+#### Exception
+.col50[
+> "_If anything can go wrong, it will._" .right[Murphy's Law]
+]
+]
+.rc[
+##### Try&lt;T&gt;
+.sssize[
+```java
+Try.of(x)
+   .map(y -> something(y))
+   .recover(e -> catching(e))
+‎
+‎
+// There is no "finally" in the past PE2
+//   but you can try adding it on your own
+```
+]
+]
+
+---
+
+name: Functional_Programming
+class: middle, subtitles
+
+# Functional Programming
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+]
+.rc[
+### Comparison
+.col50[
+#### Functional
+- Functions are first-class citizen
+- Avoids side-effect
+- Referentially transparent
+    - Easy to reason
+- Focus on computation
+- Data as thin containers
+
+.sssize[
+```java
+int fact(int n) {
+  return Stream
+    .iterate(1, i -> i <= n, i -> i+1)
+    .reduce(1, (res, i) -> res * i);
+}
+```
+]
+]
+.col50[
+#### Object-Oriented
+- Objects are first-class citizen
+- Objects are mutable
+- Polymorphism
+    - Easy to extend
+- Focus on state
+- Data contains functionalities
+
+.sssize[
+```java
+int fact(int n) {
+  int res = 1;
+  for (int i=1; i<=n; i=i+1) {
+    res = res * i;
+  }
+  return res;
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+]
+.rc[
+### Expression Problem
+#### OOP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+]
+.rc[
+.col33[
+##### Circle
+.sssize[
+```java
+class Circle <: Shape {
+  double x;
+  double y;
+  double r; // radius
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+
+.col33[
+##### Square
+.sssize[
+```java
+class Square <: Shape {
+  double x;
+  double y;
+  double s; // side
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+]
+.rc[
+### Expression Problem
+#### OOP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New type `Triangle`.
+]
+]
+]
+.rc[
+.col33[
+##### Circle
+.sssize[
+```java
+class Circle <: Shape {
+  double x;
+  double y;
+  double r; // radius
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+
+.col33[
+##### Square
+.sssize[
+```java
+class Square <: Shape {
+  double x;
+  double y;
+  double s; // side
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+]
+.rc[
+### Expression Problem
+#### OOP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New type `Triangle`.
+]
+]
+]
+.rc[
+.col33.op30[
+##### Circle
+.sssize[
+```java
+class Circle <: Shape {
+  double x;
+  double y;
+  double r; // radius
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+
+.col33.op30[
+##### Square
+.sssize[
+```java
+class Square <: Shape {
+  double x;
+  double y;
+  double s; // side
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+
+.col33[
+##### Triangle
+.sssize[
+```java
+class Triangle <: Shape {
+  double x;
+  double y;
+  double z;
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+]
+.rc[
+### Expression Problem
+#### OOP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New function `getPerimeter`.
+]
+]
+]
+.rc[
+.col33[
+##### Circle
+.sssize[
+```java
+class Circle <: Shape {
+  double x;
+  double y;
+  double r; // radius
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+
+.col33[
+##### Square
+.sssize[
+```java
+class Square <: Shape {
+  double x;
+  double y;
+  double s; // side
+    :
+  double getArea() {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+]
+.rc[
+### Expression Problem
+#### OOP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New function `getPerimeter`.
+]
+]
+]
+.rc[
+.col33[
+##### Circle
+.sssize[
+```java
+class Circle <: Shape {
+  double x;
+  double y;
+  double r; // radius
+    :
+  double getArea() { .. }
+  double getPerimeter()
+    { .. }
+}
+```
+]
+]
+
+.col33[
+##### Square
+.sssize[
+```java
+class Square <: Shape {
+  double x;
+  double y;
+  double s; // side
+    :
+  double getArea() { .. }
+  double getPerimeter()
+    { .. }
+}
+```
+]
+]
+
+.col33[<br>
+.card.bg-y[
+##### Notes
+.content.tight[
+Adding new functions entail modifying all existing classes!
+]
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+]
+.rc[
+### Expression Problem
+#### FP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+]
+.rc[
+.col66[
+##### getArea
+.sssize[
+```java
+public static double getArea(Shape s) {
+  if (s instanceof Circle) {
+      :
+  } else if(s instanceof Square) {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+]
+.rc[
+### Expression Problem
+#### FP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New type `Triangle`.
+]
+]
+]
+.rc[
+.col66[
+##### getArea
+.sssize[
+```java
+public static double getArea(Shape s) {
+  if (s instanceof Circle) {
+      :
+  } else if(s instanceof Square) {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+]
+.rc[
+### Expression Problem
+#### FP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New type `Triangle`.
+]
+]
+]
+.rc[
+.col66[
+##### getArea
+.sssize[
+```java
+public static double getArea(Shape s) {
+  if (s instanceof Circle) {
+      :
+  } else if(s instanceof Square) {
+      :
+  } else if(s instanceof Triangle) {
+      :
+  }
+}
+```
+]
+]
+
+.col33[<br>
+.card.bg-y[
+##### Notes
+.content.tight[
+Adding new functions entail modifying all existing functions!
+]
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+]
+.rc[
+### Expression Problem
+#### FP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New function `getPerimeter`.
+]
+]
+]
+.rc[
+.col66[
+##### getArea
+.sssize[
+```java
+public static double getArea(Shape s) {
+  if (s instanceof Circle) {
+      :
+  } else if(s instanceof Square) {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+]
+.rc[
+### Expression Problem
+#### FP
+.col66[
+##### Preliminary
+> Consider our `Circle` and `Square` that inherits from `Shape`.
+]
+.col33[
+.qns[
+> ##### Problem
+> New function `getPerimeter`.
+]
+]
+]
+.rc[
+.col66[
+##### getArea
+.sssize[
+```java
+public static double getArea(Shape s) {
+  if (s instanceof Circle) {
+      :
+  } else if(s instanceof Square) {
+      :
+  }
+}
+```
+]
+]
+
+.col3[
+##### getPerimeter
+.sssize[
+```java
+double getPerimeter(Shape s)
+{
+  if (s <: Circle) {
+      :
+  } else if(s <: Square) {
+      :
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+#### - Dual
+]
+.rc[
+### Expression Problem
+#### Dual Problem
+
+.col50[
+##### FP
+.atbl.blhead.ssize[
+|.tbl-cell[tbl-bg-w]   | getArea | new Function |
+| - | ------- | ------------ |
+|.tbl-cell[tbl-bg-b] __Circle__ | .dbltxt[✔] | .dgntxt[😃] |
+|.tbl-cell[tbl-bg-b] __Square__ | .dbltxt[✔] | .dgntxt[😃] |
+|.tbl-cell[tbl-bg-b] __new Type__ | .drdtxt[😱] |.tbl-cell[tbl-bg-k]&nbsp; |
+]
+]
+
+.col50[
+##### OOP
+.atbl.blhead.ssize[
+|.tbl-cell[tbl-bg-w]   | getArea | new Function |
+| - | ------- | ------------ |
+|.tbl-cell[tbl-bg-b] __Circle__ | .dbltxt[✔] | .dgntxt[😱] |
+|.tbl-cell[tbl-bg-b] __Square__ | .dbltxt[✔] | .dgntxt[😱] |
+|.tbl-cell[tbl-bg-b] __new Type__ | .drdtxt[😃] |.tbl-cell[tbl-bg-k]&nbsp; |
+]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+#### - OOP
+#### - FP
+#### - Dual
+#### - Tool
+]
+.rc[
+### Expression Problem
+#### The Right Tool for the Job
+<iframe width="100%" height="430" src="https://www.youtube-nocookie.com/embed/6pDH66X3ClA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+### OOP & FP
+#### - Choices
+]
+.rc[
+### OOP & FP
+#### Choices
+.col30[
+![OOPFP](img/12_FP_01.jpg)
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+### OOP & FP
+#### - Choices
+]
+.rc[
+### OOP & FP
+#### Choices
+.col30[
+![OOPFP](img/12_FP_01.jpg)
+]
+.col30[
+![OOPFP](img/12_FP_02.jpg)
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+### OOP & FP
+#### - Choices
+]
+.rc[
+### OOP & FP
+#### Choices
+.col30[
+![OOPFP](img/12_FP_01.jpg)
+]
+.col30[
+![OOPFP](img/12_FP_02.jpg)
+]
+.col40[
+> "_OO programming is good, when you know what it is. Functional programming is good, when you know what it is. And functional OO programming is also good, once you know what it is._"
+> .right[Uncle Bob]
+]
+]
+
+---
+
+### Functional Programming
+
+.lc[
+### Comparison
+### Expression
+### OOP & FP
+#### - Choices
+#### - Others
+]
+.rc[
+### OOP & FP
+#### Others
+> Java is a nice OOP language, but a clunky FP language .lnote[(but sometimes you have no choice)].
+
+##### Other Libraries
+- JOOL, Vavr, Fugue, Google Guava, Apache Commons, .lnote[etc]
+
+##### Other Languages
+.atbl.blhead.ssize[
+| Paradigms | Languages |
+| --------- | --------- |
+| _Parallel/Concurrent_ | Erlang, Go, .lnote[etc] |
+| _Functional_ | Haskell, Erlang, OCaml, F#,  .lnote[etc] |
+| _OO Functional_ | JavaScript, Kotlin, Scala, OCaml, Groovy, Swift, .lnote[etc] |
+]
+]
+
+---
+
+name: What's_Next?
+class: middle, subtitles
+
+# What's Next?
+
+---
+
+### What's Next?
+
+.lc[
+### CS2103<sub>T</sub>
+]
+.rc[
+### CS2103<sub>T</sub>
+#### Intro to Software Engineering
+##### Topic
+- Work in teams
+- Version control
+- Program analysis
+- &nbsp;&nbsp;&nbsp;&nbsp; : 
+]
+
+---
+
+### What's Next?
+
+.lc[
+### CS2103<sub>T</sub>
+### CS2104.op0[<sub>T</sub>]
+]
+.rc[
+### CS2104.op0[<sub>T</sub>]
+#### Programming Language Concepts
+##### Topic
+- Pure functional languages
+- How to build a compiler
+- How to implement a language
+- &nbsp;&nbsp;&nbsp;&nbsp; : 
+]
+
+---
+
+### What's Next?
+
+.lc[
+### CS2103<sub>T</sub>
+### CS2104.op0[<sub>T</sub>]
+### CS3210.op0[<sub>T</sub>]
+]
+.rc[
+### CS3210.op0[<sub>T</sub>]
+#### Parallel Computing
+##### Topic
+- Designing and programming multi-threaded programs
+- Debugging multi-threaded programs
+- Parallelization with CPU/CUDA
+- &nbsp;&nbsp;&nbsp;&nbsp; : 
+]
+
+---
+
+### What's Next?
+
+.lc[
+### CS2103<sub>T</sub>
+### CS2104.op0[<sub>T</sub>]
+### CS3210.op0[<sub>T</sub>]
+### END
+]
+.rc[
+### END
+
+> Hopefully, CS2030<sub>S</sub> _has taught_ you how to write better code, where "better" means
+- more human-friendly
+- easier to change and maintain
+- fewer crashes
+]
+
+---
+
+name: People
+class: middle, subtitles
+
+# People
+
+---
+
+### People
+#### Lab TAs
+
+.sssize[
+.col25[
+- Ong Han Yang
+- Anjali Agarwal
+- Zhang Weiqiang 
+- Jansen Ryan Patrick
+- Jotham Wong
+- Chan Chang Yu, Linus
+- Yeo Yong Jun Edric
+- Hng Shan Hern
+- Cheam Jia Wei
+- Chen Xinyang
+- Tan Guo Xuan, Marcus
+- Andrew Lo Zhi Sheng
+- Eris Jacey Masagca
+- Tan Wen Hao Brendan
+- Tan How Suen
+- Kok Chun Zhi
+]
+.col25[
+- Chrysline Lim Xing Hui
+- Jordan Soh Jing Ren
+- Fong Yih Jie
+- Chang Si Kai
+- Mai Ting Kai
+- Gautham Kailash
+- Anshumaan Tyagi
+- Arsyad Ibadurrahman Kamili
+- Eyo Kai Wen, Kevin
+- An Cheng Yang
+- Steven Lim
+- Qi Zhi
+- Prittam Ravi
+- Lee Kai Sheng Shawn
+- Ng Jia Le Max
+- Lim Jun Hong, Don
+]
+.col25[
+- Chew Yew Keng
+- Clevon Wong Jun Yong
+- Aaron Tan Gui Rong
+- Ryo Hilmawan
+- Cui Shen Yi
+- Sze Shao Hong
+- Tan Sze Ying
+- Ho Cheng En Bryan
+- Tham Rui Cong
+- Tan Yuan Wei
+- Goh Kang Yang, Eric
+- Benedict Chua Jun Jie
+- Kleon Ang Cunrong
+- Toh Kar Wi
+- Tan Yuan Zheng
+- Lam Chun Yu
+]
+.col25[
+- Wong Chee Hong
+- Qiu Jiasheng, Jason
+- Kor Ming Soon
+- Li Zhong Fu
+- Lim Yu Young, Douglas
+- Kevin Chang Jon Kit
+- Dianne Loh Wen Hui
+- Kartikeya
+- Ong Seeu Sim
+- Rishi Vinay Chousalkar
+- Cheong Sze Kai, Brian
+- Germaine Lee
+- Jason Christopher
+- Melissa Anastasia Harijanto
+- Bryan Lim Jing Xiang 
+- Nguyen Viet Anh
+]
+]
+
+---
+
+### People
+#### Recitation Tutors
+
+.col33[
+##### Enzio Kam Hai Hong
+.img70[![Enzio](img/Enzio.png)]
+]
+.col33[
+##### Lee Yunjeong
+.img70[![Yunjeong](img/Yunjeong.png)]
+]
+.col33[
+##### Darius Foo Tsien Wei
+.img70[![Darius](img/Darius.png)]
+]
+
+---
+
+### People
+#### System Admin
+
+.col25[
+##### <br>Tan Hsiao Wei
+
+.img85[![Hsiao Wei](https://www.comp.nus.edu.sg/stfphotos/tanhw.jpg)]
+]
+.col25[
+##### <br>Musa B Hashim
+
+.img85[![Musa](https://www.comp.nus.edu.sg/stfphotos/musa.jpg)]
+]
+.col25[
+##### <br>Chan Tim Fook
+
+.img85[![Tim Fook](https://www.comp.nus.edu.sg/stfphotos/chantf.jpg)]
+]
+.col25[
+##### Chong Peng Kong
+
+.img85[![Peng Kong](https://www.comp.nus.edu.sg/stfphotos/chongpk.jpg)]
+]
+]
+
+---
+
+### People
+
+.col40[
+#### You
+
+<br><br><br><br>
+
+___This module will not have been a success without you!___
+
+<br><br><br><br><br><br>
+
+##### Thank You
+]
+.col60[
+.img85.right[![You](https://miro.medium.com/v2/resize:fit:692/1*OcGEoXv7dG_fNpbRJyJuOg.jpeg)]
+]
+
+---
+
+layout: false
+class: middle, end, fadein
+
+`jshell> /exit`
+
+`|  Goodbye`

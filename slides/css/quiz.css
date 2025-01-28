@@ -1,0 +1,29 @@
+/* MRQ */
+.quiz-ans,
+.quizzes-poll,
+.quizzes-time,
+.quizzes-qr {
+  display: none;
+}
+
+.mrq li,
+.proof li {
+  width: 100%;
+  height: 100%;
+}
+.mrq li .quiz-hint,
+.proof li .proof-reason {
+  display: inline-block;
+  width: 63%;
+}
+.mrq li .quiz-choice,
+.proof li .proof-fd {
+  display: inline-block;
+  width: 33%;
+}
+.mrq ol {
+  list-style-type: upper-alpha;
+}
+.proof-qed::before {
+  content: '∎';
+}
