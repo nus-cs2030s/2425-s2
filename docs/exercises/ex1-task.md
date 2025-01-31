@@ -56,7 +56,7 @@ Simulation sim = new SomeSimulation();
 new Simulator(sim).run(); 
 ```
 
-The `Simulation::run` method simply does the following:
+The `Simulator::run` method simply does the following:
 
 - It gets the list of initial `Event` objects from the `Simulation` object;
 - It then simulates the pool of events, one by one in the order of increasing time, by calling `Event::simulate`;
