@@ -291,14 +291,37 @@ void m3() {
 
 void m4() {
   ...
-  throw new E2();
-  ...
 }
 ```]
 
 ---
 background-image: url(figures/cs2030s-lec04/exception/exception.002.png)
 
+---
+class: middle
+.tiny[```Java
+void m1() {
+  ...
+  m2();
+  ...
+}
+
+void m2() {
+  m3();
+  ...
+}
+
+void m3() {
+  ...
+  m4();
+}
+
+void m4() {
+  ...
+  throw new E2();
+  ...
+}
+```]
 ---
 background-image: url(figures/cs2030s-lec04/exception/exception.003.png)
 
