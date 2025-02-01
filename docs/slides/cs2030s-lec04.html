@@ -7,11 +7,18 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
 
 <!-- CHANGE TITLE -->
-<title>CS2030S AY23/24 S2 Lecture 4</title>
+<title>CS2030S AY24/25 S2 Lecture 4</title>
 <meta charset="utf-8">
 </head>
 <body>
 <textarea id="source">
+class: middle
+
+### Announcements
+
+- Office Hours are up!
+- Problem Set 2
+---
 class: middle, center
 
 ## CS2030<sub>s</sub>
@@ -22,32 +29,7 @@ class: middle, center
 
 ## Lecture 4
 
-### 5 February 2024
----
-class: middle
-
-### Announcements
-
-- Office Hours are up!
-- Problem Set 2
-- Exercise 2 will release one day earlier and is due one day later than usual ❤️
-- Next Monday Lecture is a Recording
----
-class: middle
-
-### Exercise 2
-
-- Builds on Exercise 1. 
-- Released early on Wednesday (7 Feb) due to CNY
-
----
-class: middle
-
-### GEC1015/GEH1049 PE2 Conflict (April 13th)
-
-Please raise a ticket and let us know.
-
-
+### 3 February 2025
 ---
 class: middle,left
 
@@ -184,6 +166,45 @@ class: middle,center
 Let's consider writing a method that reads in a single integer value from a file.
 
 What can go wrong?
+
+---
+class: middle
+
+.tiny[
+```Java
+fd = fopen(filename,"r");
+if (fd == NULL) {
+  fprintf(stderr, "Unable to open file. ");
+  if (errno == ENFILE) {
+    fprintf(stderr, "Too many opened files.  Unable to open another\n");
+  } else if (errno == ENOENT) {
+    fprintf(stderr, "No such file %s\n", filename);
+  } else if (errno == EACCES) {
+    fprintf(stderr, "No read permission to %s\n", filename);
+  }
+  return -1;
+}
+```
+]
+
+---
+class: middle
+
+.tiny[
+```Java
+scanned = fscanf(fd, "%d", &value);
+if (scanned == 0) {
+  fprintf(stderr, "Unable to scan for an integer\n");
+  fclose(fd);
+  return -2;
+}
+if (scanned == EOF) {
+  fprintf(stderr, "No input found.\n");
+  fclose(fd);
+  return -3;
+}
+```
+]
 
 ---
 class: middle,center
@@ -378,9 +399,9 @@ If I don't see you beforehand:
 class: bottom
 
 .tiny[
-Version: v1.0
+Version: v1.1
 
-Last Updated: Sat Feb 03 20:00:00 +08 2024
+Last Updated: Sat Feb 01 20:00:00 +08 2025
 ]
 </textarea>
 
@@ -402,7 +423,7 @@ var slideshow = remark.create({
 	},
 	ratio: '16:9',
 	highlightStyle: 'ir-black',
-  slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+  slideNumberFormat: 'CS2030S AY24/25 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
 });
  // Setup MathJax
   MathJax.Hub.Config({
