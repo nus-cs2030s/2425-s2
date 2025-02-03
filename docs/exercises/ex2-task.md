@@ -1,33 +1,30 @@
 # Exercise 2: Simulation 2
 
-- Deadline: 14 February 2023, Wednesday, 23:59 SGT
+- Deadline: 11 February 2025, Wednesday, 12:00 SGT
 - Difficulty Level: 5
 
 ## Prerequisite:
 
 - Completed Exercise 1
 - Caught up to Unit 19 of Lecture Notes
-- Familiar with the CS2030S Java style guide
 
 ## Goal
 
-This is a continuation of Exercise 1.  Exercise 2 changes some of the requirements of Exercise 1 and adds some new things to the world that we are simulating.  The goal is to demonstrate that, when OO principles are applied properly, we can adapt our code to changes in the requirement with less effort.  If your design for Exercise 1 follows the OOP principles, then only about 50 lines of changes/additions are required.
+ Exercise 2 is a continuation of Exercise 1.  It revises and extends the requirements of Exercise 1 by introducing some new elements to simulation.  The goal is to demonstrate how well-designed object-oriented code can adapt to requirement changes with minimal effort.  If your design for Exercise 1 follows the OOP principles, then you **only need about 50 lines** of changes/additions to solve Exercise 2.
 
-For Exercise 2, you should (i) improve upon your design for Exercise 1 if needed, (ii) update `BankSimulation` and associated classes to simulate the extended scenarios, and (iii) update the input and output components of the classes to conform to the specification below.
-
-Exercise 2 also nudges you towards following good coding practice by adhering to a published coding convention.
+For Exercise 2, you should (i) refine your Exercise 1 design if necessary, (ii) update `BankSimulation` and associated classes to simulate the extended scenarios, and (iii) modify the input/output components according to the updated specification below.
 
 ### Extension 1: Simulating a Bank with a Queue
 
 Recall that, no waiting was allowed inside the bank we are simulating.  The bank is losing customers as a customer departs if all the counters are busy.
 
-Exercise 2 adds an entrance queue to the bank.  If all counters are busy when a customer arrives, the customer will join the queue and wait.  When a counter becomes available, the customer at the front of the queue will proceed to the counter for service.
+Exercise 2 adds an entrance queue to the bank.  If all counters are busy when a customer arrives, the customer joins the queue and wait.  When a counter becomes available, the customer at the front of the queue will proceed to the counter for service.
 
 The entrance queue has a maximum queue length of $m$.  If there are already $m$ customers waiting in the entrance queue, any arriving customer will be turned away[^1].
 
 [^1]: This is known as "balking" in queueing theory.
 
-If some counters are available when a customer arrives, the customer will go the first available counter, just like in Exercise 1.
+If one or more counters are available when a customer arrives, the customer will go the first available counter, just like in Exercise 1.
 
 ### Extension 2: Customer with a Task
 
@@ -48,20 +45,24 @@ Customers now come to the bank with a task they intend to do.  The task can be e
 
 3. The entrance queue of the bank will be printed with the arrival event. E.g., the following shows that C3 arrived at time 1.400 and at the time of arrival, there were two customers, C1 and C2, waiting in the entrance queue.
 ```
-1.400: C3 arrived [ C1 C2 ]
+1.400: C3 arrives [ C1 C2 ]
 ```
 
 4. If a customer joins the entrance queue, the customer along with the queue _before_ joining should be printed. E.g.,
 ```
-1.400: C3 joined queue [ C1 C2 ]
+1.400: C3 joins queue [ C1 C2 ]
 ```
 
-5. When a customer begins being served or is done being served, the task the customer is doing should be printed. For example, Customer `C2` withdrawing at bank counter `S1` would be printed as:
+5. When a customer receives service at the counter, the beginning and ending of the service should be printed, along with the customer's task.  For example, Customer `C2`'s withdrawal at service counter `S1` would be printed as:
 ```
-5.100: C2 withdrawal begin (by S0)
-7.100: C2 withdrawal done (by S0)
+5.100: C2 withdrawal (at S0) begins
+7.100: C2 withdrawal (at S0) ends
 ```
 
+6. When a customer departs, the customer should be printed with the time of departure. For example, Customer `C2` departing would be printed as:
+```
+8.700: C2 departs
+```
 
 ## Skeleton for Exercise 2
 
@@ -80,7 +81,7 @@ cp -i ../ex1-<username>/*.java .
 rm -i Ex1.java
 ```
 
-to copy all your Java code over and remove the main file for Ex1.
+to copy all your Java code over and remove the main file for Ex1.  Stray Java files that are not part of your solution would interfere with the compilation and testing process and should be removed.
 
 If you are still unfamiliar with Unix commands to navigate the file system and manage files, please review [our Unix guide](https://nus-cs2030s.github.io/2324-s2/unix/essentials.html).
 
@@ -119,11 +120,11 @@ int l = q.length();
 
 ## Following CS2030S Style Guide
 
-In addition to the changes above, you should also make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2324-s2/style.html)
+In addition to the changes above, you should also make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2425-s2/style.html)
 
-You can use `checkstyle` tool and the given configuration `ex2_style.xml` to check your code:
+You can use `checkstyle` tool and the given configuration `checkstyle.xml` to check your code:
 ```
-java -jar ~cs2030s/bin/checkstyle.jar -c ex2_style.xml *.java
+java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java
 ```
 
 ## Assumptions
@@ -176,10 +177,10 @@ grep ": C1" OUT
 
 You should see the following output:
 ```
-1.200: C1 arrived [ ]
-1.200: C1 service begin (by S1)
-2.200: C1 service done (by S1)
-2.200: C1 departed
+2.100: C1 arrives [ ]
+2.100: C1 deposit (at S1) begins
+3.100: C1 deposit (at S1) ends
+3.100: C1 departs
 ```
 
 Suppose you want to see all the customers served by `S1`, run:
@@ -189,8 +190,8 @@ grep "S1" OUT
 
 You should see the following output:
 ```
-1.200: C1 service begin (by S1)
-2.200: C1 service done (by S1)
-2.200: C4 service begin (by S1)
-3.200: C4 service done (by S1)
+2.100: C1 deposit (at S1) begins
+3.100: C1 deposit (at S1) ends
+4.200: C2 deposit (at S1) begins
+5.200: C2 deposit (at S1) ends
 ```
