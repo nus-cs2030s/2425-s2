@@ -63,6 +63,7 @@ Customers now come to the bank with a task they intend to do.  The task can be e
 ```
 8.700: C2 departs
 ```
+(not "departed")
 
 ## Skeleton for Exercise 2
 
