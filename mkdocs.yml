@@ -61,6 +61,9 @@ nav:
       - Coding Style: 'style.md'
   - Exercises: 
     - General Guide: 'exercise.md'
+    - Exercise 0: 'exercises/ex0-task.md'
+    - Exercise 1: 'exercises/ex1-task.md'
+    - Exercise 2: 'exercises/ex2-task.md'
 
 theme: 
   name: material
