@@ -1,6 +1,6 @@
 # Exercise 2: Simulation 2
 
-- Deadline: 11 February 2025, Wednesday, 12:00 SGT
+- Deadline: 11 February 2025, Tuesday, 12:00 SGT
 - Difficulty Level: 5
 
 ## Prerequisite:
