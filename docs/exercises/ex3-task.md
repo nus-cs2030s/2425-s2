@@ -39,7 +39,7 @@ Recall that every customer comes into the bank with one of two tasks: withdrawal
 
 - Every customer arrives with a task to withdraw or deposit some amount of money.
 - Every counter starts with an initial amount of money: $100.
-- Each time a counter {++starts servicing++} a customer, the amount of money at that counter may increase or decrease.   If the customer is withdrawing \$$x$, the amount of money at that counter decreases by $x$.  If the customer is depositing \$$x$, the amount of money at that counter increases by $x$.
+- Each time a counter starts servicing a customer, the amount of money at that counter may increase or decrease.   If the customer is withdrawing \$$x$, the amount of money at that counter decreases by $x$.  If the customer is depositing \$$x$, the amount of money at that counter increases by $x$.
 - A counter may not have enough money for withdrawal.  If a customer wishes to withdraw more money than what is available at the counter, the withdrawal will fail.  The amount of money at the counter does not change in this case.
 
 ### Changes to Input
