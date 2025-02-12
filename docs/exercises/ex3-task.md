@@ -261,8 +261,10 @@ $ javac -Xlint:unchecked -Xlint:rawtypes *.java
 
 To check for style,
 ```
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex3_style.xml *.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java
 ```
+
+(You can copy `checkstyle.xml` from your ex2 directory.)
 
 ### Running and Testing
 
