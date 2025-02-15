@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 9</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 9
+
+### 25 March 2024
+---
+class: middle
+
+### Announcements
+
+This week:
+- No labs session.
+- No new exercise.
+- Thursday recitation groups and join any recitation group on Wednesday.
+
+---
+class: middle
+
+### `EagerList<T>`
+
+```Java
+class EagerList<T> {
+  private T head;
+  private EagerList<T> tail;
+   :
+}
+```
+  
+---
+class: middle
+
+.small[
+```java
+EagerList<Integer> l = EagerList
+    .iterate(1, i -> i < 10, i -> i + 1) 
+    .filter(i -> i % 3 == 0)  
+    .map(i -> i * 2);  
+l.head();        
+l.tail().head(); 
+l.tail().tail().head();
+```
+]
+---
+class: middle, wide
+
+![:scale 100%](img/09_List_01.png)
+
+---
+class: middle
+
+### `InfiniteList<T>`
+
+.small[
+```java
+class InfiniteList<T> {
+  private Producer<T> head;
+  private Producer<InfiniteList<T>> tail;
+   :
+}
+```
+]
+
+---
+class: middle, wide
+
+.small[
+```java
+InfiniteList.iterate(0, x -> x + 2)  // 0, 2, 4, ...
+            .map(x -> x + 1)         // 1, 3, 5, ...
+            .map(x -> x * 2)         // 2, 6, 10, ... 
+            .head();                 // 2
+```
+]
+
+---
+class: middle, wide
+
+.small[
+```java
+InfiniteList<Integer> evens = 
+               InfiniteList.iterate(0, x -> x + 2); 
+  // 0, 2, 4, ...
+InfiniteList<Integer> odds = evens.map(x -> x + 1); 
+  // 1, 3, 5, ...
+InfiniteList<Integer> altEvens = odds.map(x -> x * 2); 
+  // 2, 6, 10, ... 
+altEvens.head(); 
+  // returns 2
+```
+]
+---
+class: middle, wide
+.small[
+```java
+IL<Integer> evens = IL.iterate(0, x -> x + 2); 
+```
+]
+![:scale 100%](img/09_Diagram_01.png)
+---
+class: middle, wide
+.small[
+```java
+InfiniteList<Integer> odds = evens.map(x -> x + 1); 
+```
+]
+![:scale 100%](img/09_Diagram_02.png)
+---
+class: middle, wide
+.small[
+```java
+InfiniteList<Integer> altEvens = odds.map(x -> x * 2); 
+```
+]
+![:scale 100%](img/09_Diagram_03.png)
+---
+class: middle, wide
+
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_01.png)
+
+---
+class: middle, wide
+
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_02.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_03.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_04.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_05.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_06.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_07.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_08.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_09.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_10.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_11.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_12.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_13.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_14.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_15.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_16.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_17.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_18.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_19.png)
+
+---
+class: middle, wide
+.tiny[
+```Java
+InfiniteList.iterate(0, x -> x + 2).map(x -> x + 1).map(x -> x * 2).head();
+```
+]
+
+![:scale 100%](img/09_Head_20.png)
+
+---
+class: middle 
+
+.small[
+|CS2030S | java.util.function |
+|--------|-------------------|
+|`BooleanCondition<T>::test` | `Predicate<T>::test` |
+|`Producer<T>::produce`      | `Supplier<T>::get`   |
+|`Transformer<T,R>::transform` | `Function<T,R>::apply` |
+|`Transformer<T,T>::transform` | `UnaryOp<T>::apply` |
+|`Combiner<S,T,R>::combine` | `BiFunction<S,T,R>::apply` |
+]
+
+---
+class: middle 
+
+.small[
+| CS2030S               | Java version      |
+|-----------------------|-------------------|
+|`Maybe<T>`             | `java.util.Optional<T>`      |
+|`Lazy<T>`              | N/A                          |
+|`InfiniteList<T>`      | `java.util.stream.Stream<T>` |
+]
+---
+class: middle center
+
+# Streams
+
+(in Java)
+
+---
+class: middle center
+
+### A stream pipeline starts with a *data source*, then *intermediate operations*, and finally a *terminal operation*.
+
+---
+class: middle wide
+
+## Data sources
+
+- Static factory methods `of`, `generate`, `iterate`
+
+- Convert an array into a Stream using `Arrays::stream`
+
+- Convert a List instance into a Stream using `List::stream`
+---
+class: middle
+
+## Terminal Operations
+
+- `forEach`
+
+---
+class: middle
+
+## Intermediate Operations 
+
+- `filter`, `map`
+- `flatMap`
+- `limit`, `takeWhile`
+
+Let's look at some examples...
+
+---
+class: middle wide
+
+## Some operations are *stateful*
+
+- `sorted`
+- `distinct`
+
+---
+class: middle wide
+
+## Peeking into our `Stream`
+
+```Java
+Stream.iterate(0, x -> x + 1)
+      .peek(System.out::println)
+      .takeWhile(x < 5)
+      .forEach(x -> {});
+```
+---
+class: middle
+
+## More Terminal Operations
+- `reduce`
+- `noneMatch`, `allMatch`, `anyMatch`
+- `count`
+
+Let's look at some examples...
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sat Mar 23 17:00:00 +08 2024
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 100%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>

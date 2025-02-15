@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;500;700&display=swap');
+
+:root {
+  --ltoc-width:    300px;
+  --ltoc-label:    36px;
+  --ltoc-title:    30px;
+  --ltoc-subtitle: 24px;
+  --ltoc-icon:     20px;
+  --ltoc-btn:      24px;
+}
+
+/* Left TOC */
+.remark-ltoc-area {
+  position: absolute;
+  height: 100%;
+  width: var(--ltoc-width);
+  top: 0;
+  background-color:#ededed;
+  text-transform:capitalize;  
+  -webkit-box-shadow: inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  z-index: 10;
+}
+
+.remark-toc-content {
+  font-family: 'Yanone Kaffeesatz';
+}
+.remark-toc-content ul {
+  margin: 10px 0;
+  padding: 0;
+}
+.remark-toc-content li {
+  padding: 0;
+  position: relative;
+  display: block;
+  width: var(--ltoc-width);
+}
+.remark-toc-content li > a {
+  display: block;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-decoration: none;
+}
+
+.remark-toc-content-label {
+  color: #333;
+  font-size: var(--ltoc-label);
+  text-align: center;
+  width: calc(var(--ltoc-width) - 10px);
+  padding: 15px 5px 5px 5px;
+  display: block;
+}
+.remark-toc-content-title {
+  font-size: var(--ltoc-title);
+  border-top: 1px black solid;
+}
+.remark-toc-content-title > a {
+  color: #555;
+  padding: 5px 0 5px 5px;
+  width: calc(var(--ltoc-width) - 5px);
+}
+.remark-toc-content-subtitle {
+  font-size: var(--ltoc-subtitle);
+  border-top: 1px gray dashed;
+}
+.remark-toc-content-subtitle > a {
+  color: #555;
+  padding: 5px 0 5px 15px;
+  width: calc(var(--ltoc-width) - 15px);
+}
+.remark-toc-content li > a:hover,
+.remark-toc-content-active > a {
+  text-decoration:none;
+  color:#fff;
+  background-color:#343434;
+}
+
+.remark-toc-content-icon {
+  display: inline-block;
+  width: var(--ltoc-icon);
+  vertical-align: top;
+}
+.remark-toc-content-link {
+  display: inline-block;
+  width: 160px;
+}
+
+.remark-ltoc-shown {
+  left: 0;
+}
+.remark-ltoc-hidden {
+  left: calc(0px - var(--ltoc-width));
+}
+.remark-ltoc-btn {
+  position: absolute;
+  left: 105%;
+  top: 25px;
+  font-size: var(--ltoc-btn);
+  opacity: 0.4;
+  color: #555;
+  cursor: pointer;
+}
+.remark-ltoc-btn:hover {
+  opacity: 0.8;
+  color: #111;
+}
+
+.remark-ltoc-showing {
+  left: 0;
+  animation: 0.5s remark-ltoc-showing;
+}
+.remark-ltoc-hiding {
+  left: calc(0px - var(--ltoc-width));
+  animation: 0.5s remark-ltoc-hiding;
+}
+
+@-webkit-keyframes remark-ltoc-showing {
+  0% {
+    left: calc(0px - var(--ltoc-width));
+  }
+  100% {
+    left: 0;
+  }
+}
+@keyframes remark-ltoc-showing {
+  0% {
+    left: calc(0px - var(--ltoc-width));
+  }
+  100% {
+    left: 0;
+  }
+}
+@-webkit-keyframes remark-ltoc-hiding {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(0px - var(--ltoc-width));
+  }
+}
+@keyframes remark-ltoc-hiding {
+  0% {
+    left: 0;
+  }
+  100% {
+    left: calc(0px - var(--ltoc-width));
+  }
+}
+
+
+@media print {
+  .remark-ltoc-btn {
+    display: none;
+  }
+}

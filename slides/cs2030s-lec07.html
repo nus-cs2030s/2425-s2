@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+<link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+<!-- CHANGE TITLE -->
+<title>CS2030S AY23/24 S2 Lecture 7</title>
+<meta charset="utf-8">
+</head>
+<body>
+<textarea id="source">
+class: middle, center
+
+## CS2030<sub>s</sub>
+
+### Programming Methodology II
+---
+class: middle, center
+
+## Lecture 7
+
+### 11 March 2024
+---
+class: middle
+
+## Back to Immutability
+
+### Lets revisit our `Point` and `Circle`
+
+---
+class: middle,center
+
+## Recall our problem with `aliasing`
+
+---
+class: middle,wide
+
+```Java
+Point p = new Point(0, 0);
+Circle c1 = new Circle(p, 1);
+Circle c2 = new Circle(p, 4);
+c1.moveTo(1, 1); // C2 is affected! 
+```
+---
+class: middle,wide
+
+```Java
+Point p1 = new Point(0, 0);
+Circle c1 = new Circle(p1, 1);
+
+Point p2 = new Point(0, 0);
+Circle c2 = new Circle(p2, 4);
+
+c1.moveTo(1, 1); // C2 not affected...
+// but needed more resources!
+```
+---
+class: middle,center
+
+## Immutable Classes
+
+Cannot have any visible changes outside its abstraction barrier.
+
+---
+class: middle,center
+
+## Introducing our immutable `Point` and `Circle`
+
+---
+class: middle, wide
+
+```Java
+Point p = new Point(0, 0);
+Circle c1 = new Circle(p, 1);
+Circle c2 = new Circle(p, 4);
+c1.moveTo(1, 1); // c1 remains unchanged
+```
+---
+class: middle,center
+
+### Ease of Understanding
+
+`Circle c = new Circle(new Point(0, 0), 1);`
+
+`foo(c);`
+
+`c` will always be the unit circle!
+---
+class: middle,center
+
+### Enabling Safe Sharing of Internals
+
+## `ImmutableSeq<T>`
+
+---
+class: middle,center
+
+# `subSequence`
+
+---
+class: middle, center
+
+### Enabling Safe Sharing of Objects
+
+`Box::empty()` or the Unit Circle
+
+---
+class: middle
+
+## Advantages
+- Ease of Understanding
+- Enabling Safe Sharing of Objects
+- Enabling Safe Sharing of Internals
+- Enabling Safe Concurrent Execution
+
+---
+class: middle
+
+## Classes
+
+Encapsulating data (field) and functions (methods) together.
+Information hiding and tell, don't ask.
+
+But sometimes classes get way to big or general.
+
+---
+class: middle,center
+
+## Nested Classes
+
+---
+class: middle
+
+### Inner classes
+### Static nested classes
+### Local classes
+### Anonymous classes
+---
+class: top
+
+### Inner classes
+
+.small[
+```Java
+class A {
+  private int x;
+  static int y;
+
+  class B {
+    void foo() {
+      x = 1; // accessing x from A is OK
+      y = 1; // accessing y from A is OK
+    }
+  }
+}
+```
+]
+---
+class: top
+
+### Static nested classes
+
+.small[
+```Java
+class A {
+  private int x;
+  static int y;
+
+  static class C {
+    void bar() {
+      x = 1; // accessing x from A is not OK
+      y = 1; // accessing y is OK
+    }
+  }
+}
+```
+]
+---
+class: top
+
+## `B.this`
+
+.small[
+```Java
+class A {
+ private int x;
+
+ class B {
+   void foo() {
+     this.x = 1; // error
+   }
+ }
+}
+```
+]
+---
+class: top
+
+## Local classes
+
+.tiny[
+```Java
+void sortNames(List<String> names) {
+
+	class NameComparator implements Comparator<String> {
+	  public int compare(String s1, String s2) {
+		return s1.length() - s2.length();
+	  }
+	}
+  
+	names.sort(new NameComparator());
+}
+```
+]
+---
+class: middle
+
+.tiny[
+```Java
+interface C { void g(); }
+  
+class A {
+	int x = 1;
+  
+	C f() {
+	  int y = 1;
+   
+	  class B implements C {
+		void g() {
+		  x = y; // accessing x and y is OK.
+		}
+	  }
+  
+	  B b = new B();
+	  return b;
+	}
+}
+```
+]
+---
+class: top
+
+## Variable Capture
+
+.small[
+```Java
+A a = new A();
+C b = a.f();
+b.g();
+
+```
+]
+---
+class: top
+
+## Anonymous classes
+
+.tiny[
+```Java
+void sortNames(List<String> names) {
+
+	names.sort(new Comparator<String>() {
+		public int compare(String s1, String s2) {
+		  return s1.length() - s2.length();
+	   }
+	  });
+}
+```
+]
+---
+class: top
+
+## Effectively Final
+.tiny[
+```Java
+void sortNames(List<String> names) {
+	boolean ascendingOrder = true;
+	class NameComparator implements Comparator<String> {
+	  public int compare(String s1, String s2) {
+		if (ascendingOrder)
+		  return s1.length() - s2.length();
+		else
+		  return s2.length() - s1.length();
+	  }
+	}
+  
+	ascendingOrder = false;
+	names.sort(new NameComparator());
+}
+```
+]
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sat Mar  9 22:10:00 +08 2024
+]
+</textarea>
+
+<script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured" type="text/javascript"></script>
+<script src="javascripts/counter.js">
+</script>
+<script>
+remark.macros.scale = function (percentage) {
+	var url = this;
+	return '<img src="' + url + '" style="width: ' + percentage + '" />';
+};
+// ![:scale 50%](image.jpg)
+
+var slideshow = remark.create({
+    navigation: {
+	    scroll: false
+	},
+	ratio: '16:9',
+	highlightStyle: 'ir-black',
+    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+});
+ // Setup MathJax
+  MathJax.Hub.Config({
+	  tex2jax: {
+		inlineMath: [['$', '$']],
+		// inlineMath: [['$', '$'], ['\\(', '\\)']],
+		displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+		skipTags: ['script', 'noscript', 'style', 'pre']
+	  }
+  });
+
+  MathJax.Hub.Configured();
+</script>
+</body>
+</html>
