@@ -168,7 +168,7 @@ For instance, we have:
 - Since `Circle` <: `Shape`, `Seq<? extends Circle>` <: `Seq<? extends Shape>`
 - Since subtyping is transitive, we have `Seq<Circle>` <: `Seq<? extends Shape>`
 
-Because `Seq<Circle>` <: `Seq<? extends Shape>`, if we change the type of the parameter to `copyFrom` to `Seq<? extends T>`, 
+Because `Seq<Circle>` <: `Seq<? extends Shape>`, if we change the type of the parameter of `copyFrom` to `Seq<? extends T>`, 
 ```Java
   public void copyFrom(Seq<? extends T> src) {
     int len = Math.min(this.array.length, src.array.length);
