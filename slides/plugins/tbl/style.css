@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;500;700&display=swap');
+
+.tbl-cell, .tbl-row, .tbl-span{ display:none; }
+tr.tbl-bg-r, td.tbl-bg-r, th.tbl-bg-r{ background:var(--wrdclr) !important; }
+tr.tbl-bg-g, td.tbl-bg-g, th.tbl-bg-g{ background:var(--wgnclr) !important; }
+tr.tbl-bg-b, td.tbl-bg-b, th.tbl-bg-b{ background:var(--wblclr) !important; }
+tr.tbl-bg-y, td.tbl-bg-y, th.tbl-bg-y{ background:var(--lylclr) !important; }
+tr.tbl-bg-k, td.tbl-bg-k, th.tbl-bg-k{ background:var(--lbkclr) !important; }
+tr.tbl-bg-w, td.tbl-bg-w, th.tbl-bg-w{ background:var(--wbkclr) !important; }
+
+tr.tbl-bg-hr, td.tbl-bg-hr, th.tbl-bg-dr{ background:var(--hrdclr) !important; }
+tr.tbl-bg-hg, td.tbl-bg-hg, th.tbl-bg-dg{ background:var(--hgnclr) !important; }
+tr.tbl-bg-hb, td.tbl-bg-hb, th.tbl-bg-db{ background:var(--hblclr) !important; }

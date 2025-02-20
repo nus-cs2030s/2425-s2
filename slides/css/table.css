@@ -1,0 +1,86 @@
+.tabler table {
+  width: 100%;
+  max-width: 100%;
+  border-spacing: 0;
+  border: 1px solid var(--dbkclr);
+  border-radius: 5px;
+  margin-bottom: 0.8em;
+}
+.tabler table thead th {
+  color: var(--dbkclr);
+  background: var(--lbkclr);
+  font-weight: 500;
+  text-align: left;
+}
+.tabler table td,
+.tabler table th,
+.tabler table thead,
+.tabler table thead th,
+.tabler table tr {
+  border-width: 0px;
+  border-style: solid;
+  border-color: var(--dbkclr);
+  background-color: transparent;
+  padding: 0.3em;
+  color: var(--dbkclr);
+}
+.tabler table th, th {
+  background: var(--lbkclr);
+}
+.tabler .atbl table td:first-child,
+.tabler .atbl table th:first-child,
+.tabler .vtbl table td:first-child,
+.tabler .vtbl table th:first-child {
+  border-left: 0;
+}
+.tabler .htbl table tbody tr:not(:last-child) td,
+.tabler .htbl table tbody tr:not(:last-child) td,
+.tabler .vtbl table tr:nth-last-child(2) th,
+.tabler .vtbl table thead tr:last-child th,
+.tabler .atbl table tbody tr:not(:last-child) td {
+  border-bottom-width: 1px;
+}
+.tabler .htbl table thead th,
+.tabler .htbl table thead th,
+.tabler .atbl table thead th {
+  border-bottom-width: 1px;
+}
+.tabler .atbl table td,
+.tabler .atbl table thead th,
+.tabler .atbl table th,
+.tabler .vtbl table td,
+.tabler .vtbl table thead th,
+.tabler .vtbl table th {
+  border-left-width: 1px;
+}
+
+.tabler .blhead table thead,
+.tabler .blhead table thead th,
+.tabler .blhead table thead tr {
+  background-color: var(--wblclr);
+}
+.tabler .gnhead table thead,
+.tabler .gnhead table thead th,
+.tabler .gnhead table thead tr {
+  background-color: var(--wgnclr);
+}
+.tabler .rdhead table thead,
+.tabler .rdhead table thead th,
+.tabler .rdhead table thead tr {
+  background-color: var(--wrdclr);
+}
+.tabler .ylhead table thead,
+.tabler .ylhead table thead th,
+.tabler .ylhead table thead tr {
+  background-color: var(--wylclr);
+}
+.tabler .prhead table thead,
+.tabler .prhead table thead th,
+.tabler .prhead table thead tr {
+  background-color: var(--wprclr);
+}
+.tabler .bkhead table thead,
+.tabler .bkhead table thead th,
+.tabler .bkhead table thead tr {
+  background-color: var(--lbkclr);
+}
