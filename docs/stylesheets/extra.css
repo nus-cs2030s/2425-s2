@@ -19,6 +19,11 @@ article p.admonition-title {
   color: black;
 }
 
+[data-md-color-scheme="slate"] .md-typeset h1,
+[data-md-color-scheme="slate"] .md-typeset h2 {
+  color: white;
+}
+
 s {
   color: #900;
 }
