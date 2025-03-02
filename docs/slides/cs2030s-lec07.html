@@ -324,7 +324,10 @@ var slideshow = remark.create({
 	},
 	ratio: '16:9',
 	highlightStyle: 'ir-black',
-    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+    qanvas: {
+	    layout: 'horizontal'
+    	},
+    slideNumberFormat: 'CS2030S AY24/25 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
 });
  // Setup MathJax
   MathJax.Hub.Config({
