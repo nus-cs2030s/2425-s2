@@ -4,7 +4,7 @@
 
 ## Prerequisites
 
-- Familiar with [the CS2030S lab guidelines](../lab.md)
+- Familiar with [the CS2030S exercise guidelines](../exercise.md)
 - Able to access [the CS2030S programming environment](../environments.md) via ssh
 - [Setup Vim](../vim/setup.md)  and completed basic `vim` lessons
 - [Link your PE account to GitHub](../github.md)
