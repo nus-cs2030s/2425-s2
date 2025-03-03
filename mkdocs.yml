@@ -55,10 +55,15 @@ nav:
       - Lessons: 'vim/quick-lessons.md'
       - Tips: 'vim/operations.md'
       - Extensions: 'vim/plugins.md'
+    - Micro: 
+      - Tips: 'micro/operations.md'
     - Java Guide: 
       - Coding Style: 'style.md'
   - Exercises: 
-    - General Guide: 'lab.md'
+    - General Guide: 'exercise.md'
+    - Exercise 0: 'exercises/ex0-task.md'
+    - Exercise 1: 'exercises/ex1-task.md'
+    - Exercise 2: 'exercises/ex2-task.md'
 
 theme: 
   name: material
@@ -69,14 +74,25 @@ theme:
     - content.code.annotate
     - content.code.copy
   palette:
-    primary: custom
-    accent: custom
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
   shortcuts:
     previous: 72 #h
     next: 76 #l
     search: 191 #/
 
-site_name: CS2030S Programming Methodology II (Draft)
+site_name: CS2030S Programming Methodology II
 # repo_url: https://github.com/nus-cs1010/1819-s1
 site_url: https://nus-cs2030s.github.io/2425-s2
 copyright: Copyright by Department of Computer Science, National University of Singapore 2025

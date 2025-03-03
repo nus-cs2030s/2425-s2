@@ -1,6 +1,6 @@
 # Exercise 4: Box
 
-- Deadline: 12 March, 2024, Tuesday, 23:59, SGT
+- Deadline: 4 March, 2025, Tuesday, 12:01, SGT
 - Difficulty Level: 3
 
 ## Prerequisite:
@@ -305,13 +305,11 @@ The files `Test1.java`, `Test2.java`, etc., as well as `CS2030STest.java`, are p
 
 ## Following CS2030S Style Guide
 
-You should make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2324-s2/style.html)
+You should make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2425-s2/style.html)
 
 To check for style,
 ```
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex4_style.xml *.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java
 ```
-
-(You may copy `ex3_style.xml` from Exercise 3 if needed)
 
 `@SuppressWarnings` should be used in at most two places mentioned above.

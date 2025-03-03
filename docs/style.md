@@ -104,14 +104,14 @@ Many major companies enforce coding styles, and some have published them.  For C
 
         ```Java
         /*
-            * Good style
-            */
+         * Good style
+         */
         ```
 
         ```Java
         /**
-            * Good style for JavaDoc
-            */
+         * Good style for JavaDoc
+         */
         ```
 
     !!! failure "Bad Example"
@@ -130,8 +130,8 @@ Many major companies enforce coding styles, and some have published them.  For C
 
         ```Java
         /**
-            * Also not a good style for JavaDoc
-            */
+          * Also not a good style for JavaDoc
+          */
         ```
 
 
@@ -143,7 +143,7 @@ Many major companies enforce coding styles, and some have published them.  For C
         if (x == 0) {
             x++; // to make sure x is at least one.
             for (i = 0; i < x; i++) {
-            x += i;
+                x += i;
             }
         }
         ```

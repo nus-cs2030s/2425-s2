@@ -108,7 +108,7 @@ print("i is " + i)
 
 Since Python does not allow adding a string to an integer, there is a type mismatch error on Line 5.  The type mismatch error is only caught when Line 5 is executed after the program is run for a long time.  Since the type of the variable `i` can change during run time, Python (and generally, dynamically typed languages) cannot tell if Line 5 will lead to an error until it is evaluated during run time.
 
-In contrast, statically typed language like Java can detect type mismatch during compile time since the compile-time type of a variable is fixed.  As you will see later, Java allows "addition" or string and integer, and but multiplication of a string and an integer.  If we have the following code, Java can confidently produce compilation errors without even running a program: 
+In contrast, statically typed language like Java can detect type mismatch during compile time since the compile-time type of a variable is fixed.  As you will see later, Java allows "addition" or string and integer, {++but not++} multiplication of a string and an integer.  If we have the following code, Java can confidently produce compilation errors without even running a program: 
 
 ```Java
 int i = 0

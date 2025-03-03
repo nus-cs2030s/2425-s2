@@ -192,6 +192,6 @@ Seq.java:24: warning: [unchecked] unchecked call to set(int,T) as a member of th
 1 warning
 ```
 
-If we ignore this warning or worse, suppress this warning, we will get a run-time error when we execute `a.get(0)`.
+If we ignore this warning or worse, suppress this warning, we will get a run-time error when we execute `s.get(0)`.
 
 Raw types must not be used in your code, ever.  The only exception to this rule is using it as an operand of the `instanceof` operator.  Since `instanceof` checks for run-time type and type arguments have been erased, we can only use the `instanceof` operator on raw types.

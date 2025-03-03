@@ -1,7 +1,6 @@
 # Exercise 0: Circle and Point
 
-- Deadline: 30 January 2024, Tuesday, 23:59 SGT
-- Difficulty Level: 1
+- Deadline: 28 January 2025, Tuesday, 12:01 SGT
 
 ## Prerequisites
 
@@ -207,7 +206,7 @@ user@pe111:~/ex0-github-username$ ./test.sh Ex0
 **Symptom**: You encounter the error below.
 
 ```
-username@pe111:~/ex0-github-username$ java Test1.java
+user@pe111:~/ex0-github-username$ java Test1.java
 Exception in thread "main" java.lang.IllegalAccessError: failed
 to access class CS2030STest from class Test1 (CS2030STest is
 in unnamed module of loader 'app'; Test1 is in unnamed module
@@ -219,13 +218,13 @@ of loader com.sun.tools.javac.launcher.Main$MemoryClassLoader
 **Why:** Java code needs to be compiled before you run.  So the correct sequence is to, first, compile using `javac`,
 
 ```Shell
-username@pe111:~/ex0-github-username$ javac Test1.java
+user@pe111:~/ex0-github-username$ javac Test1.java
 ```
 
 and then run using `java`
 
 ```Shell
-username@pe111:~/ex0-github-username$ java Test1
+user@pe111:~/ex0-github-username$ java Test1
 ```
 
 ### 2. Changes to Code Not Taking Effect
@@ -237,7 +236,7 @@ username@pe111:~/ex0-github-username$ java Test1
 After you have made changes to multiple files, the easiest way to recompile everything is:
 
 ```Shell
-username@pe111:~/ex0-github-username$ javac *.java
+user@pe111:~/ex0-github-username$ javac *.java
 ```
 
 `*` is a wildcard that pattern-match any string.

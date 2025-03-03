@@ -1,7 +1,6 @@
 # Exercise 3: Simulation 3
 
-- Deadline: 20 February 2024, Tuesday, 23:59 SGT
-- Difficulty Level: 9
+- Deadline: 18 February 2025, Tuesday, 12:01 SGT
 
 ## Prerequisite:
 
@@ -40,7 +39,7 @@ Recall that every customer comes into the bank with one of two tasks: withdrawal
 
 - Every customer arrives with a task to withdraw or deposit some amount of money.
 - Every counter starts with an initial amount of money: $100.
-- Each time a counter {++starts servicing++} a customer, the amount of money at that counter may increase or decrease.   If the customer is withdrawing \$$x$, the amount of money at that counter decreases by $x$.  If the customer is depositing \$$x$, the amount of money at that counter increases by $x$.
+- Each time a counter starts servicing a customer, the amount of money at that counter may increase or decrease.   If the customer is withdrawing \$$x$, the amount of money at that counter decreases by $x$.  If the customer is depositing \$$x$, the amount of money at that counter increases by $x$.
 - A counter may not have enough money for withdrawal.  If a customer wishes to withdraw more money than what is available at the counter, the withdrawal will fail.  The amount of money at the counter does not change in this case.
 
 ### Changes to Input
@@ -53,24 +52,24 @@ Recall that every customer comes into the bank with one of two tasks: withdrawal
 
 1. We now have two types of queues.  If a customer joins the entrance queue, the customer along with the queue _before_ joining should be printed as such:
 ```
-1.400: C3 joined bank queue [ C1 C2 ]
+1.400: C3 joins bank queue [ C1 C2 ]
 ```
 
 2. Whenever we print a counter, we print the amount of money it has along with its counter queue.
 ```
-1.200: C2 joined counter queue (at S0 $124 [ C1 ])
+1.200: C2 joins counter queue (at S0 $124 [ C1 ])
 ```
 
 3. Whenever we print a task, we print the amount of money associated with the task.
 ```
-6.000: C6 withdrawal $1 begin (by S0 $100 [ C9 ])
+6.000: C6 withdrawal $1 (at S0 $100 [ C9 ])
 ```
 
 4. If a service is done successfully, `success` is printed.  But if a service fails, i.e., when a customer wants to withdraw more money than what is available at the counter, `fail` is printed.
 ```
-3.100: C1 withdrawal $80 begin (by S0 $110 [ ])
-5.100: C1 withdrawal $80 done (by S0 $30 [ ]) success
-7.100: C2 withdrawal $50 done (by S0 $30 [ ]) fail
+3.100: C1 withdrawal $80 (at S0 $110 [ ]) begins
+5.100: C1 withdrawal $80 (at S0 $30 [ ]) ends: success
+7.100: C2 withdrawal $50 (at S0 $30 [ ]) ends: fail
 ```
 
 ## Skeleton for Exercise 3
@@ -262,8 +261,10 @@ $ javac -Xlint:unchecked -Xlint:rawtypes *.java
 
 To check for style,
 ```
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex3_style.xml *.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java
 ```
+
+(You can copy `checkstyle.xml` from your ex2 directory.)
 
 ### Running and Testing
 
