@@ -1,11 +1,11 @@
 # Vim Extensions on PE Hosts
 
-CS2030S provides a minimal set of vim extensions (i.e., plugins and color schemes) officially.  At the beginning of the semester, students can install the same set of extensions following the [vim setup](vim-setup.md) procedure.
+CS2030S provides a minimal set of vim extensions (i.e., plugins and color schemes) officially.  At the beginning of the semester, students can install the same set of extensions following the [vim setup](setup.md) procedure.
 The same set of official extensions will be made available during the practical exams.
 
 Students are free to install any additional color schemes or plugins if they wish.  These additional extensions, however, are not allowed and will not be available during the practical exams.
 
-The following are the officially supported vim extensions in CS2030S.  Follow the instructions in our article [Setting Up Vim](vim/setup.md) to install them.
+The following are the officially supported vim extensions in CS2030S.  Follow the instructions in our article [Setting Up Vim](setup.md) to install them.
 
 ## Color Schemes
 

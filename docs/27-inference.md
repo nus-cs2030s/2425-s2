@@ -30,7 +30,7 @@ Pair<String,Integer> p = new Pair<String,Integer>();
 ## Type Inferencing
 
 We have been invoking 
-```Java
+```Java title="contains v0.7 (with wild cards)"
 class A {
   // version 0.7 (with wild cards sequence)
   public static <S> boolean contains(Seq<? extends S> seq, S obj) {
@@ -69,9 +69,8 @@ We therefore know that `S` could be `Shape` or one of its supertypes: `GetAreabl
 
 Type inferencing can have unexpected consequences.  Let's consider an [older version of `contains` that we wrote](23-generics.md):
 
-```Java
+```Java title="contains v0.4 (with generics)"
 class A {
-    // version 0.4 (with generics)
     public static <T> boolean contains(T[] array, T obj) {
       for (T curr : array) {
         if (curr.equals(obj)) {
@@ -115,8 +114,7 @@ And our version 0.4 of `contains` actually is quite fragile and does not work as
 
 The example above performs type inferencing on the parameters of the generic methods.  Type inferencing can involve the type of the expression as well.  This is known as _target typing_.  Take the following upgraded version of `findLargest`:
 
-```Java
-// version 0.6 (with Seq<T>)
+```Java title="findLargest v0.6 (with Seq&lt;T&gt;)"
 public static <T extends GetAreable> T findLargest(Seq<? extends T> seq) {
   double maxArea = 0;
   T maxObj = null;

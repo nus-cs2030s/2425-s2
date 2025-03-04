@@ -76,8 +76,19 @@ theme:
     - content.code.annotate
     - content.code.copy
   palette:
-    primary: custom
-    accent: custom
+    - scheme: default
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - scheme: slate
+      primary: custom
+      accent: custom
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+
   shortcuts:
     previous: 72 #h
     next: 76 #l
