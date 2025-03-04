@@ -1,0 +1,69 @@
+/* Size */
+.xxlfont, .xxlfont * { font-size: 1.6em;  }
+.xlfont , .xlfont *  { font-size: 1.4em;  }
+.lfont  , .lfont *   { font-size: 1.1em;  }
+.mfont  , .mfont *   { font-size: 0.95em; }
+.sfont  , .sfont *   { font-size: 0.9em;  }
+.xsfont , .xsfont *  { font-size: 0.85em; }
+.xxsfont, .xxsfont * { font-size: 0.7em;  }
+
+/* Absolute Size */
+.xxlsize, .xxlsize * { font-size: 36px; }
+.xlsize , .xlsize *  { font-size: 32px; }
+.lsize  , .lsize *   { font-size: 28px; }
+.msize  , .msize *   { font-size: 24px; }
+.mssize , .mssize *  { font-size: 22px; }
+.ssize  , .ssize *   { font-size: 20px; }
+.sssize , .sssize *  { font-size: 18px; }
+.xssize , .xssize *  { font-size: 16px; }
+.xsssize, .xsssize * { font-size: 14px; }
+.xxssize, .xxssize * { font-size: 12px; }
+
+/* Absolute Note */
+.xxlnote, .xxlnote * { font-size: 28px; color: var(--dprclr); font-style: italic; }
+.xlnote , .xlnote *  { font-size: 24px; color: var(--dprclr); font-style: italic; }
+.lnote  , .lnote *   { font-size: 20px; color: var(--dprclr); font-style: italic; }
+.mnote  , .mnote *   { font-size: 16px; color: var(--dprclr); font-style: italic; }
+.snote  , .snote *   { font-size: 12px; color: var(--dprclr); font-style: italic; }
+.xsnote , .xsnote *  { font-size: 10px; color: var(--dprclr); font-style: italic; }
+.xxsnote, .xxsnote * { font-size:  8px; color: var(--dprclr); font-style: italic; }
+
+.uline { text-decoration: underline; }
+.uline-t { text-decoration: none; border-bottom: 2px solid black; }
+
+.tr { text-align: right; }
+.tl { text-align: left ; }
+
+/* Colour */
+.brdtxt{ color: var(--brdclr); }  /* text: black red    */
+.drdtxt{ color: var(--drdclr); }  /* text: dark  red    */
+.nrdtxt{ color: var(--nrdclr); }  /* text: std   red    */
+.lrdtxt{ color: var(--lrdclr); }  /* text: light red    */
+.wrdtxt{ color: var(--wrdclr); }  /* text: white red    */
+
+.bgntxt{ color: var(--bgnclr); }  /* text: black green  */
+.dgntxt{ color: var(--dgnclr); }  /* text: dark  green  */
+.ngntxt{ color: var(--ngnclr); }  /* text: std   green  */
+.lgntxt{ color: var(--lgnclr); }  /* text: light green  */
+.wgntxt{ color: var(--wgnclr); }  /* text: white green  */
+
+.bbltxt{ color: var(--bblclr); }  /* text: black blue   */
+.dbltxt{ color: var(--dblclr); }  /* text: dark  blue   */
+.nbltxt{ color: var(--nblclr); }  /* text: std   blue   */
+.lbltxt{ color: var(--lblclr); }  /* text: light blue   */
+.wbltxt{ color: var(--wblclr); }  /* text: white blue   */
+
+.byltxt{ color: var(--bylclr); }  /* text: black yellow */
+.dyltxt{ color: var(--dylclr); }  /* text: dark  yellow */
+.nyltxt{ color: var(--nylclr); }  /* text: std   yellow */
+.lyltxt{ color: var(--lylclr); }  /* text: light yellow */
+.wyltxt{ color: var(--wylclr); }  /* text: white yellow */
+
+.hilite   { background-color: var(--lylclr); border-radius: 5px; }
+.hilite-r { background-color: var(--hrdclr); border-radius: 2px; }
+.hilite-g { background-color: var(--hgnclr); border-radius: 2px; }
+.hilite-b { background-color: var(--hblclr); border-radius: 2px; }
+.hilite-y { background-color: var(--lylclr); border-radius: 2px; }
+.hilite-p { background-color: var(--wprclr); border-radius: 2px; }
+  .hilite-r:before, .hilite-g:before, .hilite-b:before, .hilite-y:before, .hilite-p:before,
+  .hilite-r:after , .hilite-g:after , .hilite-b:after , .hilite-y:after, .hilite-p:after   { content: " "; }

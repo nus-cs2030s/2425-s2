@@ -1,0 +1,12 @@
+.anims-anchor-tag,
+.anims-target-tag,
+.anims-on,
+.anims-cls {
+  display: none;
+}
+.anims-anchor {
+  cursor: pointer;
+}
+.anims-target {
+  transition: all 0.5s
+}
