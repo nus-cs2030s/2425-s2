@@ -4,7 +4,7 @@
 
 ## Instructions to Past-Year PE2 Question:
 
-1. Accept the repo on GitHub Classroom [here](https://classroom.github.com/a/TGiE9pXd)
+1. Accept the repo on GitHub Classroom (see Canvas for the link)
 2. Log into the PE nodes and run `~cs2030s/get py2` to get the skeleton for all available past year PE1 questions.
 3. The skeleton for this question can be found under `2021-s2-q1`.  You should see the following files:
     - The files `Test1.java` to `Test4.java` and `CS2030STest.java` for testing your solution.

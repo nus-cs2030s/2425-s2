@@ -4,7 +4,7 @@
 
 ## Instructions to grab Practice PE Question:
 
-1. Accept the practice question [here](https://classroom.github.com/a/TGiE9pXd)
+1. Accept the repo on GitHub Classroom (see Canvas for the link)
 2. Log into the PE nodes and run `~cs2030s/get py2` to get the practice question.
 3. There is no submission script
 
