@@ -1,0 +1,116 @@
+kbd {
+	background-color: #eee;
+	border-radius: 3px;
+	border: 1px solid #b4b4b4;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, .2), 0 2px 0 0 rgba(255, 255, 255, .7) inset;
+	color: #333;
+	display: inline-block;
+	font-size: .85em;
+	font-weight: 700;
+	line-height: 1;
+	padding: 2px 4px;
+	white-space: nowrap;
+}
+body { 
+	font-family: "Roboto"; 
+}
+h1, h2 {
+	font-family: "Roboto";
+	font-weight: 700;
+}
+.remark-slide-content h1 { 
+	font-size: 72pt;
+}
+.remark-slide-content h2 { 
+	font-size: 60pt;
+}
+.remark-slide-content h3 {
+	font-size: 48pt;
+}
+.remark-slide-content h3 {
+	font-size: 36pt;
+}
+.remark-code, .remark-inline-code { 
+	font-family: 'Roboto Mono'; 
+}
+.remark-code, .remark-inline-code { 
+	font-family: 'Roboto Mono'; 
+	font-size: inherit;
+}
+
+.remark-inline-code { 
+	background-color: #181818;
+	font-size: 85%;
+	padding: .1em .4em;
+	border-radius: 10px;
+	margin: 0;
+}
+
+.remark-code { 
+	border-radius: 14px;
+}
+
+.remark-slide-content {
+	font-size: 30pt;
+	background-size: contain;
+}
+
+em {
+	color: #fdd;
+}
+.wide {
+    padding: 1em 2em 1em 2em;
+}
+.small {
+	font-size: 80%;
+}
+.smaller {
+	font-size: 60%;
+}
+.tiny {
+	font-size: 50%;
+}
+.remark-slide-number {
+	font-size: 12pt;
+}
+.fit > img {
+	max-width: 100%;
+	height: auto;
+}
+table td, table th {
+	padding: 20px;
+	border-bottom: 1px solid rgba(33, 173, 168, 0.6);
+}
+table thead {
+  background-color: rgba(33, 173, 168, 0.1);
+}
+
+.large {
+	font-size: 150%;
+}
+
+.larger {
+	font-size: 200%;
+}
+
+.cols {
+  display: flex;
+}
+
+.fifty {
+  flex: 50%;
+}
+
+/* print filling whole paper */
+@media print {
+  .remark-slide-scaler {
+    left: 5vw !important;
+    width: 90vw !important;
+    top: 5vh !important;
+    height: 90vh !important;
+    transform: scale(0.9) !important;
+  }
+  .remark-slide-content {
+    padding: 0em 0em 0em 0em;
+  }
+}

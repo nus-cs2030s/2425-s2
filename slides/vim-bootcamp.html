@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="stylesheets/cs1010.css">
+    <link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
+
+    <!-- CHANGE TITLE -->
+    <title>Vim Bootcamp</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+<textarea id="source">
+
+class: middle, center
+
+## Vim Bootcamp
+
+Ooi <b>Wei Tsang</b><br>
+
+---
+
+### Why a source-code editor?
+
+- Why not IDEs?  
+- Why not text editor?  
+
+---
+
+### Why a source-code editor?
+
+- Why not IDEs?  One tool for all languages
+- Why not text editor?  Not designed for coding
+
+---
+
+### Why a terminal-based source-code editor?
+
+- Why not VSCode?
+
+---
+
+### Why a terminal-based source-code editor?
+
+- Why not VSCode? GUI not always available
+
+---
+
+### Why Vim?
+
+- Pre-installed in many Unix-based OS
+- More powerful than others
+- Big community 
+- Vim mode in many IDEs
+
+---
+
+background-image: url(figures/vim/stackoverflow-survey-2023.png)
+class: black
+
+???
+.tiny[[via stackoverflow](https://survey.stackoverflow.co/2023/#section-most-popular-technologies-integrated-development-environment)]
+
+---
+background-image: url(figures/vim/reddit-vim-is-helpful.png)
+class: black
+
+???
+.tiny[[via reddit](https://www.reddit.com/r/nus/comments/nwpc54/nus_cs_fun/h1b2ikz/?context=3)]
+
+---
+
+### Why This Bootcamp?
+
+Unlike other universities like [CMU](https://www.cs.cmu.edu/~07131/f22/) or [MIT](https://missing.csail.mit.edu/), we don't offer courses that teach Vim for credits (we used to, long long time ago). 
+
+---
+
+### Why This Bootcamp?
+
+Chinese proverb: 工以善其事  必先利其器 (To do a good job, an artisan needs the best tools)
+
+---
+
+class: middle, center
+
+## Basic Principles of Vim
+
+---
+### 1. Minimizing Hand Movement
+
+Save time on switching between keyboard and mouse (hand movement, looking for that cursor, etc)
+
+.fit[![keyboard](figures/vim/keyboard.png)]
+
+---
+
+### Example
+
+.fit[![keyboard](figures/vim/keyboard.png)]
+
+<kbd>h</kbd> <kbd>j</kbd> <kbd>k</kbd> <kbd>l</kbd> to move.
+<kbd>shift</kbd>+<kbd>z</kbd>+<kbd>z</kbd> to quit.
+
+---
+
+### 2. Multimodal
+
+`INSERT` mode and `NORMAL` mode
+
+- `NORMAL` for reading, moving around, and manipulating text
+- `INSERT` for adding text
+
+---
+
+### 3. Descriptive
+
+Vim keystrokes are descriptive.
+
+---
+
+### Example
+
+Wherever there is light, there is also a shadow.
+
+Look for the word "also":
+<kbd>/</kbd>
+<kbd>A</kbd>
+<kbd>L</kbd>
+<kbd>S</kbd>
+<kbd>O</kbd>
+<kbd>ENTER</kbd>
+and delete two words <kbd>D</kbd> <kbd>2</kbd> <kbd>W</kbd>
+
+---
+class: wide
+
+<video width="480" height="420" controls autoplay loop>
+	<source src="videos/d2w-mouse.mp4" type="video/mp4">
+</video>
+<video width="480" height="420" controls autoplay loop>
+	<source src="videos/d2w-vim.mp4" type="video/mp4">
+</video>
+
+---
+class: middle, center
+
+Text editing at the speed of thought
+
+---
+### 4. Good Unix Citizen
+
+Interact with standard input and output of Unix utilities
+
+```Bash
+:r !cal
+```
+
+```Bash
+:r !date
+```
+
+---
+### Hands on with Vim
+
+0. Log into a PE host
+
+---
+### Setup Vim
+
+.smaller[
+1. Copy `.vimrc`
+```Bash
+cp ~cs2030s/.vimrc ~
+```
+
+2. Create backup directory
+```Bash
+mkdir ~/.backup
+```
+
+3. Copy color schemes and plugins
+```Bash
+cp -r ~cs2030s/.vim ~
+```
+]
+
+---
+
+Copy the files needed for this bootcamp
+```Shell
+cp ~cs2030s/bootcamp/*.java .
+```
+---
+class: center, middle
+
+## Opening and Closing
+
+---
+
+To read or edit a file:
+
+```Shell
+vim <filename>
+```
+
+To exit <kbd>Z</kbd><kbd>Z</kbd> (i.e., <kbd>shift</kbd><kbd>z</kbd><kbd>z</kbd> )
+
+---
+class: center, middle
+
+## Reading
+
+---
+
+.small[
+Operation |	Forward 	| Backward 	
+----------|-------------|----------
+Move word-by-word |	<kbd>w</kbd>   |	<kbd>b</kbd> 	
+Move page-by-page |	<kbd>CTRL</kbd>+<kbd>f</kbd> |	<kbd>CTRL</kbd>+<kbd>b</kbd> 	
+Move block-by-block | <kbd>{</kbd> | <kbd>}</kbd> 	
+Beginning/End of the file |	<kbd>G</kbd> |	<kbd>g</kbd><kbd>g</kbd>
+Beginning/End of the line |	<kbd>0</kbd> |	<kbd>$</kbd> 	
+]
+
+You can prefix the forward/backward commands with a number.
+
+---
+
+- <kbd>/</kbd> to search. <kbd>n</kbd> for next occurrance; <kbd>N</kbd> for prev occurrance
+
+- <kbd>*</kbd> for next occurrance of the curr word; <kbd>#</kbd> for prev occurrance
+
+- <kbd>%</kbd> to search for matching brackets
+
+You can prefix the next/prev commands with a number.
+
+---
+
+- <kbd>:</kbd> goes into command mode.
+
+- <kbd>:</kbd>_n_ jumps to Line _n_.
+
+---
+
+- <kbd>g</kbd><kbd>f</kbd> jumps to file with a name the cursor is under.
+
+- <kbd>CTRL</kbd><kbd>^</kbd> returns
+
+---
+
+### Splitting Window
+
+- <kbd>:</kbd>`sp `_filename_ splits the window horizontally with a file _filename_
+
+- <kbd>:</kbd>`vsp `_filename_ splits the window vertically with a file _filename_
+
+- <kbd>CTRL</kbd><kbd>w</kbd><kbd>CTRL</kbd><kbd>w</kbd> moves between windows
+
+---
+
+### Changing Window Size
+
+- <kbd>CTRL</kbd><kbd>w</kbd><kbd>_</kbd> to maximize
+
+- <kbd>CTRL</kbd><kbd>w</kbd><kbd>=</kbd> to equalize
+
+---
+
+To open all files in windows:
+
+```Shell
+vim -O *.java
+```
+or
+```Shell
+vim -o *.java
+```
+
+---
+
+### Tabs
+
+- <kbd>:</kbd>`tabf`_filename_ to open a new tab
+
+- <kbd>g</kbd><kbd>t</kbd> to go to the next tab.
+
+To open all files in tabs:
+
+```Shell
+vim -p *.java
+```
+
+---
+
+- <kbd>:</kbd>`grep `_string_ looks for _string_ in the current directory
+
+- <kbd>:</kbd>`cn` and <kbd>:</kbd>`cp` jumps to the next and previous results
+
+- <kbd>:</kbd>`copen` opens up a list of matches
+
+---
+class: middle,center
+
+## Cut, Copy, Paste
+
+---
+
+- <kbd>u</kbd> undoes the action
+
+- <kbd>x</kbd> deletes the current character
+
+- <kbd>dd</kbd> deletes the current line
+
+- <kbd>d</kbd>_movement_ deletes until where the cursor moves to
+
+You can prefix the next/prev commands with a number.
+
+---
+
+Questions:
+
+- What does <kbd>{</kbd><kbd>d</kbd><kbd>2</kbd><kbd>}</kbd> do?
+
+- How to delete every lines in a file?  (Hint: go to beginning of the file, delete until end of the file)
+
+---
+
+- <kbd>yy</kbd> yanks (copies) the current line
+
+- <kbd>y</kbd>_movement_ yanks until where the cursor moves to
+
+- <kbd>p</kbd> pastes what's in the clipboard
+
+- <kbd>d</kbd><kbd>d</kbd><kbd>p</kbd> swap two lines
+
+---
+
+- <kbd>SHIFT</kbd><kbd>v</kbd> enters VISUAL LINE mode
+- <kbd>CTRL</kbd><kbd>v</kbd> enters VISUAL BLOCK mode
+- Move to select
+- <kbd>x</kbd> to delete the selection
+- <kbd>y</kbd> to copy the selection
+
+---
+class: center, middle
+
+## Search and Replace
+
+---
+
+<kbd>:</kbd>`%s/word1/word2/gc` substitutes all occurrances of `word1` and `word2` in the entire file with confirmation
+
+.small[
+- `%` can be replaced with a range (e.g., `1,5` for Lines 1 to 5).  Range can be omitted (substitute current line only)
+- `g` can be ommited (to mean the first occurrance only)
+- `c` can be ommitted (to skip the confirmation step)
+- enter visual mode and select, before <kbd>:</kbd> to substitute within the selection only
+]
+
+---
+class: center, middle
+
+## Editing
+
+---
+
+- <kbd>i</kbd> switches from NORMAL mode to INSERT mode
+
+- <kbd>ESC</kbd> switches from INSERT mode to NORMAL mode
+
+- <kbd>c</kbd>_movement_ deletes _and_ switches from NORMAL mode to INSERT mode
+
+---
+
+### Saving time
+
+- <kbd>CTRL</kbd><kbd>P</kbd> and <kbd>CTRL</kbd><kbd>N</kbd> autocompletes
+
+- Setup abbreviation in your `~/.vimrc`
+
+---
+
+### Editing Multiple Lines
+
+In VISUAL BLOCK mode,
+
+- <kbd>SHIFT</kbd><kbd>I</kbd> to insert
+
+- <kbd>x</kbd> to delete
+
+---
+
+### Autoindent
+
+<kbd>=</kbd> fix the indentation 
+
+---
+class: center, middle
+
+## Compiling and Running
+
+---
+
+<kbd>:</kbd>`terminal` to open a terminal
+
+or 
+
+<kbd>:</kbd>`!` to run a shell commands
+
+---
+class: center, middle
+
+## Fixing Mistakes
+
+---
+
+- A copy of your last edit is saved under `~/.backup`
+
+- A recent copy of your current edit is saved as a recovery file with extension `.swp`
+
+---
+
+### Recovery
+
+- When prompted by `vim`, choose `R` to recover.  
+
+- If recovery is successful, save and remove the `.swp` file
+
+- If recovery is not successful, quit without saving with <kbd>:</kbd>`q!`
+
+---
+class: center, middle
+
+## Customizing Vim
+
+---
+
+- We are just touching the tip of the iceberg
+- Learn what you need; but keep learning
+
+After using Vim for 30 years, I use only about 20-30% of the available commands/features.
+
+Many Vim resources available online: articles, YouTube viedos, /r/vim, etc.
+
+---
+class: bottom
+
+.tiny[
+Version: v1.0
+
+Last Updated: Sun Jan 14 15:21:33 +08 2024
+]
+    </textarea>
+
+    <!-- <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+</script> -->
+
+    <script src="https://thisisadi.yoga/remark/js/remark.js" type="text/javascript"></script>
+    <script src="https://thisisadi.yoga/remark/plugins/qanvas/init.js" type="text/javascript"></script>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS_HTML&delayStartupUntil=configured"
+        type="text/javascript"></script>
+    <script src="javascripts/counter.js">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </script>
+    <script>
+        remark.macros.scale = function (percentage) {
+            var url = this;
+            return '<img src="' + url + '" style="width: ' + percentage + '" />';
+        };
+        // ![:scale 50%](image.jpg)
+
+        var slideshow = remark.create({
+            navigation: {
+                scroll: false
+            },
+            qanvas: {
+                pensize: 3
+            },
+            ratio: '16:9',
+            highlightStyle: 'ir-black',
+            slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+        });
+        // Setup MathJax
+        MathJax.Hub.Config({
+            tex2jax: {
+                inlineMath: [['$', '$']],
+                // inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ["\\[", "\\]"]],
+                skipTags: ['script', 'noscript', 'style', 'pre']
+            }
+        });
+
+        MathJax.Hub.Configured();
+
+        var ctx = document.getElementById('assessment').getContext('2d');
+        var data = {
+            datasets: [{
+                data: [5, 5, 20, 30, 1, 14, 25],
+                borderColor: '#eee',
+                backgroundColor: [
+                    'rgba(255, 100, 0, 1)',
+                    'rgba(100, 255, 0, 1)',
+                    'rgba(100, 0, 255, 1)',
+                    'rgba(100, 255, 255, 1)',
+                    'rgba(255, 255, 100, 1)',
+                    'rgba(255, 100, 255, 1)',
+                    'rgba(255, 0, 100, 1)',
+                ],
+            }],
+            // These labels appear in the legend and in the tooltips when hovering different arcs
+            labels: ['Quizzes (5%)', 'Labs (5%)', 'Midterm (20%)', 'Final (30%)', 'PE0 (1%)*', 'PE1 (15%)', 'PE2 (25%)']
+        };
+
+        // For a pie chart
+        var myPieChart = new Chart(ctx, {
+            type: 'pie',
+            data: data,
+            options: {
+                tooltips: {
+                    mode: 'nearest',
+                    intersect: false
+                },
+                borderWidth: 1,
+                defaultFontStyle: 'Roboto',
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'right',
+                        labels: {
+                            font: {
+                                size: 20,
+                                family: 'Roboto',
+                            },
+                            color: '#fff',
+                        }
+                    }
+                }
+            }
+        });
+
+    </script>
+    </script>
+</body>
+
+</html>
