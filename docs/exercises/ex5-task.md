@@ -1,7 +1,6 @@
 # Exercise 5: Maybe<T>
 
-- Deadline: 19 March, 2023, Tuesday, 23:59, SST
-- Difficulty Level: 6
+- Deadline: 18 March, 2025, Tuesday, 12:00, SST
 
 ## Prerequisite:
 
@@ -18,7 +17,7 @@ Java package provides a higher layer of abstraction barrier.  We can designate a
 
 You can read more about [java packages](https://docs.oracle.com/javase/tutorial/java/package/index.html) and [the `protected` modifier](https://docs.oracle.com/javase/tutorial/java/javaOO/accesscontrol.html) yourself through Oracle's Java tutorial.
 
-We will create a package named `cs2030s.fp` to be used for Exercises 5-7.
+We will create a package named `cs2030s.fp` to be used for Exercises 5-8.
 
 First, we need to add the line:
 ```
@@ -192,7 +191,6 @@ You can test your code by running the `Test1.java` provided.  The following shou
 ```
 $ javac -Xlint:rawtypes Test1.java
 $ java Test1
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex5_style.xml cs2030s/fp/*.java
 ```
 
 ### Filter and Map (again!)
@@ -294,7 +292,6 @@ You can test your code by running the `Test2.java` provided.  The following shou
 ```
 $ javac -Xlint:rawtypes Test2.java
 $ java Test2
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex5_style.xml cs2030s/fp/*.java
 ```
 
 Remember to make your methods as flexible as they can be in the type that they accept.
@@ -338,7 +335,6 @@ You can test your code by running the `Test3.java` provided.  The following shou
 ```
 $ javac -Xlint:rawtypes Test3.java
 $ java Test3
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex5_style.xml cs2030s/fp/*.java
 ```
 
 
@@ -391,7 +387,6 @@ You can test your code by running the `Test4.java` provided.  The following shou
 ```
 $ javac -Xlint:rawtypes Test4.java
 $ java Test4
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex5_style.xml cs2030s/fp/*.java
 ```
 
 ## Using `Maybe`
@@ -412,15 +407,12 @@ Your final task is to modify `getGrade` so that it uses `Maybe<T>` instead:
 - Use the two `Transformers`, `Maybe::of`, `Maybe::flatMap`, and `Maybe::orElse` to achieve the same functionality as the given `getGrade` in a _single return statement_.   In other words, your `getGrade` should consist of three Java statements: two to create two Transformers, and one `return` statement.   The skeleton has been given.
 - Your code should not have any more conditional statements or references to `null`.
 
-Compile your edited `Ex5` class.  The following should compile without errors or warnings.  Make sure your code follows the CS2030S Java style.
+Compile your edited `Ex5` class.  The following should compile without errors or warnings.  
 
 ```
 $ javac -Xlint:rawtypes Ex5.java
 $ java Ex5
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex5_style.xml Ex5.java
 ```
-
-(if the file `ex5_style.xml` is missing, you can copy the one you used from Exercise 4 over)
 
 ## Files
 
@@ -430,5 +422,8 @@ The files `Test1.java`, `Test2.java`, etc., as well as `CS2030STest.java`, are p
 
 ## Following CS2030S Style Guide
 
-You should make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2324-s2/style.html)
+You should make sure that your code follows the [given Java style guide](https://nus-cs2030s.github.io/2425-s2/style.html).  You can run `checkstyle` to check your code:
 
+```bash
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml Ex5.java cs2030s/fp/*.java
+```
