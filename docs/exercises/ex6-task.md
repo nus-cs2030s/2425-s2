@@ -1,12 +1,12 @@
 # Lab 6: Lazy
 
-- Deadline: 26 March, 2024, Tuesday, 23:59, SGT
+- Deadline: 25 March, 2025, Tuesday, 12:00, SGT
 - Difficulty Level: 9
 
 ## Prerequisite
 
 - Caught up to Unit 32 of Lecture Notes
-- Completed Lab 5
+- Completed Exercise 5
 
 ## Files
 
@@ -118,7 +118,7 @@ You can test your code by running the `Test1.java` provided.  The following shou
 $ javac cs2030s/fp/*java
 $ javac -Xlint:rawtypes Test1.java
 $ java Test1
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex6_style.xml *.java cs2030s/fp/*.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.java
 ```
 
 ## Map and FlatMap
@@ -173,7 +173,7 @@ You can test your code by running the `Test2.java` provided.  The following shou
 $ javac cs2030s/fp/*java
 $ javac -Xlint:rawtypes Test2.java
 $ java Test2
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex6_style.xml *.java cs2030s/fp/*.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.java
 ```
 
 ## Filter
@@ -226,7 +226,7 @@ You can test your code by running the `Test3.java` provided.  The following shou
 $ javac cs2030s/fp/*java
 $ javac -Xlint:rawtypes Test3.java
 $ java Test3
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex6_style.xml *.java cs2030s/fp/*.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.java
 ```
 
 ## Combine
@@ -268,7 +268,7 @@ You can test your code by running the `Test4.java` provided.  The following shou
 $ javac cs2030s/fp/*java
 $ javac -Xlint:rawtypes Test4.java
 $ java Test4
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex6_style.xml *.java cs2030s/fp/*.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.java
 ```
 
 ## Lazy List
@@ -356,7 +356,7 @@ You can test your code by running the `Test5.java` provided.  The following shou
 $ javac cs2030s/fp/*java
 $ javac -Xlint:rawtypes Test5.java
 $ java Test5
-$ java -jar ~cs2030s/bin/checkstyle.jar -c ex6_style.xml LazyList.java
+$ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml LazyList.java
 ```
 
 
