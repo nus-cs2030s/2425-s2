@@ -11,6 +11,7 @@
 ## Files
 
 The following functional interfaces are already provided:
+
 - `cs2030s.fp.Combiner`
 - `cs2030s.fp.Transformer`
 - `cs2030s.fp.BooleanCondition`
@@ -41,7 +42,7 @@ public class Lazy<T> {
 Take note of the following constraints:
 
 - Avoid using the protected `Maybe::get` method and avoid access the classes `Maybe.Some<T>` or `Maybe.None` directly.
-- Since `Maybe` has internalized `if-else` checks for whether the value is there or not, you must not use any form of conditional statements to compare if `value` contains something or not.
+- Since `Maybe` has internalized `if-else` checks for whether the value is there or not, you _must not use any form of conditional statements_ to compare if `value` contains something or not.
 - You are not allowed to use any raw types or `@SuppressWarnings`
 
 ## The Basics of Being Lazy
@@ -275,7 +276,7 @@ $ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.ja
 
 The `Lazy` class can be used to build a lazy-evaluated list.
 
-Consider the class `EagerList` below.  Given `n`, the size of the list, `seed`, the initial value, and `f`, an operation, we can generate an `EagerList` as [seed, f(seed), f(f(seed)), f(f(f(seed))), ... ], up to `n` elements.
+Consider the class `EagerList` below.  Given `n`, the size of the list, `seed`, the initial value, and `f`, an operation, we can generate an `EagerList` as `[seed, f(seed), f(f(seed)), f(f(f(seed))), ... ]`, up to `n` elements.
 
 We can then use the method `get(i)` to find the i-th element in this list, or `indexOf(obj)` to find the index of `obj` in the list.
 
