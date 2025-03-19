@@ -1,0 +1,87 @@
+.remark-slide-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+.remark-slide-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: none;
+}
+.remark-canvas-button {
+  position: fixed;
+  bottom: 5px;
+  left: 20px;
+  z-index: 10;
+}
+
+.remark-canvas-button-button {
+  margin: 2px;
+  padding: 2px;
+  cursor: pointer;
+}
+.remark-canvas-button-small {
+  font-size: 16px;
+}
+.remark-canvas-button-medium {
+  font-size: 20px;
+}
+.remark-canvas-button-large {
+  font-size: 24px;
+}
+.remark-canvas-button-btn {
+  opacity: 0.5;
+}
+.remark-canvas-button-btn:hover {
+  opacity: 1;
+}
+.remark-canvas-button-sep {
+  opacity: 0.1;
+  cursor: default;
+}
+.remark-canvas-button-off {
+  opacity: 0.2;
+  cursor: default;
+}
+.remark-canvas-button-on {
+  opacity: 1;
+}
+
+.canvas-show {
+  display: block;
+  z-index: 3;
+}
+.container-show {
+  z-index: 3;
+}
+.canvas-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+.canvas-png-image {
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+
+@media print {
+  .remark-slide-canvas {
+    top: -15px;
+    left: 0;
+    display: block;
+    z-index: 1000;
+  }
+  .remark-canvas-button {
+    display: none;
+  }
+}
