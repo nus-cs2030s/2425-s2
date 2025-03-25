@@ -67,6 +67,7 @@ nav:
     - Exercise 3: 'exercises/ex3-task.md'
     - Exercise 4: 'exercises/ex4-task.md'
     - Exercise 5: 'exercises/ex5-task.md'
+    - Exercise 6: 'exercises/ex6-task.md'
 
 theme: 
   name: material
