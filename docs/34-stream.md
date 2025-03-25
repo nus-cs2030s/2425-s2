@@ -91,7 +91,7 @@ Some intermediate operations are stateful &mdash; they need to keep track of som
 
 There are several intermediate operations that convert from infinite stream to finite stream: 
 
-- `limit` takes in an `int` $n$ and returns a stream containing the first $n$ elements of the stream;
+- `limit` takes in an `long` $n$ and returns a stream containing the first $n$ elements of the stream;
 - `takeWhile` takes in a predicate and returns a stream containing the elements of the stream, until the predicate becomes false.  The resulting stream might still be infinite if the predicate never becomes false.
 
 For instance, 
