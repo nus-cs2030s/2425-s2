@@ -245,12 +245,6 @@ jshell> Maybe.<Integer>some(1).map(incr)
 $.. ==> [2]
 
 jshell> Map<String,Integer> map = Map.of("one", 1, "two", 2);
-jshell> Transformer<String,Maybe<Integer>>  = new Transformer<>() {
-   ...>   public String transform(String x) {
-   ...>     return Maybe.some(map.get(x));
-   ...>   }
-   ...> }
-jshell> Map<String,Integer> map = Map.of("one", 1, "two", 2);
 jshell> Transformer<String,Integer> wordToInt = new Transformer<>() {
    ...>   public Integer transform(String x) {
    ...>     return map.get(x);
