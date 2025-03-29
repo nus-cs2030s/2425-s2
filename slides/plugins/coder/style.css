@@ -1,0 +1,87 @@
+pre {
+  position: relative;
+}
+
+.remark-code-hidden {
+  opacity: 0;
+}
+.remark-code-unhighlighted {
+  opacity: 0.2;
+}
+.remark-code-hilite {
+  background-color: #FEFE3355;
+}
+.remark-code-dispnone {
+  display: none;
+}
+
+.remark-code-headed {
+  border-radius: 0 0 5px 5px;
+}
+.remark-code-footed {
+  border-radius: 5px 5px 0 0;
+}
+.remark-code-both {
+  border-radius: 0;
+}
+.remark-code-none {
+  border-radius: 5px;
+}
+
+.remark-code-header {
+  position: relative;
+  background-color: var(--codebg);
+  border-radius: 5px 5px 0 0;
+  margin-bottom: 0;
+  border-bottom: var(--codesep) solid 1px;
+}
+.remark-code-footer {
+  position: relative;
+  border-radius: 0 0 5px 5px;
+  background-color: var(--codebg);
+  text-align: right;
+  margin-top: 0;
+  border-top: var(--codesep) solid 1px;
+  font-size: 20px;
+}
+.remark-code-footer-btn {
+  padding: 5px;
+}
+.remark-code-btn-passive {
+  opacity: 0.1;
+  color: #555;
+}
+.remark-code-btn-active {
+  opacity: 0.4;
+  color: #555;
+  cursor: pointer;
+  z-index: 2;
+}
+.remark-code-btn-active:hover {
+  color: #111;
+  opacity: 0.8;
+}
+.remark-code-steps {
+  color: #555;
+}
+.remark-code-copy {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  font-size: 20px;
+}
+.remark-code-title {
+  font-size: 16px;
+  color: #555;
+  cursor: pointer;
+  padding: 5px;
+  margin-bottom: 0;
+}
+.remark-code-title:hover {
+  color: #111;
+}
+
+@media print {
+  .remark-code-footer { opacity: 0 }
+  .remark-code-copy { opacity: 0 }
+}
