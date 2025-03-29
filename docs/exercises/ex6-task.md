@@ -181,7 +181,7 @@ $ java -jar ~cs2030s/bin/checkstyle.jar -c checkstyle.xml *.java cs2030s/fp/*.ja
 
 Write a `filter` method, which takes in a `BooleanCondition` and lazily tests if the value passes the test or not.  Returns a `Lazy<Boolean>` object.  The `BooleanCondition` must be executed at most once.
 
-Then write an `equals`, which overrides the `equals` method in the `Object` class.  `equals` is an eager operation that causes the values to be evaluated (if not already cached).  `equals` should return true only both objects being compared are `Lazy` and the value contains within are equals (according to their `equals()` methods).
+Then write an `equals`, which overrides the `equals` method in the `Object` class.  `equals` is an eager operation that causes the values to be evaluated (if not already cached).  `equals` should return true only when (i) both objects being compared are `Lazy`, and (ii) the values contains within both objects are equals (according to their `equals()` methods).
 
 ```
 jshell> import cs2030s.fp.Lazy
