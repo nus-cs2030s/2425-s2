@@ -1,0 +1,2920 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs2030s.github.io/2425-s2/unix/essentials.html">
+      
+      
+        <link rel="prev" href="background.html">
+      
+      
+        <link rel="next" href="advanced.html">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Essentials - CS2030S Programming Methodology II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#unix-cli-the-essentials" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS2030S Programming Methodology II" class="md-header__button md-logo" aria-label="CS2030S Programming Methodology II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS2030S Programming Methodology II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Essentials
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS2030S Programming Methodology II" class="md-nav__button md-logo" aria-label="CS2030S Programming Methodology II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS2030S Programming Methodology II
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0. Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-compiler.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Program and Compiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-type.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Variables and Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-function.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-encapsulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Encapsulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-infohiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Information Hiding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-tell-dont-ask.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Tell, Don't Ask
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-static-field.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Class Fields
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-static-method.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Class Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-composition.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9. Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-heap-stack.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10. Heap and Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-inheritance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11. Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-overriding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12. Overriding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-overloading.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13. Overloading
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-polymorphism.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14. Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-dynamic-binding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15. Method Invocation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-lsp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16. LSP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-abstract.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17. Abstract Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18. Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-wrapper.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19. Wrapper Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-casting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20. Run-Time Class Mismatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-variance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    21. Variance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-exception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    22. Exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-generics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    23. Generics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-erasure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    24. Type Erasure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-unchecked.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    25. Unchecked Warnings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26-wildcard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    26. Wildcards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../27-inference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    27. Type Inference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../28-immutability.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    28. Immutability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../29-nested-classes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29. Nested Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    30. Side Effect-Free Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31-box-maybe.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    31. Box and Maybe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../32-lazy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    32. Lazy Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33-infinitelist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    33. Infinite List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34-stream.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    34. Streams in Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35-logger.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    35. Loggable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../36-monad.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    36. Monad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../37-parallel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    37. Parallel Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../38-thread.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    38. Threads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../39-async.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    39. Asynchronous Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40-forkjoin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    40. Fork and Join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Programming Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Programming Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environments.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming Environments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unix CLI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unix CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="background.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    Essentials
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="essentials.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essentials
+    
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#unix-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Unix Directory
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Unix Directory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#root-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Root Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#home-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Home Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#current-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Current Working Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#parent-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      Parent Directory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#specifying-a-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Specifying a Path
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Specifying a Path">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#absolute-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Absolute path
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#relative-path" class="md-nav__link">
+    <span class="md-ellipsis">
+      Relative path
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#directory-related-commands" class="md-nav__link">
+    <span class="md-ellipsis">
+      Directory-related Commands
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Directory-related Commands">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pwd-print-current-working-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      pwd: Print Current Working directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ls-list-content-of-a-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      ls: LiSt content of a directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mkdir-make-a-subdirectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      mkdir: MaKe a subDIRectory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cd-change-directory" class="md-nav__link">
+    <span class="md-ellipsis">
+      cd: Change Directory
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rmdir-remove-a-subdirectory" class="md-nav__link">
+    <span class="md-ellipsis">
+      rmdir: ReMove a subDIRectory
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#cp-copy-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      cp: CoPy files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mv-move-or-rename-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      mv: MoVe or rename files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#rm-remove-files" class="md-nav__link">
+    <span class="md-ellipsis">
+      rm: ReMove files
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cat-catenate-file-content-to-screen" class="md-nav__link">
+    <span class="md-ellipsis">
+      cat: CATenate file content to screen
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#man-online-manual" class="md-nav__link">
+    <span class="md-ellipsis">
+      man: Online MANual
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#file-permission-management" class="md-nav__link">
+    <span class="md-ellipsis">
+      File Permission Management
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="File Permission Management">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#the-what-of-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      The What of File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-who-of-file-permissions" class="md-nav__link">
+    <span class="md-ellipsis">
+      The Who of File Permissions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#checking-file-permission" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checking file permission
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-chmod-command" class="md-nav__link">
+    <span class="md-ellipsis">
+      The chmod command
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#common-scenarios-for-chmod" class="md-nav__link">
+    <span class="md-ellipsis">
+      Common Scenarios for chmod
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#standard-inputoutput" class="md-nav__link">
+    <span class="md-ellipsis">
+      Standard Input/Output
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Standard Input/Output">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#history" class="md-nav__link">
+    <span class="md-ellipsis">
+      History
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#examples-using-cat-and-wc" class="md-nav__link">
+    <span class="md-ellipsis">
+      Examples using cat and wc
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#output-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Output Redirection
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#input-redirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      Input Redirection
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#other-useful-online-tools" class="md-nav__link">
+    <span class="md-ellipsis">
+      Other Useful Online Tools
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="advanced.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Vim
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Vim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/philosophy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/quick-lessons.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lessons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../vim/plugins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Micro
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Micro
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Java Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Java Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coding Style
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex0-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex1-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex2-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex3-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex4-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex5-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex6-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex7-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex8-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="unix-cli-the-essentials">Unix CLI: The Essentials</h1>
+<p>This article is adapted from the notes of the <a href="https://nus-unix-workshop.github.io/2021-s1">Unix@Home Workshop</a> held in August 2020.  It contains the essential knowledge that a CS2030S students need to survive using the PE nodes to do the labs (and to use a Unix CLI in general).</p>
+<div class="admonition abstract">
+<p class="admonition-title">Learning Objectives</p>
+<p>Students should</p>
+<ul>
+<li>be able to navigate comfortably in a Unix file system using shell commands <code>cd</code>, <code>pwd</code>, and <code>ls</code>.</li>
+<li>be able to use <code>.</code>, <code>..</code>, <code>~</code> or <code>/</code> to form a relative or absolute path name to a file.</li>
+<li>be able to organize files in a Unix file system using shell commands <code>mkdir</code>, <code>rmdir</code>, <code>mv</code>, <code>rm</code>, and <code>cp</code>.</li>
+<li>be able to view the content of the file using <code>cat</code>, <code>more</code> or <code>less</code>.</li>
+<li>be able to manage the permission of a file using <code>chmod</code>.</li>
+<li>be able to perform standard input/output redirection with <code>&lt;</code> and <code>&gt;</code>.</li>
+</ul>
+</div>
+<h2 id="unix-directory">Unix Directory</h2>
+<p>Unix organizes files according to a directory structure.  The following shows an example.</p>
+<p><img alt="Unix Directory Tree" src="figures/unix-dir-tree.png" /></p>
+<p>This structure is also known as a <em>directory tree</em>.  There are two important directories that you need to know.</p>
+<h3 id="root-directory">Root Directory</h3>
+<p>The root directory is the directory at the top of the directory tree<sup id="fnref:1"><a class="footnote-ref" href="#fn:1">1</a></sup>. It is simply referred to as <code>/</code>, without any name.  Under the root directory are many other system directory, which a casual user does not normally need to (and have no permission to) modify.</p>
+<h3 id="home-directory">Home Directory</h3>
+<p>Each user has his/her own <em>home</em> directory.  The above figure shows where the home directory of the user <code>ooiwt</code> resides in the directory tree. The user <code>ooiwt</code> may create files or directories in his/her home directory, but not elsewhere unless permission is given.</p>
+<p>The home directory is referred to with the symbol <code>~</code> in <code>bash</code>.  Sometimes we add the username behind <code>~</code> to indicate the home directory of the other user. E.g., <code>~bob</code> means the home directory of a user named <code>bob</code>.</p>
+<h3 id="current-working-directory">Current Working Directory</h3>
+<p>A user can navigate around the directory tree.  The <em>current working directory</em> is the directory that the user is currently in.  In contrast to the root and home directory, which are fixed<sup id="fnref:2"><a class="footnote-ref" href="#fn:2">2</a></sup>, the current working directory changes as the user moves around.  Knowing the current working directory is important since this is the default location in the directory tree a command executes.  As such, many systems by default display the current working directory as part of the <code>bash</code> command prompt.</p>
+<p>The current working directory is referred to with the symbol <code>.</code> in <code>bash</code>.</p>
+<h3 id="parent-directory">Parent Directory</h3>
+<p>The <em>parent directory</em> is directory one layer up from the current directory.</p>
+<p>The parent directory is referred to with the symbol <code>..</code> in <code>bash</code>.</p>
+<p>To summarize, here are the short form representations:</p>
+<table>
+<thead>
+<tr>
+<th>Symbol</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>/</code></td>
+<td>the root directory</td>
+</tr>
+<tr>
+<td><code>~</code></td>
+<td>the home directory</td>
+</tr>
+<tr>
+<td><code>.</code></td>
+<td>the current working directory</td>
+</tr>
+<tr>
+<td><code>..</code></td>
+<td>the parent directory</td>
+</tr>
+</tbody>
+</table>
+<h2 id="specifying-a-path">Specifying a Path</h2>
+<p>To specify a directory or a file in the Unix directory tree, we can use either the <em>absolute path</em> or the <em>relative path</em>.</p>
+<h3 id="absolute-path">Absolute path</h3>
+<p>The absolute path is constructed as follows, starting from the root of the directory structure, find a path (a sequence of directories) to the location that you want to specify, then concatenate the names of the directories together, separated by the forward-slash <code>/</code>.  This is a similar notation used for Website URLs, so you should already be familiar with it.  For instance, the path <code>/home/o/ooiwt</code> is the absolute path of the directory named <code>ooiwt</code> in the figure above.</p>
+<p>An absolute path is independent of the current working directory and always start with <code>/</code> or <code>~</code></p>
+<h3 id="relative-path">Relative path</h3>
+<p>The relative path is dependent on the current working directory.  To refer to another location, start from the current directory, and find a path (a sequence of directories) to the location that you refer to.  When we go up a tree, we use <code>..</code> to represent the directory.</p>
+<p>For example, referring to the figure above, if we are in the directory <code>/home/b</code>, and we wish to refer to <code>/home/o/ooiwt</code>, we can use the relative path <code>../o/ooiwt</code>.  If we wish to refer to <code>/home/b/bob</code>, we can use the relative path <code>bob</code>.</p>
+<p>A relative path never starts with <code>/</code>.</p>
+<h2 id="directory-related-commands">Directory-related Commands</h2>
+<p>Now, let's take a look at some basic commands available in <code>bash</code> that deals with navigation and directories.</p>
+<h3 id="pwd-print-current-working-directory"><code>pwd</code>: Print Current Working directory</h3>
+<p><code>pwd</code> shows you which directory you are currently in.  Type <code>pwd</code> into the command prompt, and it will print the absolute path to your current working directory. For instance, Suppose you are in <code>/home/o/ooiwt</code>, entering</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nb">pwd</span>
+</code></pre></div></td></tr></table></div>
+<p>will give the output</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>/home/o/ooiwt
+</code></pre></div></td></tr></table></div>
+<h3 id="ls-list-content-of-a-directory"><code>ls</code>: LiSt content of a directory</h3>
+<p>The <code>ls</code> list the content in the current working directory.</p>
+<div class="admonition note">
+<p class="admonition-title">Rule of Silence</p>
+<p>Unix follows the economical <em>rule of silence</em>: programs should not print unnecessary output, to allow other programs and users to easily parse the output from one program.  So, if <code>ls</code> has nothing to list, it will list nothing (as opposed to, say, printing "This is an empty directory.")</p>
+</div>
+<p>In Unix, a file or directory with a name that starts with <code>.</code> is hidden from <code>ls</code>.  Common hidden files are <code>.vimrc</code>, the configuration file for <code>vim</code>, and <code>.ssh</code>, the directory to store your SSH keys and configuration.  To view all the files, including hidden files, run <code>ls</code> with the <code>-a</code> flag (<code>a</code> stands for all).</p>
+<h3 id="mkdir-make-a-subdirectory"><code>mkdir</code>: MaKe a subDIRectory</h3>
+<p>The <code>mkdir</code> command creates a subdirectory with the given name in the current directory.</p>
+<p>In the example below, we assume that we start with an empty directory.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>ls
+$<span class="w"> </span>mkdir<span class="w"> </span>workshop
+$<span class="w"> </span>ls
+workshop
+$<span class="w"> </span>ls<span class="w"> </span>-F
+workshop/
+</code></pre></div></td></tr></table></div>
+<p>Here, we create a directory called <code>workshop</code>.  Now, when we <code>ls</code>, you can see the directory listed.</p>
+<p>You may also use <code>ls -F</code> for more information (<code>-F</code> is one of the many <em>options</em>/<em>flags</em> available for the <code>ls</code> command. To see a complete list of the options, refer to the man pages, i.e., <code>man ls</code>).</p>
+<p>The slash <code>/</code> beside the filename tells you that the file is a directory.  A normal file does not have a slash beside its name when "ls -F" is used.</p>
+<p>You may also use the <code>ls -l</code> command (hyphen el, not hyphen one) to display almost all the file information, include the size of the file and the date of modification.</p>
+<div class="admonition tip">
+<p class="admonition-title">Use Up Arrow for Command History</p>
+<p><code>bash</code> maintains a history of your previously executed commands, and you may use the <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-p">P</kbd></span> (previous) and <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-n">N</kbd></span> (next) to go through it. Press the <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-p">P</kbd></span> until you find a previously executed command. You may then press <span class="keys"><kbd class="key-enter">Enter</kbd></span> to execute it or edit the command before executing it. This is handy when you need to repeatedly execute a long <code>bash</code> command.</p>
+</div>
+<h3 id="cd-change-directory"><code>cd</code>: Change Directory</h3>
+<p>To navigate in the directory tree, changing the current working directory from one to another, we use the <code>cd</code> command.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span><span class="nb">pwd</span>
+/home/o/ooiwt
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workshop
+$<span class="w"> </span><span class="nb">pwd</span>
+/home/o/ooiwt/workshop
+</code></pre></div></td></tr></table></div>
+<p>Suppose our starting working directory is <code>/home/o/ooiwt</code>, after we <code>cd</code> into <code>workshop</code>, the current working directory becomes <code>/home/o/ooiwt/workshop</code>.  Note that <code>cd</code> can take in either an absolute path or a relative path.  The example above takes in a relative path as the argument.</p>
+<p>As mentioned in "<a href="background.html">Unix CLI: Background</a>", it is common to include the current working directory into the shell's prompt.  So, you may see your command prompt updated to include the new working directory.</p>
+<p>Entering <code>cd</code> alone (without argument) brings you back to your home directory.  </p>
+<h3 id="rmdir-remove-a-subdirectory"><code>rmdir</code>: ReMove a subDIRectory</h3>
+<p><code>rmdir</code> removes a subDIRectory in the current directory &mdash; note that a directory must be empty before it can be removed.</p>
+<p>The command</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>rmdir<span class="w"> </span>workshop
+</code></pre></div></td></tr></table></div>
+<p>will remove the directory that you just created.</p>
+<h2 id="file-management">File Management</h2>
+<p>This note assumes that you are familiar with navigation with the Unix directory structure.</p>
+<p>We will now learn some commands to help us deal with files.</p>
+<p>Let's recreate the <code>workshop</code> directory in case you have already deleted it with the <code>rmdir</code> at the end of the last unit.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>mkdir<span class="w"> </span>-p<span class="w"> </span>workshop
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>workshop
+$<span class="w"> </span>ls
+</code></pre></div></td></tr></table></div>
+<p>All the above commands should complete successfully and <em>silently</em>.  Let's populate the directory with a new file.  Cut-and-paste the command below into the command prompt:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>wget<span class="w"> </span>https://www.comp.nus.edu.sg/~ooiwt/unix-workshop/test.txt
+</code></pre></div></td></tr></table></div>
+<p>You should see a file being downloaded and saved with an output similar to below:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span></pre></div></td><td class="code"><div><pre><span></span><code>--2020-07-27 15:26:49--  https://raw.githubusercontent.com/nus-unix-workshop/2021-s1/master/test.txt
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 151.101.0.133, 151.101.64.133, 151.101.128.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|151.101.0.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 64 [text/plain]
+Saving to: ‘test.txt’
+
+test.txt              100%[======================&gt;]      64  --.-KB/s    in 0s
+
+2020-07-27 15:26:50 (2.35 MB/s) - ‘test.txt’ saved [64/64]
+</code></pre></div></td></tr></table></div>
+<p>Now run <code>ls</code>, and you should see that <code>ls</code> returns <code>test.txt</code> as the content of the current working directory.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>ls
+test.txt
+</code></pre></div></td></tr></table></div>
+<h3 id="cp-copy-files"><code>cp</code>: CoPy files</h3>
+<p>Now let's try to copy this file to another name.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>test.txt<span class="w"> </span>foo.txt
+$<span class="w"> </span>ls
+test.txt<span class="w"> </span>foo.txt
+</code></pre></div></td></tr></table></div>
+<p>The command above copies the file <code>test.txt</code> into <code>foo.txt</code>.</p>
+<p>If you want to copy the whole directory, use <code>-r</code> flag, where <code>r</code> stands for copying recursively.</p>
+<p>Now let's create another directory called <code>copy</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>..
+$<span class="w"> </span>mkdir<span class="w"> </span>copy
+$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>copy
+$<span class="w"> </span>ls
+</code></pre></div></td></tr></table></div>
+<p>Run <code>pwd</code> to double-check that you are in the directory called <code>copy</code> that is at the same level as <code>workshop</code>.</p>
+<p>Now, we are going to use <code>cp</code> with the <code>-r</code> flag, to copy recursively the whole of <code>workshop</code> directory over.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>cp<span class="w"> </span>-r<span class="w"> </span>../workshop<span class="w"> </span>.
+</code></pre></div></td></tr></table></div>
+<p>The command <code>cp</code> takes in two arguments, the first is the source, and the second is the destination.</p>
+<p>Note that we use <code>.</code> above to indicate that we wish to copy the whole subtree of <code>workshop</code> over the current directory.  The command should complete without any message.  Upon completion, you can run <code>ls</code> to double-check that the workshop directory exists under <code>workshop</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>cp</code> Overwrites</p>
+<p>If there is an existing file with the same name, <code>cp</code> will overwrite
+the existing file without warning.</p>
+</div>
+<h3 id="mv-move-or-rename-files"><code>mv</code>: MoVe or rename files</h3>
+<p>Now, let's change directory back to <code>workshop</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span><span class="nb">cd</span><span class="w"> </span>../workshop
+</code></pre></div></td></tr></table></div>
+<p>and use the <code>mv</code> command to rename <code>foo.txt</code> into <code>bar.txt</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>ls
+foo.txt<span class="w"> </span>test.txt
+$<span class="w"> </span>mv<span class="w"> </span>foo.txt<span class="w"> </span>bar.txt
+$<span class="w"> </span>ls
+bar.txt<span class="w"> </span>test.txt
+</code></pre></div></td></tr></table></div>
+<p>As you can see above, just like <code>cp</code>, <code>mv</code> takes in two arguments, the first is the source and the second is the destination.</p>
+<p>If the destination of <code>mv</code> is a directory, however, instead of renaming, the <code>mv</code> commands move the source to the destination directory.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>ls
+bar.txt<span class="w"> </span>test.txt
+$<span class="w"> </span>mv<span class="w"> </span>../copy/workshop/foo.txt<span class="w"> </span>.
+$<span class="w"> </span>ls
+bar.txt<span class="w"> </span>foo.txt<span class="w"> </span>test.txt
+</code></pre></div></td></tr></table></div>
+<p>Here, you can see that we have moved <code>foo.txt</code> over to the current directory.</p>
+<div class="admonition warning">
+<p class="admonition-title"><code>mv</code> Overwrites</p>
+<p>If there is an existing file with the same name, <code>mv</code> will overwrite
+the existing file without warning. <code>mv</code> comes with a <code>-i</code> flag that interactively asks you if you are sure if you want to overwrite a file.  It is a good idea to always run <code>mv -i</code>. Hit <span class="keys"><kbd class="key-y">Y</kbd></span> to continue overwriting the existing file.  You can look up on the Internet on how to make <code>-i</code> the default using <code>alias</code> command in <code>.bashrc</code>.</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Use <span class="keys"><kbd class="key-tab">Tab</kbd></span> for Name Completion</p>
+<p>If you have a very long file name, you may use the <code>bash</code> auto-completion feature to reduce typing. For instance, you may type:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>mv<span class="w"> </span>t
+</code></pre></div></td></tr></table></div>
+<p>and press the <span class="keys"><kbd class="key-tab">Tab</kbd></span> key, <code>bash</code> will complete the filename for you if there is only one filename with the prefix "t". Otherwise, it will fill up the filename to the point where you need to type in more characters for disambiguation.
+The <span class="keys"><kbd class="key-tab">Tab</kbd></span> key can also complete the name of a command.</p>
+</div>
+<h3 id="rm-remove-files"><code>rm</code>: ReMove files</h3>
+<p>We can use <code>rm</code> to remove files.  Be careful with this command &mdash; files deleted cannot be restored.  There is no trash or recycled bin like in Mac or Windows.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>ls
+bar.txt<span class="w"> </span>foo.txt<span class="w"> </span>test.txt
+$<span class="w"> </span>rm<span class="w"> </span>foo.txt
+$<span class="w"> </span>ls
+bar.txt<span class="w"> </span>test.txt
+</code></pre></div></td></tr></table></div>
+<div class="admonition warning">
+<p class="admonition-title"><code>rm -rf</code></p>
+<p>While the Unix command line provides lots of flexibility and power, with great power comes great responsibility.  Some commands are extremely dangerous.  <code>rm -rf *</code> is the most famous one.  The notation <code>*</code> refers to all files, and the flag <code>-f</code> means forceful deletion (with no question asked!), and <code>-r</code> means remove recursively everything under the current directory tree.  Accidentally running this command has ruined many lives.  <a href="https://www.quora.com/What-are-some-crazy-rm-rf-stories-you-have-heard-about">Read more here</a></p>
+</div>
+<p><code>rm</code> comes with a <code>-i</code> flag that interactively asks you if you are sure if you want to delete a file.  It is a good idea to always run <code>rm -i</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$ rm -i bar.txt
+rm: remove regular file &#39;bar.txt&#39;?
+</code></pre></div></td></tr></table></div>
+<p>Type <code>y</code> or <code>n</code> to answer yes or no respectively.</p>
+<h3 id="cat-catenate-file-content-to-screen"><code>cat</code>: CATenate file content to screen</h3>
+<p>To quickly take a look at the content of the file, use the <code>cat</code> command.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$ cat test.txt
+This is a test file for learning Unix file management commands.
+</code></pre></div></td></tr></table></div>
+<p><code>less</code> is a variant of <code>cat</code> that includes features to read each page leisurely and is useful for long files.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>less<span class="w"> </span>test.txt
+</code></pre></div></td></tr></table></div>
+<p>In <code>less</code>, use <code>&lt;space&gt;</code> to move down one page, <code>b</code> to move Back up one page, and <code>q</code> to Quit.</p>
+<h3 id="man-online-manual"><code>man</code>: Online MANual</h3>
+<p>An online help facility is available in Unix via the <code>man</code> command (<code>man</code> stands for MANual). To look for more information about any Unix command, for example, <code>ls</code>, type <code>man ls</code>. Type <code>man man</code> and refer to Man Pages to find out more about the facility. To exit <code>man</code>, press <code>q</code>.</p>
+<h2 id="file-permission-management">File Permission Management</h2>
+<p>File permissions determine <em>who</em> can do <em>what</em> to a file.  Typically, you do not need to fiddle with the file permission, but when you need to, it is usually for an important reason, and it is critical to do it right.</p>
+<h3 id="the-what-of-file-permissions">The <em>What</em> of File Permissions</h3>
+<p>Let's look at <em>what</em> you can do to a file first.  Unix file permissions allow control of three actions: <code>r</code> (read), <code>w</code> (write) and <code>x</code> (execute).  These permission settings allow the following different actions to be done for regular files and directories.</p>
+<table>
+<thead>
+<tr>
+<th>permission</th>
+<th>effect on file</th>
+<th>effect on directory</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>r</code></td>
+<td>reading the content of a file</td>
+<td>read the names of the files in the directory</td>
+</tr>
+<tr>
+<td><code>w</code></td>
+<td>writing into a file</td>
+<td>create/delete/rename files in the directory</td>
+</tr>
+<tr>
+<td><code>x</code></td>
+<td>executing a file</td>
+<td>access contents and meta-info (size, creation time) of files in the directory</td>
+</tr>
+</tbody>
+</table>
+<p>These three actions can be controlled independently.</p>
+<p>The permissions on a file can be expressed in two ways:</p>
+<ul>
+<li>
+<p>using symbolic notation.  For instance,  <code>rwx</code>, <code>r-x</code>, <code>-wx</code>, where a <code>-</code> means that the corresponding permission is not given (in the order of <code>r</code>, <code>w</code>, <code>x</code>).</p>
+</li>
+<li>
+<p>using a numerical notation. This notation uses a digit between 0 and 7, which is computed as a sum of the individual digit representing the permissions: <code>r</code> is represented with 4, <code>w</code> is represented with 2, and <code>x</code> is represented with 1.
+For instance, <code>r-x</code> has a numerical representation of 5, and <code>-wx</code> has a numerical representation of 3.</p>
+</li>
+</ul>
+<h3 id="the-who-of-file-permissions">The <em>Who</em> of File Permissions</h3>
+<p>Unix divides the users into three classes: <code>u</code> is the <b>u</b>ser who owns the file; <code>g</code> refers to the users in the same <b>g</b>roup as the user; and <code>o</code> are all the <b>o</b>ther users.</p>
+<p>The permissions can be controlled separately for these classes of users.  The permission notation simply concatenates the file permissions of each class of users together, in the order of <code>u</code>, <code>g</code>, and <code>o</code>.</p>
+<p>For instance, the permission of 644, or <code>rw-r--r--</code>, on a file means that:</p>
+<ul>
+<li>the owner can read and write</li>
+<li>the group users can only read</li>
+<li>all the other users can only read</li>
+</ul>
+<h3 id="checking-file-permission">Checking file permission</h3>
+<p>You can view the permission of a file by using the <code>ls -l</code> command (<code>l</code> for long format):</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$ ls -l test.txt
+-rw-r--r--@ 1 ooiwt  staff  64 Jul 28 09:52 test.txt
+</code></pre></div></td></tr></table></div>
+<p>Ignoring the first <code>-</code> and the last <code>@</code>, you can see that the permission of <code>test.txt</code> is 644.</p>
+<h3 id="the-chmod-command">The <code>chmod</code> command</h3>
+<p>You can use <code>chmod</code> command to change the permissions of a file or a directory.</p>
+<p>For instance,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>$ chmod 666 test.txt
+$ ls -l test.txt
+-rw-rw-rw-@ 1 ooiwt  staff  64 Jul 28 09:52 test.txt
+</code></pre></div></td></tr></table></div>
+<p>would change add the permission <code>w</code> to both group and other users<sup id="fnref2:1"><a class="footnote-ref" href="#fn:1">1</a></sup>.</p>
+<p>An alternative way is to just specify the changes.  To remove the permission to write from others, you can run:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>$ chmod o-w test.txt
+$ ls -l test.txt
+-rw-rw-r--@ 1 ooiwt  staff  64 Jul 28 09:52 test.txt
+</code></pre></div></td></tr></table></div>
+<h3 id="common-scenarios-for-chmod">Common Scenarios for <code>chmod</code></h3>
+<p>Here are some scenarios where you might need to use the <code>chmod</code> command:</p>
+<ul>
+<li>
+<p>If you use the SoC Unix server to do your homework, you should prevent the directory that stores your homework from being accessible by other users.  Make sure that your homework directory as the permission of <code>700</code>.</p>
+</li>
+<li>
+<p>If you download a file from the Internet and you do not have the permission to read it, you should do a <code>u+r</code> to give yourself the read permission.</p>
+</li>
+<li>
+<p>A program should have execution permission to run.  If you have a script or an executable file that you can't run, give yourself the execution permission <code>u+x</code>.</p>
+</li>
+</ul>
+<h2 id="standard-inputoutput">Standard Input/Output</h2>
+<h3 id="history">History</h3>
+<p>Two of the design decisions of Unix that lead to its simplicity are the decisions to (i) decouple the physical input/output devices from the programs, allowing programs written for Unix to read from <em>abstract</em> input and output devices; and (ii) make all programs read and write from these abstract input and output devices by default.  Before Unix, the older operating systems often require programmers to painstakingly set up connections to the teletype machines and other devices for reading inputs and printing outputs.   With Unix, programmers can now focus on solving the tasks at hand and let Unix takes care of the input and output.</p>
+<p>The two abstract devices that Unix provides are called <em>standard input</em> and <em>standard output</em>.  By default, the standard input refers to the <em>keyboard</em> and the standard output is the <em>terminal</em>.</p>
+<h3 id="examples-using-cat-and-wc">Examples using <code>cat</code> and <code>wc</code></h3>
+<p>Let's look at these concepts closer, by examining some examples.</p>
+<p>Remember <code>cat</code>?  The <code>cat</code> command takes in a filename and it prints the content of the file to the standard output.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$ cat test.txt
+This is a test file for learning Unix file management commands.
+</code></pre></div></td></tr></table></div>
+<p>If no filename is given, <code>cat</code> by default try to read from the standard input.  Try running:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>cat
+</code></pre></div></td></tr></table></div>
+<p>You will see that the command is waiting for you to type in something.  Type in anything, as soon as you press <span class="keys"><kbd class="key-enter">Enter</kbd></span>, <code>cat</code> is going to read in the text from the standard input, as if it is the content of a file, and then prints the content to the standard output.  You can keep typing, supplying text to <code>cat</code>, or you can type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span> to send the end-of-input command to <code>cat</code>.</p>
+<p>Let's look at another command, <code>wc</code>.  <code>wc</code> is a utility that counts the number of lines, words, characters.  If we call <code>wc</code> and supply it a file name, it will count the number of lines, words, and characters in that given file.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span></pre></div></td><td class="code"><div><pre><span></span><code>$ wc test.txt
+       1      11      64 test.txt
+</code></pre></div></td></tr></table></div>
+<p>The output means that there is 1 line, 11 words, and 64 characters in the file <code>test.txt</code>.</p>
+<p>But if you do not pass in any file name, <code>wc</code> is going to read in the text from the standard input, as if it is the content of a file, and prints the three counters to the standard output.  Go ahead and try:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>$<span class="w"> </span>wc
+</code></pre></div></td></tr></table></div>
+<p>You will see that the <code>wc</code> command is waiting for you to type in something.  Type in a few sentences, you can hit <span class="keys"><kbd class="key-enter">Enter</kbd></span> for a new line.  When you are done, type <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-d">D</kbd></span>.  <code>wc</code> will count the number of lines, words, and characters for the text that you just entered.</p>
+<h3 id="output-redirection">Output Redirection</h3>
+<p>By defining two abstract input and output devices (or channels), Unix frees the programmers from worrying about where to read the input from and write the output to.  Most of the time, we can write the output of the program to the standard output.  In instances where we need to write the output to another location, we can just <em>redirect</em> the output.</p>
+<p>The operators <code>&gt;</code> and <code>&gt;&gt;</code> are used to redirect the standard output to a file.  The difference is that <code>&gt;</code> will overwrite the given file, while <code>&gt;&gt;</code> will concatenate into the given file.</p>
+<p>For example:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span></pre></div></td><td class="code"><div><pre><span></span><code>$ wc test.txt &gt; test.count
+$ cat test.count
+       1      11      64 test.txt
+</code></pre></div></td></tr></table></div>
+<p>The first command redirects the output from <code>wc</code> to a file named <code>test.count</code>, so you do not see anything printed to the output anymore.  We can check by running <code>cat</code> on the new file <code>test.count</code> &mdash; indeed the original output from <code>wc</code> is now stored in the file <code>test.count</code>.</p>
+<p>If we repeat the command <code>wc test.txt &gt; test.count</code> again, you can see that the file has been
+overwritten with the output from <code>wc</code> again.  But if we replace <code>&gt;</code> with <code>&gt;&gt;</code>, a new line is concatenated into <code>test.count</code>.   So the file now has two lines.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span></pre></div></td><td class="code"><div><pre><span></span><code>$ wc test.txt &gt; test.count
+$ cat test.count
+       1      11      64 test.txt
+$ wc test.txt &gt;&gt; test.count
+$ cat test.count
+       1      11      64 test.txt
+       1      11      64 test.txt
+</code></pre></div></td></tr></table></div>
+<h3 id="input-redirection">Input Redirection</h3>
+<p>The operator <code>&lt;</code> is used to redirect a file into the standard input. So, instead of reading from the keyboard, we can now read from a file.  Commands such as <code>cat</code> and <code>wc</code> already support from a file directly, so there is no difference in terms of functionality to run the commands by passing in the file name, or by using the <code>&lt;</code> operator.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span>
+<span class="normal">2</span>
+<span class="normal">3</span>
+<span class="normal">4</span>
+<span class="normal">5</span>
+<span class="normal">6</span>
+<span class="normal">7</span>
+<span class="normal">8</span></pre></div></td><td class="code"><div><pre><span></span><code>$ wc test.txt
+       1      11      64 test.txt
+$ wc &lt; test.txt
+       1      11      64
+$ cat test.txt
+This is a test file for learning Unix file management commands.
+$ cat &lt; test.txt
+This is a test file for learning Unix file management commands.
+</code></pre></div></td></tr></table></div>
+<p>Note the slight difference in the output format of the second <code>wc</code> above &mdash; it no longer prints the file name since from <code>wc</code> points of view, it is read from the standard input and not from a file, so it is not aware of the file named <code>test.txt</code></p>
+<p>In most CS programming assignments, however, to keep things simple, you will be asked to read from the standard input only, so the <code>&lt;</code> is a great time-saver &mdash; you do not have to repeatedly type in the same input data over and over from the keyboard.  You can just save the input data in a file, then redirect it to standard input with the <code>&lt;</code> operator.</p>
+<h2 id="other-useful-online-tools">Other Useful Online Tools</h2>
+<ul>
+<li><a href="https://explainshell.com/">explainshell</a> explain each shell command for you</li>
+</ul>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:1">
+<p>Giving write permission to other users is a security risk.  You should not do this unless you know what you are doing.&#160;<a class="footnote-backref" href="#fnref:1" title="Jump back to footnote 1 in the text">&#8617;</a><a class="footnote-backref" href="#fnref2:1" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:2">
+<p>Not exactly true &mdash; since Unix is designed to be flexible, even the root and the home directory can be changed!  But let's not worry about that for now since there is no good reason to do that as a beginner.&#160;<a class="footnote-backref" href="#fnref:2" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.integrate", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

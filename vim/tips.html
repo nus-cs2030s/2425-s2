@@ -1,0 +1,2279 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://nus-cs2030s.github.io/2425-s2/vim/tips.html">
+      
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.6.11">
+    
+    
+      
+        <title>Vim Tips - CS2030S Programming Methodology II</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.4af4bdda.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:400,700">
+    
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600;1,700&display=swap">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#vim-tips" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../index.html" title="CS2030S Programming Methodology II" class="md-header__button md-logo" aria-label="CS2030S Programming Methodology II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            CS2030S Programming Methodology II
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Vim Tips
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="custom" data-md-color-accent="custom"  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12s-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../index.html" title="CS2030S Programming Methodology II" class="md-nav__button md-logo" aria-label="CS2030S Programming Methodology II" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    CS2030S Programming Methodology II
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Home
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Notes
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Notes
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-overview.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    0. Overview
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-compiler.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    1. Program and Compiler
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-type.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    2. Variables and Types
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-function.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    3. Functions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-encapsulation.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    4. Encapsulation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-infohiding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    5. Information Hiding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-tell-dont-ask.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    6. Tell, Don't Ask
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-static-field.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    7. Class Fields
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-static-method.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    8. Class Methods
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-composition.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    9. Composition
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../10-heap-stack.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    10. Heap and Stack
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../11-inheritance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    11. Inheritance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../12-overriding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    12. Overriding
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../13-overloading.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    13. Overloading
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../14-polymorphism.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    14. Polymorphism
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../15-dynamic-binding.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    15. Method Invocation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../16-lsp.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    16. LSP
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../17-abstract.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    17. Abstract Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../18-interface.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    18. Interface
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../19-wrapper.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    19. Wrapper Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../20-casting.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    20. Run-Time Class Mismatch
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../21-variance.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    21. Variance
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../22-exception.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    22. Exceptions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../23-generics.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    23. Generics
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../24-erasure.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    24. Type Erasure
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../25-unchecked.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    25. Unchecked Warnings
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../26-wildcard.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    26. Wildcards
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../27-inference.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    27. Type Inference
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../28-immutability.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    28. Immutability
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../29-nested-classes.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    29. Nested Class
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../30-functions.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    30. Side Effect-Free Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../31-box-maybe.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    31. Box and Maybe
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../32-lazy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    32. Lazy Evaluation
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../33-infinitelist.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    33. Infinite List
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../34-stream.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    34. Streams in Java
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../35-logger.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    35. Loggable
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../36-monad.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    36. Monad
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../37-parallel.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    37. Parallel Streams
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../38-thread.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    38. Threads
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../39-async.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    39. Asynchronous Programming
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../40-forkjoin.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    40. Fork and Join
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Programming Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Programming Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../environments.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Programming Environments
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../github.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    GitHub Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Unix CLI
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_3">
+            <span class="md-nav__icon md-icon"></span>
+            Unix CLI
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix/background.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix/essentials.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Essentials
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../unix/advanced.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Advanced
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Vim
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_4">
+            <span class="md-nav__icon md-icon"></span>
+            Vim
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="philosophy.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Background
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="setup.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Setup
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="quick-lessons.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Lessons
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="plugins.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Extensions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Micro
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_5">
+            <span class="md-nav__icon md-icon"></span>
+            Micro
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../micro/operations.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Tips
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Java Guide
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3_6">
+            <span class="md-nav__icon md-icon"></span>
+            Java Guide
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../style.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Coding Style
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    Exercises
+    
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Exercises
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercise.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    General Guide
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex0-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 0
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex1-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 1
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex2-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 2
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex3-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 3
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex4-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 4
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex5-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 5
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex6-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 6
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex7-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 7
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../exercises/ex8-task.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    Exercise 8
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="vim-tips">Vim Tips</h1>
+<p>I collected some tips on <code>vim</code> that I find helpful for students. </p>
+<div class="admonition warning">
+<p class="admonition-title">Prerequisite</p>
+<p>You have gone through the basic <a href="quick-lessons.html">quick lessons</a> and have <a href="setup.html">set up your vim</a> in your PE account.</p>
+</div>
+<div class="admonition abstract">
+<p class="admonition-title">Learning Objectives</p>
+<p>Students should</p>
+<ul>
+<li>be able to compare files (<em>e.g., input/output matching for correctness</em>).</li>
+<li>be able to recover from <code>.swp</code> file in <code>vim</code>.</li>
+</ul>
+</div>
+<h2 id="1-useful-configuration">1. Useful Configuration</h2>
+<h3 id="showing-line-numbers">Showing Line Numbers</h3>
+<p>If you prefer to show the line number on every line in <code>vim</code>, add</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>set number
+</code></pre></div></td></tr></table></div>
+<p>to your <code>~/.vimrc</code>.</p>
+<h2 id="2-navigation">2. Navigation</h2>
+<h3 id="faster-navigation">Faster Navigation</h3>
+<p>If you find yourselves typing too many <span class="keys"><kbd class="key-h">H</kbd></span><span class="keys"><kbd class="key-j">J</kbd></span><span class="keys"><kbd class="key-k">K</kbd></span><span class="keys"><kbd class="key-l">L</kbd></span> to navigate around your code, check out the following shortcuts to navigate around:</p>
+<p>To move word-by-word:</p>
+<ul>
+<li><span class="keys"><kbd class="key-w">W</kbd></span> jump to the beginning of the next word</li>
+<li><span class="keys"><kbd class="key-b">B</kbd></span> ump to the beginning of the previous word (reverse of <code>w</code>)</li>
+<li><span class="keys"><kbd class="key-e">E</kbd></span> jump to the end of the word (or next word when pressed again)</li>
+</ul>
+<p>To search:</p>
+<ul>
+<li><span class="keys"><kbd class="key-f">F</kbd></span> char: search forward in the line and sit on the next matching char</li>
+<li><span class="keys"><kbd class="key-t">T</kbd></span> char:  search forward in the line and sit on one space before the matching char</li>
+</ul>
+<p><span class="keys"><kbd class="key-0">0</kbd></span> would move you to the beginning of the line, but when coding, it is sometimes useful to jump to the first non-blank character instead.  To do so, use <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-6">6</kbd></span> (<em>i.e.</em>, <code>^</code>).</p>
+<p>In coding, we have many pairs of <code>[]</code>, <code>{}</code>, <code>()</code> and <code>&lt;&gt;</code>.  You can use <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-5">5</kbd></span> (<em>i.e.</em>, <code>%</code>) jump between matching parentheses.</p>
+<h3 id="jump-to-a-line">Jump to a Line</h3>
+<p>If the compiler tells you there is an error on Line <span class="arithmatex">\(x\)</span>, you can issue <code>:&lt;x&gt;</code> to jump to Line <span class="arithmatex">\(x\)</span>.  For instance, <code>:40</code> will go to Line 40.</p>
+<h2 id="3-editing-operations">3. Editing Operations</h2>
+<h3 id="undo-and-redo">Undo and Redo</h3>
+<p>Since we are on the topic of correcting mistakes, <span class="keys"><kbd class="key-u">U</kbd></span> in command mode undo your changes.  Prefix it with a number <span class="arithmatex">\(n\)</span> to undo <span class="arithmatex">\(n\)</span> times.  If you want to undo your undo, <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-r">R</kbd></span> will redo.</p>
+<h3 id="navigation-editing">Navigation + Editing</h3>
+<p><code>vim</code> is powerful because you can combine <em>operations</em> with <em>navigation</em>.  For instance <span class="keys"><kbd class="key-c">C</kbd></span> to change, <span class="keys"><kbd class="key-d">D</kbd></span> to delete, <span class="keys"><kbd class="key-y">Y</kbd></span> to yank (copy).  Since <span class="keys"><kbd class="key-w">W</kbd></span> is the navigation command to move over the current word, combining them we get:</p>
+<ul>
+<li><span class="keys"><kbd class="key-c">C</kbd></span><span class="keys"><kbd class="key-w">W</kbd></span> change the current word (delete the current word and enter insert mode)</li>
+<li><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-w">W</kbd></span> delete the current word</li>
+<li><span class="keys"><kbd class="key-y">Y</kbd></span><span class="keys"><kbd class="key-w">W</kbd></span> yank the current word (copy word into buffer)</li>
+</ul>
+<p>Can you guess what each of these does:</p>
+<ul>
+<li><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-f">F</kbd></span><span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-0">0</kbd></span> </li>
+<li><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-f">F</kbd></span><span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-0">0</kbd></span> </li>
+<li><span class="keys"><kbd class="key-c">C</kbd></span><span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-4">4</kbd></span></li>
+<li><span class="keys"><kbd class="key-y">Y</kbd></span><span class="keys"><kbd class="key-0">0</kbd></span></li>
+</ul>
+<p>If you repeat the operation <span class="keys"><kbd class="key-c">C</kbd></span>, <span class="keys"><kbd class="key-d">D</kbd></span>, and <span class="keys"><kbd class="key-y">Y</kbd></span>, it applies to the whole line, so:</p>
+<ul>
+<li><span class="keys"><kbd class="key-c">C</kbd></span><span class="keys"><kbd class="key-c">C</kbd></span> change the whole line</li>
+<li><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span> delete the whole line</li>
+<li><span class="keys"><kbd class="key-y">Y</kbd></span><span class="keys"><kbd class="key-y">Y</kbd></span> yank the whole line</li>
+</ul>
+<p>You can add a number before an operation to specify how many times you want to repeat an operation.  So <span class="keys"><kbd class="key-5">5</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span>  deletes 5 lines, <span class="keys"><kbd class="key-5">5</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-w">W</kbd></span> deletes 5 words, etc.</p>
+<p>See the article <a href="http://whileimautomaton.net/2008/11/vimm3/operator">Operator, the True Power of <code>Vim</code></a> for more details.</p>
+<h3 id="swapping-lines">Swapping Lines</h3>
+<p>Sometimes you want to swap the order of two lines of code, in command mode, <span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-p">P</kbd></span> will do the trick.  <span class="keys"><kbd class="key-d">D</kbd></span><span class="keys"><kbd class="key-d">D</kbd></span> deletes the current line, <span class="keys"><kbd class="key-p">P</kbd></span> paste it after the current line, in effect swapping the order of the two lines.</p>
+<h3 id="commenting-blocks-of-code">Commenting blocks of code</h3>
+<p>Sometimes we need to comment out a whole block of code in C for testing purposes. There are several ways to do it in <code>vim</code>:</p>
+<ul>
+<li>Place the cursor on the first line of the block of code you want to comment on.</li>
+<li><span class="keys"><kbd class="key-0">0</kbd></span> to jump to the beginning of the line</li>
+<li><ins class="critic"> <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-v">V</kbd></span> enter visual block mode (if your terminal intercepts <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-v">V</kbd></span> as paste, try <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-q">Q</kbd></span>). </ins></li>
+<li>Use the arrow key to select the block of code you want to comment on.</li>
+<li><span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-i">I</kbd></span> to insert at the beginning of the line (here, since we already selected the block, we will insert at the beginning of every selected)</li>
+<li><span class="keys"><kbd class="key-slash">/</kbd></span><span class="keys"><kbd class="key-slash">/</kbd></span> to insert the C/Java comment character (you will see it inserted in the current line, but don't worry)</li>
+<li><span class="keys"><kbd class="key-escape">Esc</kbd></span> to escape from the visual code.</li>
+</ul>
+<p>To uncomment,</p>
+<ul>
+<li>Place the cursor on the first line of the block of code you want to comment.</li>
+<li><span class="keys"><kbd class="key-0">0</kbd></span> to jump to the beginning of the line</li>
+<li><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-v">V</kbd></span> enter block visual mode</li>
+<li>Use the arrow key to select the columns of text containing <code>//</code></li>
+<li><span class="keys"><kbd class="key-x">X</kbd></span> to delete them</li>
+</ul>
+<h2 id="4-other-useful-commands">4. Other Useful Commands</h2>
+<h3 id="search-and-replace-in-vim">Search and Replace in <code>vim</code></h3>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:%s/oldWord/newWord/gc
+</code></pre></div></td></tr></table></div>
+<p><code>:</code> enters the command mode.  <code>%</code> means apply to the whole document, <code>s</code> means substitute, <code>g</code> means global (otherwise, only the first occurrence of each line is replaced). <code>c</code> is optional &mdash; adding it cause <code>vim</code> to confirm with you before each replacement  </p>
+<h3 id="shell-command">Shell Command</h3>
+<p>If you need to issue a shell command quickly, you don't have to exit <code>vim</code>, run the command, and launch <code>vim</code> again.  You can use <code>!</code>,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:!&lt;command&gt;
+</code></pre></div></td></tr></table></div>
+<p>will issue the command to shell.  E.g.,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:!ls
+</code></pre></div></td></tr></table></div>
+<p>You can use this to compile your current file, without exiting <code>vim</code>.</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:!make
+</code></pre></div></td></tr></table></div>
+<p><code>make</code> is a builtin command for <code>vim</code>, so you can also simply run</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:make
+</code></pre></div></td></tr></table></div>
+<h3 id="terminal">Terminal</h3>
+<p>You can open an interactive shell from within <code>vim</code> with:</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>:terminal
+</code></pre></div></td></tr></table></div>
+<p>This command splits the window and add a terminal, within which you can compile or run your code.</p>
+<h3 id="abbreviation">Abbreviation</h3>
+<p>You can use the command <code>ab</code> to abbreviate frequently typed commands.  E.g., in your <code>~/.vimrc</code>,</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">1</span></pre></div></td><td class="code"><div><pre><span></span><code>ab sop System.out.println
+</code></pre></div></td></tr></table></div>
+<p>Now, when you type <code>sop</code>, it will be expanded into <code>System.out.println</code></p>
+<h3 id="auto-completion">Auto-Completion</h3>
+<p>You can use <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-p">P</kbd></span> or <span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-n">N</kbd></span> to auto-complete.  By default, the autocomplete dictionary is based on the text in your current editing buffers.  This is a very useful keystroke saver for long function names and variable names.</p>
+<h3 id="auto-indent-the-whole-file">Auto-Indent the Whole File</h3>
+<p>You can <span class="keys"><kbd class="key-g">G</kbd></span><span class="keys"><kbd class="key-g">G</kbd></span><span class="keys"><kbd class="key-equal">=</kbd></span><span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-g">G</kbd></span> in command mode (<em>i.e.</em>, type out <code>gg=G</code>) to auto-indent the whole file.  <span class="keys"><kbd class="key-g">G</kbd></span><span class="keys"><kbd class="key-g">G</kbd></span> is the command to go to the beginning of the file.  <span class="keys"><kbd class="key-equal">=</kbd></span> is the command to indent.  <span class="keys"><kbd class="key-shift">Shift</kbd><span>+</span><kbd class="key-g">G</kbd></span> is the command to go to the end of the file.</p>
+<h3 id="split-vims-viewport">Split <code>vim</code>'s Viewport</h3>
+<ul>
+<li><code>:sp file.c</code> splits the <code>vim</code> window horizontally</li>
+<li><code>:vsp file.c</code> splits the <code>vim</code> window vertically</li>
+<li><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-w">W</kbd></span><span class="keys"><kbd class="key-control">Ctrl</kbd><span>+</span><kbd class="key-w">W</kbd></span> moves between the different <code>vim</code> viewports</li>
+</ul>
+<p>Alternatively, run <code>vim -O file1 file2</code> to immediately open both files in two different viewpoints.</p>
+<h3 id="compare-two-files">Compare two files</h3>
+<p>You can compare two files with <code>vim</code>, using the <code>-d</code> flag.  For instance,</p>
+<p><code>vim -d file1 file2</code></p>
+<p>would open up two files for line-by-line comparison.  This is most useful if you want to compare the output of your program with the expected output.</p>
+<h2 id="5-recovery-files">5. Recovery Files</h2>
+<p>Vim automatically saves the files you are editing into temporary <em>swap</em> files, with the extension <code>.swp</code>.  These files are hidden, so you don't normally see them when you run <code>ls</code>.  (You need to run <code>ls -a</code> to view the hidden files)</p>
+<p>The swap files are useful if your editing session is disrupted before you save (<em>e.g.</em>, the network is disconnected, you accidentally close the terminal, your OS crashes, etc).</p>
+<p>When you launch <code>vim</code> to edit a file, say, <code>foo.c</code>.  <code>vim</code> will check if a swap file <code>.foo.c.swp</code> exist.  If it does, <code>vim</code> with display the following</p>
+<div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 1</span>
+<span class="normal"> 2</span>
+<span class="normal"> 3</span>
+<span class="normal"> 4</span>
+<span class="normal"> 5</span>
+<span class="normal"> 6</span>
+<span class="normal"> 7</span>
+<span class="normal"> 8</span>
+<span class="normal"> 9</span>
+<span class="normal">10</span>
+<span class="normal">11</span>
+<span class="normal">12</span>
+<span class="normal">13</span>
+<span class="normal">14</span>
+<span class="normal">15</span>
+<span class="normal">16</span>
+<span class="normal">17</span>
+<span class="normal">18</span>
+<span class="normal">19</span>
+<span class="normal">20</span></pre></div></td><td class="code"><div><pre><span></span><code>Found a swap file by the name &quot;.foo.c.swp&quot;
+          owned by: elsa   dated: Sat Aug 21 15:01:04 2021
+         file name: ~elsa/foo.c
+          modified: no
+         user name: elsa   host name: pe116
+        process ID: 7863 (STILL RUNNING)
+While opening file &quot;foo.c&quot;
+             dated: Mon Jul 12 18:38:37 2021
+
+(1) Another program may be editing the same file.  If this is the case,
+    be careful not to end up with two different instances of the same
+    file when making changes.  Quit, or continue with caution.
+(2) An edit session for this file crashed.
+    If this is the case, use &quot;:recover&quot; or &quot;vim -r a.c&quot;
+    to recover the changes (see &quot;:help recovery&quot;).
+    If you did this already, delete the swap file &quot;.a.c.swp&quot;
+    to avoid this message.
+
+Swap file &quot;.a.c.swp&quot; already exists!
+[O]pen Read-Only, (E)dit anyway, (R)ecover, (Q)uit, (A)bort:
+</code></pre></div></td></tr></table></div>
+<p>The messages above are self-explanatory.  Read it carefully.  Most of the time, you want to choose "R" to recover your edits, so that you can continue editing.  Remember to remove the file <code>.foo.c.swp</code> after you have recovered.  Otherwise, <code>vim</code> will prompt you the above messages every time you edit <code>foo.c</code>.</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If <code>foo.c</code> is newer than the state saved in <code>.foo.c.swp</code>, and you recover from <code>.foo.c.swp</code>, you will revert to the state of the file as saved in the swap file.  This can happen if (i) you edit the file without recovery, or (ii) you recover the file, continue editing, but did not remove the <code>.foo.c.swp</code> file after.</p>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright by Department of Computer Science, National University of Singapore 2025
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      <script id="__config" type="application/json">{"base": "..", "features": ["toc.follow", "toc.integrate", "content.code.annotate", "content.code.copy"], "search": "../assets/javascripts/workers/search.f8cc74c7.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.c8b220af.min.js"></script>
+      
+        <script src="../javascripts/config.js"></script>
+      
+        <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>

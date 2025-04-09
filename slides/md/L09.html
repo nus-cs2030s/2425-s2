@@ -1,0 +1,1403 @@
+layout: true
+class: basic, fadein, tabler, layout
+name: content
+<div class="header"></div>
+<div class="footer"><p>CS2030S: Programming Methodology II -- Adi Yoga Sidi Prabawa</p></div>
+
+---
+
+name: Lecture_09
+class: bottom, titles
+
+# CS2030S
+## Programming Methodology II
+### Lecture 09: Infinite List and Stream
+
+---
+
+name: Announcement
+class: middle, subtitles
+
+# Announcement
+
+---
+
+### Announcement
+
+.lc[
+### Catch-Up
+]
+.rc[
+### Catch-Up Session III
+.col20[
+- __Date__
+- __Time__
+- __Zoom__<br><br>
+- __Pigeonhole__
+]
+.col80.nol.deindent[
+- 25 March 2023 .lnote[(Saturday)]
+- 10:00 - 12:00
+- https://nus-sg.zoom.us/j/87404907419?pwd=cjFJbXc2R2I0S3BBSEhJakZZUU9sQT09
+- https://pigeonhole.at/FINALLYIMMUTABLE
+]
+]
+
+---
+
+### Announcement
+
+.lc[
+### Catch-Up
+### PE2 Conflict
+]
+.rc[
+### PE2 Timing Conflict
+> If you find timing conflict with your assigend PE2 session
+
+.col20[
+- __Survey__
+- __Deadline__
+]
+.col80.nol.deindent[
+- https://canvas.nus.edu.sg/courses/38513/quizzes/14350
+- Wednesday, 22 March 2023 .lnote[(23:59)]
+]
+]
+
+---
+
+### Announcement
+
+.lc[
+### Catch-Up
+### PE2 Conflict
+### Midterm Regrade
+]
+.rc[
+### Midterm Regrade Request
+> If you would like us to have a second look at your midterm script
+
+.col20[
+- __Survey__
+- __Deadline__
+]
+.col80.nol.deindent[
+- https://canvas.nus.edu.sg/courses/38513/quizzes/14888
+- Friday, 24 March 2023 .lnote[(23:59)]
+]
+]
+
+---
+
+name: Optimization
+class: middle, subtitles
+
+# Optimization
+
+---
+
+### Optimization
+
+.lc[
+### Lexical this
+#### - Lambda
+]
+.rc[
+### Lexical this
+.col60[
+#### Lambda
+.sssize[
+```java[lite=9]
+class A {
+  int x;
+  
+  public A (int x) {
+    this.x = x;
+  }
+  
+  public Integer get() {
+    Producer<Integer> prod = () -> this.x;
+    return prod.produce();
+  }
+}
+```
+]
+]
+.col40[
+#### Problem?
+.qns[
+> ##### Question
+> What is the expected output of the following code fragment?
+.sssize[
+```java
+A a = new A(3);
+int x = a.get();
+System.out.println(x);
+```
+]
+]
+]
+]
+
+---
+
+### Optimization
+
+.lc[
+### Lexical this
+#### - Lambda
+#### - Anonymous
+]
+.rc[
+### Lexical this
+.col60[
+#### Anonymous Class
+.sssize[
+```java[lite=11]
+class A {
+  int x;
+  
+  public A (int x) {
+    this.x = x;
+  }
+  
+  public Integer get() {
+    Producer<Integer> prod = new Producer<>() {
+      public Integer produce() {
+        return this.x;
+      }
+    }
+    return prod.produce();
+  }
+}
+```
+]
+]
+.col40[
+#### Problem?
+.qns[
+> ##### Question
+> What is the expected output of the following code fragment?
+.sssize[
+```java
+A a = new A(3);
+int x = a.get();
+System.out.println(x);
+```
+]
+]
+]
+]
+
+---
+
+### Optimization
+
+.lc[
+### Lexical this
+### final
+#### - Capture
+]
+.rc[
+### final
+.col60[
+#### Class A
+.sssize[
+```java
+class A {
+  int x;
+  
+  public A (int x) {
+    this.x = x;
+  }
+  
+  public Integer get() {
+    Producer<Integer> prod = () -> this.x;
+    return prod.produce();
+  }
+}
+```
+]
+]
+.col40[
+#### Variable Capture
+.sssize[
+```java[lite=2-3]
+A a = new A(3);
+Producer<Integer> getter =
+    () -> a.get();
+int x = getter.produce();
+System.out.println(x);
+```
+```java
+a = new A(4);
+x = getter.produce();
+System.out.println(x);
+```
+]
+]
+]
+
+---
+
+### Optimization
+
+.lc[
+### Lexical this
+### final
+#### - Capture
+#### - Reference
+]
+.rc[
+### final
+.col60[
+#### Class A
+.sssize[
+```java
+class A {
+  int x;
+  
+  public A (int x) {
+    this.x = x;
+  }
+  
+  public Integer get() {
+    Producer<Integer> prod = () -> this.x;
+    return prod.produce();
+  }
+}
+```
+]
+]
+.col40[
+#### Method Reference
+.sssize[
+```java[lite=2-3]
+A a = new A(3);
+Producer<Integer> getter =
+    a::get;
+int x = getter.produce();
+System.out.println(x);
+```
+```java
+a = new A(4);
+x = getter.produce();
+System.out.println(x);
+```
+]
+]
+]
+
+---
+
+name: Infinite_List
+class: middle, subtitles
+
+# Infinite List
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+]
+.rc[
+### Eager List
+#### Code
+.sssize[
+```java
+class EagerList<T> {
+  private final T head;
+  private final EagerList<T> tail;
+}
+```
+]
+]
+--
+.rc[
+##### Visualisation
+![List](img/09_List_01.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+]
+.rc[
+### Eager List
+#### Template
+.sssize[
+```java
+class EagerList<T> {
+  private final T head;
+  private final EagerList<T> tail;
+  
+  public static <T> EagerList<T> generate(T t, int size) { .. }
+  public static <T> EagerList<T> iterate(
+      T init,
+      BooleanCondition<T> pred,
+      Transformer<T, T> next
+    ) { .. }
+  public <R> EagerList<R> map(Transformer<T, R> fun) { .. }
+  public EagerList<T> filter(BooleanCondition<T> pred) { .. }
+}
+```
+]
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02a.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02b.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02c.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02d.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02e.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+]
+.rc[
+### Eager List
+#### map
+![map](img/09_List_02f.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+#### - filter
+]
+.rc[
+### Eager List
+#### filter
+![filter](img/09_List_03a.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+#### - filter
+]
+.rc[
+### Eager List
+#### filter
+![filter](img/09_List_03b.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+#### - filter
+]
+.rc[
+### Eager List
+#### filter
+![filter](img/09_List_03c.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+#### - filter
+]
+.rc[
+### Eager List
+#### filter
+![filter](img/09_List_03d.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+#### - Code
+#### - Template
+#### - map
+#### - filter
+#### - Test
+]
+.rc[
+### Eager List
+#### Test
+.sssize[
+```java
+EagerList<Integer> l = EagerList
+    .iterate(1,   i -> i < 10,   i -> i + 1)  // create [1,2,3,4,5,6,7,8,9]
+    .filter(i -> i % 3 == 0)                  // filter [_,_,3,_,_,6,_,_,9] => [3,6,9]
+    .map(i -> i * 2);                         // map    [6,12,18]
+l.head();
+l.tail().head();
+l.tail().tail().head();
+```
+]
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+]
+.rc[
+### Infintie List
+#### Code
+.sssize[
+```java
+class InfiniteList<T> {
+  private final Producer<T> head;
+  private final Producer<InfiniteList<T>> tail;
+}
+```
+]
+]
+--
+.rc[
+##### Visualisation
+![List](img/09_InfiniList_01.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+]
+.rc[
+### Infinite List
+#### Template
+.sssize[
+```java
+class InfiniteList<T> {
+  private final Producer<T> head;
+  private final Producer<InfiniteList<T>> tail;
+  
+  public static <T> InfiniteList<T> generate(Producer<T> prod) { .. }
+  public static <T> InfiniteList<T> iterate(
+      T init,
+      /* BooleanCondition<T> pred, */
+      Transformer<T, T> next
+    ) { .. }
+  public <R> InfiniteList<R> map(Transformer<T, R> fun) { .. }
+  public InfiniteList<T> filter(BooleanCondition<T> pred) { .. }
+}
+```
+]
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]
+]
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-b[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]
+]
+
+![Diagram](img/09_Diagram_01.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-b[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]
+]
+
+![Diagram](img/09_Diagram_02.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-b[`map(x -> x * 2)`]
+]
+
+![Diagram](img/09_Diagram_03.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_01.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_02.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_03.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_04.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_05.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_06.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_07.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_08.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_09.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_10.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_11.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_12.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_13.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_14.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_15.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_16.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_17.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_18.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_19.png)
+]
+
+---
+
+### Infinite List
+
+.lc[
+### Eager List
+### Infinite List
+#### - Code
+#### - Template
+#### - Visualisation
+]
+.rc[
+### Infinite List
+#### Visualisation
+> .sssize[
+.hilite-w[`InfiniteList.iterate(0, x -> x + 2)`]`.`.hilite-w[`map(x -> x + 1)`]`.`.hilite-w[`map(x -> x * 2)`]`.head()`
+]
+
+![Diagram](img/09_Head_20.png)
+]
+
+---
+
+name: Java_API
+class: middle, subtitles
+
+# Java API
+
+---
+
+### Java API
+
+.lc[
+### java.util.function
+]
+.rc[
+### java.util.function
+#### Java 17
+.vtbl.blhead[
+| CS2030S                       | java.util.function                                                                                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `BooleanCondition<T>::test`   | [`Predicate<T>::test`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Predicate.html#test&#40;T&#41;)           |
+| `Producer<T>::produce`        | [`Supplier<T>::get`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Supplier.html#get&#40;&#41;)                |
+| `Consumer<T>::consume`        | [`Consumer<T>::accept`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Consumer.html#accept&#40;T&#41;)         |
+| `Transformer<T,R>::transform` | [`Function<T,R>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/Function.html#apply&#40;T&#41;)         |
+| `Transformer<T,T>::transform` | [`UnaruOp<T>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/UnaryOperator.html)                        |
+| `Combiner<S,T,R>::combine`    | [`BiFunction<S,T,R>::apply`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/function/BiFunction.html#apply&#40;T,U&#41;) |
+]
+]
+
+---
+
+### Java API
+
+.lc[
+### java.util.function
+### Java Container
+]
+.rc[
+### Java Container
+#### Java 17
+.vtbl.blhead[
+| CS2030S                           | Java Version                                                                                                                                      |
+| --------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------- |
+| <code>Box<T></code>               | N/A                                                                                                                                               |
+| <code>Maybe<T></code>             | [<code>java.util.Optional&lt;T&gt;</code>](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Optional.html)                  |
+| <code>Lazy<T></code>              | N/A                                                                                                                                               |
+| <code>InfiniteList<T></code>      | [<code>java.util.stream.Stream&lt;T&gt;</code>](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html).cite[] |
+]
+
+.ref[Some differences apply.]
+]
+
+---
+
+name: Streams
+class: middle, subtitles
+
+# Streams
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+#### - Overview
+]
+.rc[
+### Pipeline
+#### Overview
+
+.img90[![Stream](img/09_Stream_01.png)]
+]
+--
+.rc[
+.col32[
+.card.bg-g[
+##### Data Source
+.content.tight[
+Produce a stream.<br><br>
+]
+]
+]
+.col34[
+.card.bg-y[
+##### Intermediate Operation
+.content.tight[
+Transform a stream into another stream.
+]
+]
+]
+.col33[
+.card.bg-r[
+##### Terminal Operation
+.content.tight[
+Consumes a stream.<br><br>
+]
+]
+]
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+#### - Overview
+#### - Source
+]
+.rc[
+### Pipeline
+#### Data Source
+##### Static Factory Methods
+- [`Stream::of(T...)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#of&#40;T...&#41;)
+- [`Stream::generate(Supplier<? extends T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#generate&#40;java.util.function.Supplier&#41;)
+- [`Stream::iterate(T, Predicate<? super T>, UnaryOperator<T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#iterate&#40;T,java.util.function.Predicate,java.util.function.UnaryOperator&#41;)
+
+##### Conversion from Other Data Types
+- [`Arrays::stream(T[])`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Arrays.html#stream&#40;T%5B%5D&#41;)
+- [`Collection::stream()`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/Collection.html#stream&#40;&#41;)
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+#### - Overview
+#### - Source
+#### - Intermediate
+]
+.rc[
+### Pipeline
+#### Intermediate Operations
+##### Stateless
+- [`Stream::filter(Predicate<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#filter&#40;java.util.function.Predicate&#41;)
+    - Keep the element if the predicate returns true on the element
+- [`Stream::map(Function<? super T, ? extends R>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#map&#40;java.util.function.Function&#41;)
+    - Transform each element with the given function
+- [`Stream::flatMap(Function<? super T, ? extends Stream<? extends R>>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#flatMap&#40;java.util.function.Function&#41;)
+    - map + flatten .mnote[(i.e., no nested stream)]
+    
+.col35[
+##### Stateful
+- [`Stream::sorted()`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#sorted&#40;&#41;)
+- [`Stream::distinct()`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#distinct&#40;&#41;)
+]
+.col65[
+##### Bounding
+- [`Stream::limit(long)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#limit&#40;long&#41;)
+- [`Stream::takeWhile(Predicate<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#takeWhile&#40;java.util.function.Predicate&#41;)
+]
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+#### - Overview
+#### - Source
+#### - Intermediate
+#### - Terminal
+]
+.rc[
+### Pipeline
+#### Terminal Operations
+- [`Stream::forEach(Consumer<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#forEach&#40;java.util.function.Consumer&#41;)
+    - Perform the operation specified by the consumer for each element
+- [`Stream::reduce(BinaryOperator<T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#reduce&#40;java.util.function.BinaryOperator&#41;)
+    - Perform a _reduction_ operation using the binary operator
+- [`Stream::count()`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#count&#40;&#41;)
+    - Returns the number of element in the stream
+- Element Matching
+    - [`Stream::allMatch(Predicate<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#allMatch&#40;java.util.function.Predicate&#41;)
+    - [`Stream::anyMatch(Predicate<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#anyMatch&#40;java.util.function.Predicate&#41;)
+    - [`Stream::noneMatch(Predicate<? super T>)`](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#noneMatch&#40;java.util.function.Predicate&#41;)
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+### Difference
+]
+.rc[
+### Difference from Infinite List
+#### Peeking
+.sssize[
+```java
+Stream.iterate(0, x -> x + 1)
+      .peek(System.out::println)
+      .takeWhile(x < 5)
+      .forEach(x -> {});
+```
+]
+
+#### Consumed Once
+.sssize[
+```java
+Stream<Integer> s = Stream.iterate(0, x -> x + 1).takeWhile(x -> x < 5);
+s.forEach(System.out::println);
+s.forEach(System.out::println); // Fail!
+```
+]
+> You have to recreate the stream!
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+### Difference
+### Summary
+#### - map
+]
+.rc[
+### Summary of Operations
+#### map
+
+![map](img/09_map.png)
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+### Difference
+### Summary
+#### - map
+#### - flatMap
+]
+.rc[
+### Summary of Operations
+#### flatMap
+
+![flatMap](img/09_flatmap.png)
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+### Difference
+### Summary
+#### - map
+#### - flatMap
+#### - filter
+]
+.rc[
+### Summary of Operations
+#### filter
+
+![filter](img/09_filter.png)
+]
+
+---
+
+### Streams
+
+.lc[
+### Pipeline
+### Difference
+### Summary
+#### - map
+#### - flatMap
+#### - filter
+#### - reduce
+]
+.rc[
+### Summary of Operations
+#### reduce
+
+![reduce](img/09_reduce.png)
+]
+
+---
+
+layout: false
+class: middle, end, fadein
+
+`jshell> /exit`
+
+`|  Goodbye`
