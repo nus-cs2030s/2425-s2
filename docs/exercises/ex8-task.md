@@ -1,6 +1,6 @@
-# Exercise 9: Keep Your World Moving
+# Exercise 8: Keep Your World Moving
 
-- Deadline: 16 April 2024, Tuesday, 12:01, SGT 
+- Deadline: 15 April 2025, Tuesday, 12:01, SGT 
 
 ## Prerequisite
 
