@@ -104,13 +104,13 @@ The usefulness of `CompletableFuture` comes from the ability to chain them up an
 
 The methods above run the given lambda expression in the same thread as the caller.  There is also an asynchronous version (`thenApplyAsync`, `thenComposeAsync`, `thenCombineAsync`), which may cause the given lambda expression to run in a different thread (thus more concurrency).
 
-`CompletableFuture` also has several methods that take in `Runnable``.  These methods have no analogy in our lab but it is similar to `runAsync` above.
+`CompletableFuture` also has several methods that take in `Runnable`.  These methods have no analogy in our lab but it is similar to `runAsync` above.
 
 - `thenRun` takes in a `Runnable`.  It executes the `Runnable` after the current stage is completed.
 - `runAfterBoth` takes in another `CompletableFuture`[^1] and a `Runnable`.  It executes the `Runnable` after the current stage completes and the input `CompletableFuture` is completed.
 - `runAfterEither` takes in another `CompletableFuture`[^1] and a `Runnable`.  It executes the `Runnable` after the current stage completes or the input `CompletableFuture` is completed.
 
-All of the methods that take in `Runnable`` return `CompletableFuture<Void>`.  Similarly, they also have the asynchronous version (`thenRunAsync`, `runAfterBothAsync`, `runAfterEitherAsync`).
+All of the methods that take in `Runnable` return `CompletableFuture<Void>`.  Similarly, they also have the asynchronous version (`thenRunAsync`, `runAfterBothAsync`, `runAfterEitherAsync`).
 
 [^1]: Actually, this is a `CompletionStage` which is a supertype of `CompletableFuture`.
 
