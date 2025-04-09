@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="stylesheets/dark.css">
 
 <!-- CHANGE TITLE -->
-<title>CS2030S AY23/24 S2 Lecture 10</title>
+<title>CS2030S AY24/25 S2 Lecture 10</title>
 <meta charset="utf-8">
 </head>
 <body>
@@ -22,7 +22,7 @@ class: middle, center
 
 ## Lecture 10
 
-### 1 April 2024
+### 31 March 2025
 ---
 class: middle
 
@@ -35,54 +35,12 @@ class: middle
 - CS2030S Feedback is now Open: https://blue.nus.edu.sg/blue/
 
 ---
-class: middle
-
-### PE2 Scope
-
-- Up to Unit 36
-- Up to Exercise 6
-- Up to Problem Set 8
-- Up to Lecture 10
-
----
-class: middle
-
-### What's next?
-
-- Next lectures: Async, Recap
-- Three more exercises
-- Two more problem sets
-- PE2: Saturday, 13 Apr, 12 PM - 6 PM
-- Final: Thursday, 2 May, 1 PM - 3 PM
-
----
-class: middle
-
-## Correction
-
-### Java Streams are *mutable*
-
----
 class: middle,left
 
 ### Quick Recap
 
 - InfiniteList (Immutable)
 - Java Streams (Mutable)
-
----
-class: middle,left
-
-### Topics covered today:
-
-- Java Variants
-
-(Units 1/4 and 2024)
-
----
-class: middle,center
-
-![:scale 60%](img/java-variants.jpg)
 
 ---
 class: middle,left
@@ -161,7 +119,7 @@ class: middle
 .smaller[
 ```Java
 return Maybe.of(map.get(student))
-            .flatMap(map -> Maybe.of(map.get(module))
+            .flatMap(map -> Maybe.of(map.get(module)))
             .flatMap(map -> Maybe.of(map.get(assessment)))
             .orElse("No such entry");
 ```
@@ -172,7 +130,7 @@ class: middle,wide
 .smaller[
 ```Java
 return Maybe.of(map.get(student))          .flatMap(map -> Maybe.of(map
-                   .get(module))            .flatMap(map -> Maybe.of(map
+                   .get(module)))            .flatMap(map -> Maybe.of(map
                    .get(assessment)))      .orElse("No such entry");
 ```
 ]
@@ -380,7 +338,7 @@ class: bottom
 .tiny[
 Version: v1.0
 
-Last Updated: Fri Mar 29 14:00:00 +08 2024
+Last Updated: Fri Mar 31 07:30:00 +08 2025
 ]
 </textarea>
 
@@ -402,7 +360,7 @@ var slideshow = remark.create({
 	},
 	ratio: '16:9',
 	highlightStyle: 'ir-black',
-    slideNumberFormat: 'CS2030S AY23/24 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
+    slideNumberFormat: 'CS2030S AY24/25 S2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;%current% / %total%',
 });
  // Setup MathJax
   MathJax.Hub.Config({
