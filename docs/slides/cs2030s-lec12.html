@@ -241,6 +241,17 @@ class: middle, wide
 ]
 
 ---
+class: middle,wide
+.smaller[
+```Java
+  Address addr = user.getAddress();
+  int code = get(addr,  
+                 a -> a.getCountry().equals("Singapore"), 
+                 a -> a.getPostalCode, 
+                 () -> 0);
+```
+]
+---
 class: middle, wide
 .tiny[
 ```Java
@@ -255,7 +266,7 @@ class: middle, wide
     Maybe.of(number)
       .or(() -> Maybe.of(user.getMainLineNumber()))
       .map(p -> p.toString())
-      .ifPresent(s -> show(s));
+      .ifPresent(s -> save(s));
   }
 ```
 ]
