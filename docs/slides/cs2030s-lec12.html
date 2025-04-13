@@ -344,13 +344,13 @@ class: middle wide
 .tiny[
 ```python
 from abc import ABC, abstractmethod
-class Shape:
+class Shape(ABC):
     @abstractmethod
-    def getArea(self):
+    def get_area(self):
         pass
  
 class Circle(Shape):
-    def noofsides(self):
+    def no_of_sides(self):
         return ...
 ```
 ]
