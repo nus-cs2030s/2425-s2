@@ -1,0 +1,29 @@
+/* Fading */
+.remark-visible .fadein {
+  opacity: 0;
+  -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+  -moz-animation: 0.5s ease 0s normal forwards 1 fadein;
+  -o-animation: 0.5s ease 0s normal forwards 1 fadein;
+  animation: 0.5s ease 0s normal forwards 1 fadein;
+}
+.remark-fading .fadeout {
+  opacity: 0;
+  -webkit-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  -moz-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  -o-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  animation: 0.5s ease 0s normal forwards 1 fadeout;
+}
+.remark-visible .fadeinout {
+  opacity: 0;
+  -webkit-animation: 0.5s ease 0s normal forwards 1 fadein;
+  -moz-animation: 0.5s ease 0s normal forwards 1 fadein;
+  -o-animation: 0.5s ease 0s normal forwards 1 fadein;
+  animation: 0.5s ease 0s normal forwards 1 fadein;
+}
+.remark-fading .fadeinout {
+  opacity: 0;
+  -webkit-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  -moz-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  -o-animation: 0.5s ease 0s normal forwards 1 fadeout;
+  animation: 0.5s ease 0s normal forwards 1 fadeout;
+}

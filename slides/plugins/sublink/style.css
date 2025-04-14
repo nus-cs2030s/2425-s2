@@ -1,0 +1,14 @@
+/* .lc h3 a, .lc h3 a:visited, .lc h3 a:link, .lc h3 a:hover, .lc h3 a:active,  */
+/* .lc h4 a, .lc h4 a:visited, .lc h4 a:link, .lc h4 a:hover, .lc h4 a:active { */
+  /* color: var(--nbkclr); */
+/* } */
+/* .lc h3:last-of-type a, .lc h4:last-child a { */
+  /* color: var(--bbkclr); */
+/* } */
+.lc a {
+  color: var(--nbkclr);
+}
+.lc .current {
+  color: var(--bbkclr);
+  font-weight: 500; 
+}

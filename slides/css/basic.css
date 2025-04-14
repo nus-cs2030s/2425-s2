@@ -1,0 +1,284 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,300;0,400;0,500;1,100;1,300;1,400;1,500&display=swap');
+@import url(https://fontlibrary.org//face/mononoki);
+
+:root {
+  --brdclr: #340D09;  /* colour: black red    */
+  --drdclr: #A70F01;  /* colour: dark  red    */
+  --nrdclr: #FE2712;  /* colour: std   red    */
+  --lrdclr: #FE8176;  /* colour: light red    */
+  /* --wrdclr: #FFDEDB; */  /* colour: white red    */
+  --wrdclr: #FFEEEB;  /* colour: white red    */
+  
+  --bgnclr: #0A3409;  /* colour: black green  */
+  --dgnclr: #305A30;  /* colour: dark  green  */
+  --ngnclr: #559E54;  /* colour: std   green  */
+  --lgnclr: #92C591;  /* colour: light green  */
+  --wgnclr: #E8F3E8;  /* colour: white green  */
+  
+  --bblclr: #091534;  /* colour: black blue   */
+  --dblclr: #012998;  /* colour: dark  blue   */
+  --nblclr: #0247FE;  /* colour: std   blue   */
+  --lblclr: #678FFE;  /* colour: light blue   */
+  /* --wblclr: #DBE5FF; */  /* colour: white blue   */
+  --wblclr: #EEF5FF;  /* colour: white blue   */
+  
+  --bylclr: #343409;  /* colour: black yellow */
+  --dylclr: #CBCB01;  /* colour: dark  yellow */
+  --nylclr: #FEFE33;  /* colour: std   yellow */
+  --lylclr: #FEFE9A;  /* colour: light yellow */
+  --wylclr: #FFFFDB;  /* colour: white yellow */
+  
+  --bprclr: #311432;  /* colour: black purple */
+  --dprclr: #710193;  /* colour: dark  purple */
+  --nprclr: #A32CC4;  /* colour: std   purple */
+  --lprclr: #A45EE5;  /* colour: light purple */
+  --wprclr: #E39FF6;  /* colour: white purple */
+  
+  --bbkclr: #111;     /* colour: black black  */
+  --dbkclr: #333;     /* colour: dark  black  */
+  --nbkclr: #888;     /* colour: std   black  */
+  --lbkclr: #ddd;     /* colour: light black  */
+  --wbkclr: #fff;     /* colour: white black  */
+  
+  --nusorange: #ef7c00;
+  --nusblue  : #003d7c;
+  
+  --hrdclr: #FE817650;  /* colour: hilite red    */
+  --hgnclr: #92C59180;  /* colour: hilite green  */
+  --hblclr: #678FFE50;  /* colour: hilite blue   */
+}
+
+/* General */
+html {
+  color: var(--dbkclr);
+  background: var(--lbkclr);
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  text-rendering: optimizelegibility;
+}
+body, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, code, input, textarea, p, blockquote, th, td, hr, button, label, option {
+  margin: 0;
+  padding: 0;
+}
+body, button, input, select, label, option {
+  font-family: 'Fira Sans';
+  font-weight: 300;
+}
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Yanone Kaffeesatz';
+  color: var(--dbkclr);
+  line-height: 1.5;
+}
+h1 {
+  font-weight: 700;
+}
+h3, h5 {
+  font-weight: 500;
+}
+h2, h4, h6 {
+  font-weight: 300;
+}
+sup {
+  top: -0.5em;
+}
+sub {
+  bottom: -0.25em;
+}
+em {
+  font-style: italic;
+}
+strong, b {
+  font-weight: 500;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+th {
+  text-align: left;
+  font-weight: 500;
+}
+blockquote {
+  position: relative;
+  color: var(--dbkclr);
+  border-left: 0.1em solid var(--dblclr);
+  padding-left: 1em;
+  margin: 0 2em 0 1em;
+  quotes: "\201C""\201D""\2018""\2019";
+}
+.remark-slide-scaler {
+  overflow: hidden;
+}
+
+/* Links */
+.basic a {
+  color: var(--lblclr);
+  text-decoration: none;
+}
+
+.basic a:hover {
+  color: var(--nbltxt);
+  text-decoration: none;
+}
+
+/* Header + Footer */
+.basic .header {
+	background: -webkit-gradient(linear, left top, right top, color-stop(10%,var(--nusorange)), color-stop(45%,var(--nusblue)));
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 15px;
+	width: 100%;
+	text-align: left;
+}
+.basic .footer p {
+  border-top: 1px solid var(--lbkclr);
+  font-size: 12px;
+	text-align: center;
+	position: fixed;
+	bottom: 5px;
+  left: 0;
+	padding: 0;
+	margin: 0;
+	width: 100%;
+}
+.basic .remark-slide-number {
+  font-size: 12px;
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+}
+
+/* Text */
+.basic p, .basic pre, .basic samp, .basic ul, .basic ol, .basic table, .basic blockquote {
+  margin-bottom: 1em;
+  text-align: justify;
+}
+.basic .remark-code-header p {
+  margin-bottom: 0;
+}
+.basic h1, .basic h2, .basic h3, .basic h4, .basic h5, .basic h6 {
+  margin-top: 0em;
+  margin-bottom: 0em;
+  line-height: 1.5;
+}
+.basic h1 {
+  font-size: 120px;
+}
+.basic h2 {
+  font-size: 100px;
+}
+.basic h3 {
+  font-size: 60px;
+}
+.basic h4 {
+  font-size: 54px;
+}
+.basic h5 {
+  font-size: 48px;
+}
+.basic h6 {
+  font-size: 32px;
+}
+
+/* Code */
+.basic .remark-code,
+.basic .remark-code-title {
+  line-height: 1.5;
+}
+
+/* List */
+.basic ul {
+  margin-left: 1.3em;
+}
+.basic ol {
+  margin-left: 1.9em;
+}
+.basic li ul, .basic li ol {
+  margin-bottom: 0.8em;
+  margin-left: 2em;
+}
+.basic li ol {
+  list-style-type: upper-alpha;
+}
+
+/* Table */
+.basic table th, .basic table td, .basic table caption {
+  border: 1px solid var(--nbkclr);
+  padding: 0.5em 1em;
+  color: var(--dbkclr);
+}
+.basic table th {
+  background: var(--lbkclr);
+}
+.basic table thead th {
+  background: var(--lbkclr);
+}
+.basic table caption {
+  border-bottom: none;
+}
+
+/* Images */
+.basic img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Buttons */
+.basic .btn {
+  cursor: pointer;
+}
+.basic .next-slide {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  bottom: 35px;
+  right: 5px;
+  font-size: 50px;
+}
+
+/* Dropdown */
+.basic select {
+  background-color: #ffffff00;
+  border: 1px solid #555;
+}
+
+.iframe75 {
+  width: 133%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 915px;
+  zoom: 0.75;
+  z-index: 5;
+  -moz-transform: scale(0.75);
+  -moz-transform-origin: 0 0;
+  -o-transform: scale(0.75);
+  -o-transform-origin: 0 0;
+  -webkit-transform: scale(0.75);
+  -webkit-transform-origin: 0 0;
+}
+
+.alph ol li {
+  list-style-type: upper-alpha;
+}
+
+.bad blockquote { border-left-color: var(--drdclr); }
+.bad blockquote h5 { color: var(--drdclr); }
+.good blockquote { border-left-color: var(--dgnclr); }
+.good blockquote h5 { color: var(--dgnclr); }
+
+/* Scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #aaa #ddd;
+}
+*::-webkit-scrollbar { width: 7px; height: 7px; background-color: #ddd; }
+*::-webkit-scrollbar-thumb { background-color: #aaa; }
+
+textarea {
+  font-family: 'Mononoki';
+  width: 100%;
+  font-size:22px;
+}

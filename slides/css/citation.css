@@ -1,0 +1,75 @@
+.note {
+  position: absolute;
+  bottom: 1.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.note1 {
+  position: absolute;
+  bottom: 2.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.note2 {
+  position: absolute;
+  bottom: 3.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.ref {
+  position: absolute;
+  bottom: 1.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.ref1 {
+  position: absolute;
+  bottom: 2.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.ref2 {
+  position: absolute;
+  bottom: 3.2em;
+  padding-right: 25px;
+  font-size: 0.7em;
+}
+.cite::before,
+.ref::before {
+  content: '✱';
+  color: var(--drdclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}
+.cite1::before,
+.ref1::before {
+  content: '✱✱';
+  color: var(--drdclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}
+.cite2::before,
+.ref2::before {
+  content: '✱✱✱';
+  color: var(--drdclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}
+.note::before {
+  content: '⋕';
+  color: var(--dblclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}
+.note1::before {
+  content: '⋕⋕';
+  color: var(--dblclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}
+.note2::before {
+  content: '⋕⋕⋕';
+  color: var(--dblclr);
+  font-size: 0.6em;
+  vertical-align: super;
+}

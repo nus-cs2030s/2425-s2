@@ -1,0 +1,92 @@
+/* Proof */
+.proof li,
+.proof20 li {
+  width: 100%;
+  height: 100%;
+}
+.proof .proof-reason {
+  display: inline-block;
+  width: 60%;
+}
+.proof .proof-src {
+  display: inline-block;
+  width: 10%;
+  text-align: right;
+}
+.proof .proof-dst {
+  display: inline-block;
+  width: 10%;
+  text-align: left;
+}
+.proof .proof-qed::before {
+  content: '∎';
+}
+
+.proof20 .proof-src {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+}
+.proof20 .proof-dst {
+  display: inline-block;
+  width: 20%;
+  text-align: left;
+}
+
+.pl  .proof .proof-src,
+.pl1 .proof .proof-src,
+.pl2 .proof .proof-src,
+.pl3 .proof .proof-src {
+  display: inline-block;
+  width: 20%;
+  text-align: right;
+}
+.pl  .proof .proof-dst,
+.pl1 .proof .proof-dst,
+.pl2 .proof .proof-dst,
+.pl3 .proof .proof-dst {
+  display: inline-block;
+  width: 20%;
+  text-align: left;
+}
+.pl  .proof li .proof-reason,
+.pl1 .proof li .proof-reason,
+.pl2 .proof li .proof-reason,
+.pl3 .proof li .proof-reason {
+  display: inline-block;
+  width: 45%;
+  text-align: left;
+}
+.pr  .proof .proof-step,
+.pr1 .proof .proof-step,
+.pr2 .proof .proof-step,
+.pr3 .proof .proof-step {
+  display: inline-block;
+  width: 47%;
+}
+
+
+.pl  .proof-s .proof-src,
+.pl1 .proof-s .proof-src,
+.pl2 .proof-s .proof-src,
+.pl3 .proof-s .proof-src {
+  display: inline-block;
+  width: 15%;
+  text-align: right;
+}
+.pl  .proof-s .proof-dst,
+.pl1 .proof-s .proof-dst,
+.pl2 .proof-s .proof-dst,
+.pl3 .proof-s .proof-dst {
+  display: inline-block;
+  width: 15%;
+  text-align: left;
+}
+.pl  .proof-s li .proof-reason,
+.pl1 .proof-s li .proof-reason,
+.pl2 .proof-s li .proof-reason,
+.pl3 .proof-s li .proof-reason {
+  display: inline-block;
+  width: 55%;
+  text-align: left;
+}

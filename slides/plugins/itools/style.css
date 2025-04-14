@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@300;500;700&display=swap');
+
+:root {
+  --itools-width:    80%;
+  --itools-min:      300px;
+  --itools-label:    36px;
+  --itools-title:    30px;
+  --itools-subtitle: 24px;
+  --itools-icon:     20px;
+  --itools-btn:      24px;
+}
+
+.remark-itools-area {
+  position: fixed;
+  height: 100%;
+  width: var(--itools-width);
+  min-width: var(--itools-min);
+  top: 0;
+  background-color:#ededed;
+  text-transform:capitalize;
+  -webkit-box-shadow: inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  -moz-box-shadow:    inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  box-shadow:         inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55);
+  z-index: 10;
+}
+
+.remark-itools-content {
+  position: relative;
+  height: 100%;
+  background-color:#ededed;
+}
+.remark-itools-content::before,
+.remark-itools-content::after {
+  content: "";
+  display: table;
+}
+.remark-itools-content::after {
+  clear: both;
+}
+
+.remark-itools-content-tab {
+  float: left;
+  font-family: 'Yanone Kaffeesatz';
+}
+.remark-itools-content-tab-btn {
+  display: none;
+}
+.remark-itools-content-tab-lbl {
+  position: relative;
+  display: block;
+  line-height: 2.5;
+  height: 2.5em;
+  padding: 0 1.2em;
+  background: #ddd;
+  border-right: 0.2em solid #bbb;
+  color: #333;
+  cursor: pointer;
+  top: 0;
+  transition: all 0.25s;
+}
+.remark-itools-content-tab-lbl:hover {
+  top: -0.25rem;
+  transition: top 0.25s;
+}
+.remark-itools-content-tab-txt {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 1;
+  top: 2.5em;
+  left: 0;
+  background: #eee;
+  color: #2c3e50;
+  border-bottom: 0.25rem solid #bbb;
+  opacity: 0;
+  transition: all 0.35s;
+}
+.remark-itools-content-tab-btn:checked + .remark-itools-content-tab-lbl {
+  background: #111;
+  color: #eee;
+  border-bottom: 0;
+  border-right: 0.2em solid #111;
+  transition: all 0.35s;
+  z-index: 1;
+  top: -0.0625rem;
+}
+.remark-itools-content-tab-btn:checked + label + .remark-itools-content-tab-txt {
+  z-index: 2;
+  opacity: 1;
+  transition: all 0.35s;
+}
+
+.remark-itools-name {
+  padding: 5px;
+}
+.remark-itools-reload {
+  font-size: 18px;
+  padding: 5px;
+}
+
+.remark-itools-elem {
+  display: block;
+  position: absolute;
+  width: calc(100% + 14px);
+  height: calc(100vh - 3em);
+  border-bottom: 0.5em solid #111;
+}
+
+.remark-itools-shown {
+  right: 0;
+}
+.remark-itools-hidden {
+  right: calc(0% - var(--itools-width));
+}
+.remark-itools-btn {
+  position: absolute;
+  left: -31px;
+  top: 25px;
+  font-size: var(--itools-btn);
+  opacity: 0.4;
+  color: #555;
+  cursor: pointer;
+}
+.remark-itools-btn:hover {
+  opacity: 0.8;
+  color: #111;
+}
+
+.remark-itools-showing {
+  right: 0;
+  animation: 0.5s remark-itools-showing;
+}
+.remark-itools-hiding {
+  right: calc(0% - var(--itools-width));
+  animation: 0.5s remark-itools-hiding;
+}
+
+@-webkit-keyframes remark-itools-showing {
+  0% {
+    right: calc(0% - var(--itools-width));
+  }
+  100% {
+    right: 0;
+  }
+}
+@keyframes remark-itools-showing {
+  0% {
+    right: calc(0% - var(--itools-width));
+  }
+  100% {
+    right: 0;
+  }
+}
+@-webkit-keyframes remark-itools-hiding {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: calc(0% - var(--itools-width));
+  }
+}
+@keyframes remark-itools-hiding {
+  0% {
+    right: 0;
+  }
+  100% {
+    right: calc(0% - var(--itools-width));
+  }
+}
+
+.iframe-100 {
+}
+.iframe-125 {
+  width: 80% !important;
+  height: 80% !important;
+  
+  -webkit-transform: scale(1.25);
+  -webkit-transform-origin: 0 0;
+  
+  -moz-transform: scale(1.25);
+  -moz-transform-origin: 0 0;
+  
+  transform: scale(1.25);
+  transform-origin: 0 0;
+}
+.iframe-130 {
+  width: 76.92% !important;
+  height: 76.92% !important;
+  
+  -webkit-transform: scale(1.4);
+  -webkit-transform-origin: 0 0;
+  
+  -moz-transform: scale(1.4);
+  -moz-transform-origin: 0 0;
+  
+  transform: scale(1.4);
+  transform-origin: 0 0;
+}
+.iframe-140 {
+  width: 71.42% !important;
+  height: 71.42% !important;
+  
+  -webkit-transform: scale(1.4);
+  -webkit-transform-origin: 0 0;
+  
+  -moz-transform: scale(1.4);
+  -moz-transform-origin: 0 0;
+  
+  transform: scale(1.4);
+  transform-origin: 0 0;
+}
+.iframe-150 {
+  width: 66.67% !important;
+  height: 66.67% !important;
+  
+  -webkit-transform: scale(1.5);
+  -webkit-transform-origin: 0 0;
+  
+  -moz-transform: scale(1.5);
+  -moz-transform-origin: 0 0;
+  
+  transform: scale(1.5);
+  transform-origin: 0 0;
+}
+
+
+@media print {
+  .remark-itools-btn {
+    display: none;
+  }
+}

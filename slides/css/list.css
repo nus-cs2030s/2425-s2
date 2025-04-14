@@ -1,0 +1,12 @@
+.nol li {
+  list-style: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg'/%3E");
+}
+.deindent ul {
+  margin-left: 0;
+}
+.alph li {
+  list-style-type: upper-roman;
+}
+.dec li {
+  list-style-type: decimal;
+}

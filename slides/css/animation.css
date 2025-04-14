@@ -1,0 +1,46 @@
+/* Fading */
+@keyframes fadein {
+  0% { opacity:0; display:none; }
+  1% { opacity:0; display:none; }
+  100% { opacity:1; display:block; }
+}
+@-webkit-keyframes fadein {
+  0% { opacity:0; display:none; }
+  1% { opacity:0; display:none; }
+  100% { opacity:1; display:block; }
+}
+
+@keyframes fadeout {
+  0% { opacity:1; display:block; }
+  99% { opacity:0; display:block; }
+  100% { opacity:0; display:none; }
+}
+@-webkit-keyframes fadeout {
+  0% { opacity:1; display:block; }
+  99% { opacity:0; display:block; }
+  100% { opacity:0; display:none; }
+}
+
+
+/* Sliding */
+@keyframes slideintop {
+  0% { top:-100%; }
+  1% { top:-100%; }
+  100% { top:0; }
+}
+@-webkit-keyframes slideintop {
+  0% { top:-100%; }
+  1% { top:-100%; }
+  100% { top:0; }
+}
+
+@keyframes slideouttop {
+  0% { top:0; }
+  1% { top:0; }
+  100% { top:-100%; }
+}
+@-webkit-keyframes slideouttop {
+  0% { top:0; }
+  1% { top:0; }
+  100% { top:-100%; }
+}

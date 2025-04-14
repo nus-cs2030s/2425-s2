@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Functional Dependencies FD Database DB DBMS Closure Relational Algebra">
+    <meta name="keywords" content="Functional Dependencies FD Database DB DBMS Closure Relational Algebra">
+    
+    <title>RA Tools</title>
+    
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js"></script>
+    
+    <!-- Cytoscape -->
+    <script type="text/javascript" src="https://unpkg.com/cytoscape/dist/cytoscape.min.js"></script>
+
+		<!--polyfills are needed for this extension for old browsers like IE -->
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.5.7/shim.min.js"></script>
+
+		<script type="text/javascript" src="https://unpkg.com/layout-base/layout-base.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/dagre@0.7.4/dist/dagre.js"></script>
+    <script type="text/javascript" src="https://cytoscape.org/cytoscape.js-dagre/cytoscape-dagre.js"></script>
+    
+    <script>
+    var $j = jQuery.noConflict();
+    </script>
+    
+    <!-- External Libraries -->
+    <!-- <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"> -->
+    <link rel="stylesheet" href="vendor/font-awesome/css/font-awesome.min.css">
+    <script src="https://cdn.rawgit.com/eligrey/canvas-toBlob.js/f1a01896135ab378aa5c0118eadd81da55e698d8/canvas-toBlob.js"></script>
+     <script src="https://cdn.rawgit.com/eligrey/FileSaver.js/e9d941381475b5df8b7d7691013401e171014e89/FileSaver.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ace/1.9.5/ace.js" integrity="sha512-wju2wMXmukx2760GKQBjykvRNeRY8LdMn6XnMPJQKRF7olV229IytqfkW9Z83lrdCVA168r4Ut4paNoRxJWoag==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+	
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css">
+    
+    <script src="Treant.js"></script>
+    <link rel="stylesheet" href="./Treant.css">
+    <script src="vendor/raphael.js"></script>
+    <script src="vendor/jquery.min.js"></script>
+    <script src="vendor/jquery.easing.js"></script>
+    
+    <script src="Lib/alg_parser_STR.js"></script>
+    <script src="Lib/tbl_parser_STR.js"></script>
+    <script src="Lib/editor.js"></script>
+    <script src="Lib/errors.js"></script>
+    <script src="Lib/ra.js"></script>
+    <link rel="stylesheet" href="common.css">
+  </head>
+  <body>
+    <div style="width:100%; height:55px">
+      <h1 style="font-size:36px; font-weight:700; padding-left:15px">Relational Algebra Evaluator</h1>
+    </div>
+    
+    <div style="width:100%; height:calc(100vh - 80px)">
+      <div style="width:25%; height:calc(100vh - 80px); float:left">
+        <div class="input-group" style="height:38px">
+          <div class="input-group-prepend">
+            <span class="input-group-text"><i class="fa fa-file" aria-hidden="true"></i></span>
+          </div>
+          <div class="custom-file input-group-sm">
+            <input type="file" class="custom-file-input" id="upload">
+            <label class="custom-file-label" for="upload">Upload table</label>
+          </div>
+        </div>
+        <div id='code' style="height:calc(40vh - 38px)"></div>
+        <div id='cons' style="height:calc(10vh)"></div>
+        <div id='cy-div' class="cy-min">
+          <div id='cy' style="height:100%; width=100%"></div>
+          <span class="dl"><i class="fas fa-save"id="dl"></i></span>
+          <span class="fs"><i class="fas fa-expand" id="fs"></i></span>
+        </div>
+      </div>
+    
+      <div style="width:75%; height:calc(100vh - 80px); float:right">
+        <div class="chart" id="canvas" style="width:100%; height:calc(100vh - 80px - 73px)"></div>
+
+        <div class="input-group" style="height:35px; width:100%">
+          <div class="input-group-prepend">
+            <button type='button' class='btn btn-primary btn-sm' id='sel' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Selection</b><br />Format: <samp>σ[cond](rel)</samp><br />Alt: <samp>%S[cond](rel)</samp><br /><i>Example</i>: <samp>σ[a > 1](R)</samp>">σ</button>
+            <button type='button' class='btn btn-primary btn-sm' id='proj' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Projection</b><br />Format: <samp>π[cond](rel)</samp><br />Alt: <samp>%P[cond](rel)</samp><br /><i>Example</i>: <samp>π[b,a](R)</samp>">π</button>
+            <button type='button' class='btn btn-primary btn-sm' id='ren' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Renaming</b><br />Format: <samp>ρ[new↤old](rel)</samp><br />Alt: <samp>%R[new<-old](rel)</samp><br /><i>Example</i>: <samp>ρ[a ↤ e](R)</samp><br /><i><u>see next button for arrow</u></i>">ρ</button>
+            
+            <button type='button' class='btn btn-info btn-sm' id='arr' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Arrow</b><br />Format: <samp>new↤old</samp><br />Alt: <samp>new<-old</samp><br /><i>Example</i>: <samp>ρ[a ↤ e](R)</samp><br /><i><u>see prev button for renaming</u></i>">↤</button>
+            
+            <button type='button' class='btn btn-secondary btn-sm' id='cup' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Union</b><br />Format: <samp>rel ∪ rel</samp><br />Alt 1: <samp>rel \/ rel</samp><br />Alt 2: <samp>rel || rel</samp><br /><i>Example</i>: <samp>R ∪ S</samp>">∪</button>
+            <button type='button' class='btn btn-secondary btn-sm' id='cap' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Intersection</b><br />Format: <samp>rel ∩ rel</samp><br />Alt 1: <samp>rel /\ rel</samp><br />Alt 2: <samp>rel && rel</samp><br /><i>Example</i>: <samp>R ∩ S</samp>">∩</button>
+            <button type='button' class='btn btn-secondary btn-sm' id='cart' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Cartesian Join</b><br />Format: <samp>rel × rel</samp><br />Alt: <samp>rel * rel</samp><br /><i>Example</i>: <samp>R × S</samp>">×</button>
+            
+            <button type='button' class='btn btn-light btn-sm' id='nat' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Inner/Natural Join</b><br />Inner: <samp>rel ⋈[cond] rel</samp><br />Alt: <samp>rel #[cond] rel</samp><br />Natural: <samp>rel ⋈ rel</samp><br />Alt: <samp>rel # rel</samp><br /><i>Example</i>: <samp>R ⋈ S</samp>">⋈</button>
+            <button type='button' class='btn btn-light btn-sm' id='lout' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Left (Natural) Outer Join</b><br />Left Outer: <samp>rel ⟕[cond] rel</samp><br />Alt: <samp>rel #l[cond] rel</samp><br />Natural: <samp>rel ⟕ rel</samp><br />Alt: <samp>rel #l rel</samp><br /><i>Example</i>: <samp>R ⟕ S</samp>">⟕</button>
+            <button type='button' class='btn btn-light btn-sm' id='rout' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Right (Natural) Outer Join</b><br />Left Outer: <samp>rel ⟖[cond] rel</samp><br />Alt: <samp>rel #r[cond] rel</samp><br />Natural: <samp>rel ⟖ rel</samp><br />Alt: <samp>rel #r rel</samp><br /><i>Example</i>: <samp>R ⟖ S</samp>">⟖</button>
+            <button type='button' class='btn btn-light btn-sm' id='fout' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Full (Natural) Outer Join</b><br />Left Outer: <samp>rel ⟗[cond] rel</samp><br />Alt: <samp>rel #f[cond] rel</samp><br />Natural: <samp>rel ⟗ rel</samp><br />Alt: <samp>rel #f rel</samp><br /><i>Example</i>: <samp>R ⟗ S</samp>">⟗</button>
+          </div>
+
+          <div class="input-group-append">
+            <button type='button' class='btn btn-warning btn-sm' id='not' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Negation (NOT)</b><br />Format: <samp>¬cond</samp><br />Alt 1: <samp>!cond</samp><br />Alt 2: <samp>~cond</samp><br /><i>Example</i>: <samp>σ[¬(a = 1)](R)</samp>">¬</button>
+            <button type='button' class='btn btn-warning btn-sm' id='land' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Conjunction (AND)</b><br />Format: <samp>cond ⋀ cond</samp><br />Alt: <samp>cond & cond</samp><br /><i>Example</i>: <samp>σ[¬(a = 1)](R)</samp>">⋀</button>
+            <button type='button' class='btn btn-warning btn-sm' id='lor' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Disjunction (OR)</b><br />Format: <samp>cond ⋀ cond</samp><br />Alt: <samp>cond & cond</samp><br /><i>Example</i>: <samp>σ[¬(a = 1)](R)</samp>">⋁</button>
+            <button type='button' class='btn btn-success btn-sm' id='eq' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Equal To</b><br />Format: <samp>cond = cond</samp><br /><i>Example</i>: <samp>σ[¬(a = 1)](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">=</button>
+            <button type='button' class='btn btn-success btn-sm' id='neq' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Not Equal To</b><br />Format: <samp>cond ≠ cond</samp><br />Alt 1: <samp>cond != cond</samp><br />Alt 2: <samp>cond <> cond</samp><br /><i>Example</i>: <samp>σ[a ≠ 1](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">≠</button>
+            <button type='button' class='btn btn-success btn-sm' id='lte' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Less Than or Equal To</b><br />Format: <samp>cond ≤ cond</samp><br />Alt: <samp>cond <= cond</samp><br /><i>Example</i>: <samp>σ[a ≤ 1](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">≤</button>
+            <button type='button' class='btn btn-success btn-sm' id='gte' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Greater Than or Equal To</b><br />Format: <samp>cond ≥ cond</samp><br />Alt: <samp>cond >= cond</samp><br /><i>Example</i>: <samp>σ[a ≥ 1](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">≥</button>
+            <button type='button' class='btn btn-success btn-sm' id='lt' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Less Than</b><br />Format: <samp>cond &lt; cond</samp><br /><i>Example</i>: <samp>σ[a &lt; 1](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">&lt;</button>
+            <button type='button' class='btn btn-success btn-sm' id='gt' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Greater Than</b><br />Format: <samp>cond &gt; cond</samp><br /><i>Example</i>: <samp>σ[a &gt; 1](R)</samp><br /><i><u>NOTE</u></i>: return <i>unknown</i> on <samp>null</samp> values">&gt;</button>
+            
+            <button type='button' class='btn btn-danger btn-sm' id='eqv' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Equivalent To</b><br />Format: <samp>cond ≡ cond</samp><br />Alt: <samp>cond === cond</samp><br /><i>Example</i>: <samp>σ[a ≡ null](R)</samp><br /><i><u>NOTE</u></i></u></i>: return <i>Boolean</i> on <samp>null</samp> values">≡</button>
+            <button type='button' class='btn btn-danger btn-sm' id='neqv' data-toggle="tooltip" data-html="true" data-placement="top" title="<b>Not Equivalent To</b><br />Format: <samp>cond ≢ cond</samp><br />Alt: <samp>cond =/= cond</samp><br /><i>Example</i>: <samp>σ[a ≢ null)](R)</samp><br /><i><u>NOTE</u></i></u></i>: return <i>Boolean</i> on <samp>null</samp> values">≢</button>
+          </div>
+        </div>
+
+        <div class="input-group" style="width:100%; height:35px">
+          <input type="text" class="form-control" placeholder="Relational algebra expression" id="relalg">
+          <div class="input-group-append">
+            <button type='button' class='btn btn-outline-secondary btn-sm' id='sql' data-toggle="tooltip" data-html="true" data-placement="top" title="Download equivalent SQL">
+              <i class="fas fa-file-code"></i>
+            </button>
+            <button type='button' class='btn btn-outline-secondary btn-sm' id='play' data-toggle="tooltip" data-html="true" data-placement="top" title="Evaluate expression">
+              <i class='fa fa-play'></i>
+            </button>
+          </div>
+        </div>
+                
+      </div>
+    </div>
+    
+    <div id="copyright" class="center" style="height:25px">
+    </div>
+    
+    <script src="./init.js"></script>
+    <script>
+      document.getElementById('copyright').innerHTML = `&#169; 2021-${new Date().getFullYear()}  Adi Yoga Sidi Prabawa`;
+    </script>
+  </body>
+</html>

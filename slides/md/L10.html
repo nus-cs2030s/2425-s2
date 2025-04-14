@@ -1,0 +1,1725 @@
+layout: true
+class: basic, fadein, tabler, layout
+name: content
+<div class="header"></div>
+<div class="footer"><p>CS2030S: Programming Methodology II -- Adi Yoga Sidi Prabawa</p></div>
+
+---
+
+name: Lecture_10
+class: bottom, titles
+
+# CS2030S
+## Programming Methodology II
+### Lecture 10: Monad and Parallel Stream
+
+---
+
+name: Announcement
+class: middle, subtitles
+
+# Announcement
+
+---
+
+### Announcement
+
+.lc[
+### PE2
+]
+.rc[
+### PE2
+#### PE2 Information
+- Instructions:
+    - https://canvas.nus.edu.sg/courses/38513/pages/pe2-information
+- Timing and Venue
+    - https://docs.google.com/spreadsheets/d/1IIyOlANs_jkBgUjWrdYaiIs4BQvKp4Z34zzBpz_mmb8/edit#gid=0
+
+#### PE2 Scope
+- Units 1-36, Lab 1-6, Problem Sets 1-8, Lecture 1-10
+- 1 Programming Question, 90 Minutes
+
+#### Practice PE2
+- This week lab session
+]
+
+---
+
+### Announcement
+
+.lc[
+### PE2
+### Well-Being
+]
+.rc[
+### Well-Being Day
+#### Recitation
+- No recitation next week
+
+#### Lab
+- No lab session next week
+- Lab 7 due is __NEXT__ Tuesday
+    - 4 April 2023
+    - Not this Tuesday
+]
+
+---
+
+### Announcement
+
+.lc[
+### PE2
+### Well-Being
+### Feedback
+]
+.rc[
+### Teaching Feedback Exercise
+#### Updated Link
+- https://blue.nus.edu.sg/blue/
+- We would like your constructive feedback on the course!
+]
+
+---
+
+name: Recap
+class: middle, subtitles
+
+# Recap
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+]
+.rc[
+### Pure Functions
+.card.bg-b[
+##### Definition
+.content.tight[
+A pure function .mnote[(denoted mathematically as `f : X -> Y`)] is a _mapping_ from the domain `X` to the codomain `Y`.
+For each `x` .math[&in;] `X`, there is `y` .math[&in;] `Y` such that `y = f(x)`.
+Additionally, the operation must be _deterministic_, without _side-effects_, and _referentially transparent_.
+]
+]
+.col60[
+##### Side-Effects
+1. Print to monitor
+2. Write to files
+3. Throw exceptions
+4. Assign or mutate fields, .lnote[etc]
+
+.card.bg-y[
+##### Note
+.content.tight[
+`x` must also be unchanged .mnote[(i.e., immutable)] otherwise `f(x) == f(x)` can be false .mnote[(if second call to `f(x)` is on mutated `x`)].
+]
+]
+]
+.col40[
+##### Visualisation
+![Pure](img/10_Pure_01.jpg)
+]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+]
+.rc[
+### Box
+#### Simple Container of Immutable Object
+.col50[
+##### Basic Operation
+.sssize[
+```java[copy=nones]
+class Box<T> {
+  private final T val;
+  ‎
+  Box(T val) {
+    this.val = val;
+  }
+  public T val() {
+    return this.val;
+  }
+  @Override
+  public String toString() {
+    return "[" + this.val + "]";
+  }
+    :
+```
+]
+]
+.col50[
+##### Equality and Factory
+.sssize[
+```java[copy=nones]
+    :
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Box<?>))
+      return false;
+    Box<?> box = (Box<?>) obj;
+    return this.val == null
+         ? this.val == box.val
+         : this.val.equals(box.val);
+  }
+  public static <T> Box<T> of(T val) {
+    return new Box<T>(val);
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map.jpg)
+]
+--
+.rc[
+##### Steps
+1. Open the box
+2. Operate with function
+3. Put into new box.cite[]
+
+.ref[A side condition: you should "preserve" context.]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map_01.jpg)
+
+##### Steps
+1. Open the box
+2. .op20[Operate with function]
+3. .op20[Put into new box]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map_02.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. Operate with function
+3. .op20[Put into new box]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map_03.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. Operate with function
+3. .op20[Put into new box]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map_04.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. .op20[Operate with function]
+3. Put into new box
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map_05.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. .op20[Operate with function]
+3. Put into new box
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map.jpg)
+
+##### Steps
+1. Open the box
+2. Operate with function
+3. Put into new box
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+]
+.rc[
+### Transformation
+#### map
+![map](img/R06_map.jpg)
+
+##### Code
+.sssize[
+```java[copy=nones]
+public <R> Box<R> map(Transformer<? super T, ? extends R> f) {
+  T val = this.val;         // 1. Open the box
+  R res = f.transform(val); // 2. Operate with function
+  return new Box<>(res);    // 3. Put into new box (preserve "context")
+}
+```
+]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap.jpg)
+]
+--
+.rc[
+##### Steps
+1. Open the box
+2. Operate with function
+3. Compose the two "context".cite[]
+
+.ref[A side condition: the composition should obey some property to be discussed in lecture.]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap_01.jpg)
+
+##### Steps
+1. Open the box
+2. .op20[Operate with function]
+3. .op20[Compose the two "context"]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap_02.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. Operate with function
+3. .op20[Compose the two "context"]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap_03.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. Operate with function
+3. .op20[Compose the two "context"]
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap_04.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. .op20[Operate with function]
+3. Compose the two "context"
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap_05.jpg)
+
+##### Steps
+1. .op20[Open the box]
+2. .op20[Operate with function]
+3. Compose the two "context"
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap.jpg)
+
+##### Steps
+1. Open the box
+2. Operate with function
+3. Compose the two "context"
+]
+
+---
+
+### Recap
+
+.lc[
+### Pure Functions
+### Box
+### Transformation
+#### - map
+#### - flatMap
+]
+.rc[
+### Transformation
+#### flatMap
+![flatMap](img/R06_flatmap.jpg)
+
+##### Code
+.sssize[
+```java[copy=nones]
+public <R> Box<R> flatMap(Transformer<? super T, ? extends Box<? extends R>> f) {
+  T val = this.val;                        // 1. Open the box
+  Box<? extends R> box = f.transform(val); // 2. Operate with function
+  return Box.<T,R>compose(this, box);      // 3. Compose the two "context"
+}     // Changed to Box to be specific to this class
+```
+]
+]
+
+---
+
+name: Context
+class: middle, subtitles
+
+# Context
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+#### - Capture
+]
+.rc[
+### Side-Effect
+#### Capturing Side Effect
+.col60[
+##### Impure Function
+.sssize[
+```java[copy=nones]
+Box<Integer> incr(Box<Integer> box) {
+  return Box.of(box.val() + this.ctx);
+}
+```
+]
+]
+.col40[
+##### Visualisation
+![Impure](img/10_Impure_01.png)
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+#### - Capture
+]
+.rc[
+### Side-Effect
+#### Capturing Side Effect
+.col60[
+##### Pure Function
+.sssize[
+```java[copy=nones]
+Ctx<Integer> incr(Ctx<Integer> ctx) {
+  return Ctx.of(ctx.val() + ctx.ctx());
+}
+```
+]
+
+.card.bg-y[
+##### Notes
+.content.tight[
+- Variable `ctx` is unchanged .mnote[(i.e., immutable)]
+- `Ctx { val: v`.op0[`..`]`, ctx: c }`<br>
+always produce<br>
+`Ctx { val: v+c, ctx: c }`
+]
+]
+]
+.col40[
+##### Visualisation
+![Impure](img/10_Impure_02.png)
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+#### - Capture
+#### - Maybe
+]
+.rc[
+### Side-Effect
+#### Maybe
+.col50[
+##### Some to Some
+![Some](img/10_Maybe_01.png)
+]
+.col50[
+##### None to None
+![None](img/10_Maybe_02.png)
+]
+]
+.rc[
+.card.bg-y[
+##### Context
+.content.tight[
+The context.cite[] of a `Maybe<T>` is that the data may be present .mnote[(i.e., `Some`)] or the data may be missing .mnote[(i.e., `None`)].
+]
+]
+
+.ref[Also known as _side-information_.]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+#### - Capture
+#### - Maybe
+#### - Other Context
+]
+.rc[
+### Side-Effect
+#### Other Context
+.atbl.blhead.ssize[
+| Container | Context |
+| --------- | ------- |
+| `Box<T>` | Item in a box |
+| `Maybe<T>` | Item might be missing |
+| `Lazy<T>`  | Item is evaluated on demand |
+| `Loggable<T>` | Item is logged.cite[] |
+| `Array<T>`  | Items in a sequence.cite1[] |
+| `InfiniteList<T>`  | Items in a lazily-evaluated sequence.cite1[] |
+]
+
+.ref1[In some literature, the context is _non-determinism_ .mnote[(i.e., the answer is one of the element in the array)].]
+.ref[Will be discussed shortly.]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+#### - Preliminary
+]
+.rc[
+### Logger
+#### Preliminary
+
+- Immutable class `Logger` that
+    - stores an integer value `val`
+    - records _all_ previous operations done to reach current value .mnote[(as `String`)]
+
+##### Operations
+- Increment the value `val`
+- Finding absolute value of `val`
+- .lnote[... other operations, but still log the operation?]
+
+- Standard operations: `equals`, `toString`, .lnote[etc]
+
+##### Context
+- Operations are logged
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+#### - Preliminary
+#### - Functions
+]
+.rc[
+### Logger
+#### Functions
+.col60[
+##### Code
+.sssize[
+```java
+int incr(int x) {
+  return x + 1;
+}
+int abs(int x) {
+  return x > 0 ? x : -x;
+}
+```
+]
+]
+.col40[
+##### Invocation & Composition
+.sssize[
+```jshell[copy=shell]
+jshell> incr(1)
+$.. ==> 2
+jshell> abs(-1)
+$.. ==> 1
+jshell> abs(incr(incr(-5)))
+$.. ==> 3
+```
+]
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+#### - Preliminary
+#### - Functions
+#### - Pair
+]
+.rc[
+### Logger
+#### Pair
+.col60[
+##### Code
+.sssize[
+```java
+Pair<Integer,String> incrWithLog(int x) {
+  return Pair.of(incr(x), "; incr " + x);
+}
+Pair<Integer,String> absWithLog(int x) {
+  return Pair.of(abs(x), "; abs " + x);
+}
+```
+]
+
+.card.bg-y[
+##### Question
+.content.tight[
+Can we compose these two functions?
+]
+]
+]
+.col40[
+##### Class
+.sssize[
+```java[show=1-10,43]
+class Pair<T,S> {
+  private final T first;
+  private final S second;
+  
+  // private Pair(T, S)
+  // static Pair::of(T, S)
+  // Pair::getFirst()
+  // Pair::getSecond()
+  // Pair::toString()
+  // Pair::equals(Object)
+  
+  private Pair(T first, S second) {
+    this.first = first;
+    this.second = second;
+  }
+  
+  public static <T,S> Pair<T,S> of(T first, S second) {
+    return new Pair<>(first, second);
+  }
+  
+  public T getFirst() {
+    return this.first;
+  }
+  
+  public S getSecond() {
+    return this.second;
+  }
+  
+  @Override
+  public String toString() {
+    return "[" + first + ", " + second + "]";
+  }
+  
+  @Override
+  public boolean equals(Object obj) {
+    if (!(obj instanceof Pair<?,?>)) {
+      return false;
+    }
+    Pair<?,?> pair = (Pair<?,?>) obj;
+    return this.first.equals(pair.first) && this.second.equals(pair.second);
+  }
+}
+```
+]
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+#### - Preliminary
+#### - Functions
+#### - Pair
+#### - Composable
+]
+.rc[
+### Logger
+#### Composable Pair
+##### Code
+.sssize[
+```java
+Pair<Integer,String> incrWithLog(Pair<Integer,String> p) {
+  return Pair.of(incr(p.getFirst()), p.getSecond() + "; incr " + p.getFirst());
+}
+Pair<Integer,String> absWithLog(Pair<Integer,String> p) {
+  return Pair.of(abs(p.getFirst()), p.getSecond() + "; abs " + p.getFirst());
+}
+```
+]
+
+##### Invocation & Composition
+.sssize[
+```jshell[copy=shell]
+jshell> Pair<Integer, String> p = Pair.of(1, "")
+p ==> [1, ]
+jshell> absWithLog(incrWithLog(incrWithLog(p)))
+$10 ==> [3, ; incr 1; incr 2; abs 3]
+```
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+#### - Impure
+]
+.rc[
+### Loggable Class
+#### Impure
+.xssize[
+```java[name=Loggable_v0.java|show=1-14,20]
+class Loggable {
+  private       int value;
+  private       String log;
+  
+  public  Loggable(int value, String log) {
+    this.value = value;
+    this.log = log;
+  }
+  ‎
+  ‎
+  ‎
+  public void     incrWithLog() {
+    this.value = incr(this.value); this.log = this.log + "; incr " + this.value;
+  }
+  
+  @Override
+  public String toString() {
+    return "value: " + this.value + ", log: " + this.log;
+  }
+}
+```
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+#### - Impure
+#### - Pure
+]
+.rc[
+### Loggable Class
+#### Pure
+.xssize[
+```java[name=Loggable_v1.java|show=1-11,15-17,23]
+class Loggable {
+  private final int value;
+  private final String log;
+  
+  private Loggable(int value, String log) {
+    this.value = value;
+    this.log = log;
+  }
+  public static Loggable of(int value) { // with variant Loggable::ofWithLog(int, String)
+    return new Loggable(value, "");
+  }
+  public static Loggable ofWithLog(int value, String log) {
+    return new Loggable(value, log);
+  }
+  public Loggable incrWithLog() {
+    return new Loggable(incr(this.value),     this.log + "; incr " + this.value);
+  }
+  
+  @Override
+  public String toString() {
+    return "value: " + this.value + ", log: " + this.log;
+  }
+}
+```
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+#### - Impure
+#### - Pure
+#### - Extension
+]
+.rc[
+### Loggable Class
+#### Extension to More Operations
+.xssize[
+```java[name=Loggable_v2.java|show=1,19-30,36]
+class Loggable {
+  private final int value;
+  private final String log;
+  
+  private Loggable(int value, String log) {
+    this.value = value;
+    this.log = log;
+  }
+  public static Loggable of(int value) { // with variant Loggable::ofWithLog(int, String)
+    return new Loggable(value, "");
+  }
+  public static Loggable ofWithLog(int value, String log) {
+    return new Loggable(value, log);
+  }
+  public Loggable incrWithLog() {
+    return new Loggable(incr(this.value),     this.log + "; incr " + this.value);
+  }
+  
+  public Loggable absWithLog() {
+    return new Loggable(abs(this.value), this.log + "; abs " + this.value);
+  }
+  public Loggable dblWithLog() {
+    return new Loggable(dbl(this.value), this.log + "; dbl " + this.value);
+  }
+  ‎
+  ‎
+  ‎
+  ‎
+  ‎
+  ‎
+  
+  @Override
+  public String toString() {
+    return "value: " + this.value + ", log: " + this.log;
+  }
+}
+```
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+#### - Impure
+#### - Pure
+#### - Extension
+]
+.rc[
+### Loggable Class
+#### Extension to More Operations
+.xssize[
+```java[name=Loggable_v3.java|show=1,19-30,36]
+class Loggable {
+  private final int value;
+  private final String log;
+  
+  private Loggable(int value, String log) {
+    this.value = value;
+    this.log = log;
+  }
+  public static Loggable of(int value) { // with variant Loggable::ofWithLog(int, String)
+    return new Loggable(value, "");
+  }
+  public static Loggable ofWithLog(int value, String log) {
+    return new Loggable(value, log);
+  }
+  public Loggable incrWithLog() {
+    return new Loggable(incr(this.value),     this.log + "; incr " + this.value);
+  }
+  
+  public Loggable absWithLog() {
+    return new Loggable(abs(this.value), this.log + "; abs " + this.value);
+  }
+  public Loggable dblWithLog() {
+    return new Loggable(dbl(this.value), this.log + "; dbl " + this.value);
+  }
+  ‎
+  ‎public Loggable map(Transformer<Integer, Integer> f) {
+    int value = this.value;
+    int res = f.transform(value);
+    return new Loggable(res, this.log); // What to log?
+  }
+  
+  @Override
+  public String toString() {
+    return "value: " + this.value + ", log: " + this.log;
+  }
+}
+```
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+#### - Impure
+#### - Pure
+#### - Extension
+#### - Custom
+]
+.rc[
+### Loggable Class
+#### Custom Log
+.xssize[
+```java[name=Loggable_v4.java|show=1,19-30,36]
+class Loggable {
+  private final int value;
+  private final String log;
+  
+  private Loggable(int value, String log) {
+    this.value = value;
+    this.log = log;
+  }
+  public static Loggable of(int value) { // with variant Loggable::ofWithLog(int, String)
+    return new Loggable(value, "");
+  }
+  public static Loggable ofWithLog(int value, String log) {
+    return new Loggable(value, log);
+  }
+  public Loggable incrWithLog() {
+    return new Loggable(incr(this.value),     this.log + "; incr " + this.value);
+  }
+  
+  public Loggable absWithLog() {
+    return new Loggable(abs(this.value), this.log + "; abs " + this.value);
+  }
+  public Loggable dblWithLog() {
+    return new Loggable(dbl(this.value), this.log + "; dbl " + this.value);
+  }
+  ‎
+  ‎public Loggable flatMap(Transformer<Integer, Loggable> f) {
+    int value = this.value;
+    Loggable res = f.transform(value);
+    return compose(this, res);
+  }
+  
+  @Override
+  public String toString() {
+    return "value: " + this.value + ", log: " + this.log;
+  }
+}
+```
+]
+]
+--
+.abs.lt53.top73.wt46.fc[
+.card.bg-w[
+.xssize[
+```java[copy=nones]
+private static Loggable compose(Loggable p, Loggable n) {
+  return new Loggable(n.value, p.log + n.log);
+}
+```
+]
+]
+]
+
+---
+
+### Context
+
+.lc[
+### Side-Effect
+### Logger
+### Loggable
+### Lab 5
+]
+.rc[
+### Lab 5
+#### flatMap
+.ssize[
+```java
+return Maybe.of(map.get(student))
+            .flatMap(map -> Maybe.of(map.get(module)))
+            .flatMap(map -> Maybe.of(map.get(assessment)))
+            .orElse("No such entry"); 
+```
+]
+
+##### Rewriting
+.ssize[
+```java
+return Maybe.of(  map.get(student)            ).flatMap(map -> Maybe.of(map
+                     .get(module))            ).flatMap(map -> Maybe.of(map
+                     .get(assessment))        ).orElse("No such entry"); 
+```
+]
+]
+
+---
+
+name: Monad_&_Functor
+class: middle, subtitles
+
+# Monad & Functor
+
+---
+
+### Monad & Functor
+
+.lc[
+### Monad
+#### - Definition
+]
+.rc[
+### Monad
+.card.bg-g[
+##### Definition
+.content.tight[
+A __monad__ is a structure with _at least_ two methods `of`.cite[] and `flatMap`.cite[] that obeys ___three___ laws:
+
+1. __Left Identity Law__
+.nol.deindent[
+- .math[&forall;] `x`, `f`:
+    - `Monad.of(`.hilite-y[`x`]`).flatMap(y ->`.op0[`.`].hilite-y[`f(y)`]`)`
+    - &nbsp;&nbsp;&nbsp; .math[&equiv;]
+    - .hilite-y[`f(x)`]
+]
+2. __Right Identity Law__
+.nol.deindent[
+- .math[&forall;] `monad`:
+    - .hilite-y[`monad`]`.flatMap(y -> Monad.of(y))`
+    - &nbsp;&nbsp;&nbsp; .math[&equiv;]
+    - .hilite-y[`monad`]
+]
+3. __Associative Law__
+.nol.deindent[
+- .math[&forall;] `monad`, `f`:
+    - `monad.flatMap(x -> f(x)`.hilite-y[`)`]`.flatMap(x -> g(x))`
+    - &nbsp;&nbsp;&nbsp; .math[&equiv;]
+    - `monad.flatMap(x -> f(x).flatMap(x -> g(x))`.hilite-y[`)`]
+]
+]
+]
+
+.ref[The name need not be `of` or `flatMap`.]
+]
+
+---
+
+### Monad & Functor
+
+.lc[
+### Monad
+#### - Definition
+#### - Left Identity
+]
+.rc[
+### Monad
+#### Left Identity Law
+> Let `f` be a function from `X` &rarr; `Monad<Y>`
+
+.col50[
+##### LHS
+.nol.deindent[
+- `Monad.of(x).flatMap(y -> f(y))`<br><br><br>
+
+<br>
+![Monad 01a](img/10_Monad_01a.png)
+]
+]
+.col50[
+##### RHS
+.nol.deindent[
+- `f(x)`<br><br><br>
+
+<br>
+![Monad 01b](img/10_Monad_01b.png)
+]
+]
+]
+
+---
+
+### Monad & Functor
+
+.lc[
+### Monad
+#### - Definition
+#### - Left Identity
+#### - Right Identity
+]
+.rc[
+### Monad
+#### Right Identity Law
+> Let `monad` be any arbitrary instance of `Monad`
+
+.col50[
+##### LHS
+.nol.deindent[
+- `monad.flatMap(y -> Monad.of(y))`<br><br><br>
+
+<br>
+![Monad 02a](img/10_Monad_02a.png)
+]
+]
+.col50[
+##### RHS
+.nol.deindent[
+- `monad`<br><br><br>
+
+<br>
+![Monad 02b](img/10_Monad_02b.png)
+]
+]
+]
+
+---
+
+### Monad & Functor
+
+.lc[
+### Monad
+#### - Definition
+#### - Left Identity
+#### - Right Identity
+#### - Associative
+]
+.rc[
+### Monad
+#### Associative Law
+> Let `monad` be an instance of `Monad`, let `f` and `g` be a `X` &rarr; `Monad<Y>` function.
+
+.col50[
+##### LHS
+.nol.deindent[
+- `monad.flatMap(x -> f(x))`
+- .op0[`monad`]`.flatMap(x -> g(x))`<br><br><br>
+
+![Monad 03a](img/10_Monad_03a.png)
+]
+]
+.col50[
+##### RHS
+.nol.deindent[
+- `monad.flatMap(x -> f(x)`
+- .op0[`monad`]`.flatMap(x -> g(x)))`<br><br>
+
+<br>
+![Monad 03b](img/10_Monad_03b.png)
+]
+]
+]
+
+---
+
+### Monad & Functor
+
+.lc[
+### Monad
+### Functor
+#### - Definition
+]
+.rc[
+### Functor
+.card.bg-g[
+##### Definition
+.content.tight[
+A __functor__ is a structure with _at least_ two methods `of`.cite[] and `map`.cite[] that obeys ___two___ laws:
+
+1. __Identity Law__ / __Identity Morphism__
+.nol.deindent[
+- .math[&forall;] `functor`:
+    - .hilite-y[`functor`]`.map(x -> x)`
+    - &nbsp;&nbsp;&nbsp; .math[&equiv;]
+    - .hilite-y[`functor`]
+]
+2. __Composition Law__ / __Composition Morphism__
+.nol.deindent[
+- .math[&forall;] `functor`, `f`, `g`:
+    - `functor.map(x ->`.op0[`.`].hilite-y[`f(x)`]`).map(x ->`.op0[`.`].hilite-y[`g(x)`]`)`
+    - &nbsp;&nbsp;&nbsp; .math[&equiv;]
+    - `functor.map(x ->`.op0[`.`].hilite-y[`g(f(x))`]`)`
+]
+]
+]
+
+.ref[The name need not be `of` or `map`.]
+]
+
+---
+
+name: Parallel_&_Concurrent
+class: middle, subtitles
+
+# Parallel & Concurrent
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+#### - Sequential
+]
+.rc[
+### Preliminary
+#### Sequential Computation
+
+.img80[![Sequential](img/10_Parallel_01.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+#### - Sequential
+#### - Concurrent
+]
+.rc[
+### Preliminary
+#### Concurrent Computation
+
+.img80[![Concurrent](img/10_Parallel_02.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+#### - Sequential
+#### - Concurrent
+#### - Parallel
+]
+.rc[
+### Preliminary
+#### Parallel Computation
+
+.img80[![Parallel](img/10_Parallel_03.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+#### - Sequential
+]
+.rc[
+### IntStream
+.sssize[
+```java
+boolean isPrime(int n) {
+  return IntStream.range(2, (int)Math.sqrt(n) + 1)
+                  .noneMatch(x -> n % x == 0);
+}
+```
+]
+
+#### Sequential IntStream
+##### Prime in Range
+.sssize[
+```java
+IntStream.range(2_030_000, 2_040_000)
+‎
+         .filter(x -> isPrime(x))
+         .forEach(System.out::println);
+```
+]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+#### - Sequential
+#### - Parallel
+]
+.rc[
+### IntStream
+.sssize[
+```java
+boolean isPrime(int n) {
+  return IntStream.range(2, (int)Math.sqrt(n) + 1)
+                  .noneMatch(x -> n % x == 0);
+}
+```
+]
+
+#### Parallel IntStream
+##### Prime in Range
+.sssize[
+```java[lite=2]
+IntStream.range(2_030_000, 2_040_000)
+         .parallel()
+         .filter(x -> isPrime(x))
+         .forEach(System.out::println);
+```
+]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+]
+.rc[
+### Considerations
+#### Interference
+.sssize[
+```java
+List<String> list = new ArrayList<>(List.of("Luke", "Leia", "Han"));
+list.stream().peek(name -> { if (name.equals("Han")) {
+                               list.add("Chewie");
+                             } })
+             .forEach(x -> {});
+```
+]
+
+#### Side-Effect
+.sssize[
+```java
+List<Integer> list = new ArrayList<>(
+  Arrays.asList(1,3,5,7,9,11,13,15,17,19,21,23,25,27,29)
+);
+List<Integer> result = new ArrayList<>();
+list.parallelStream().filter(x -> isPrime(x)).forEach(System.out::println);
+list.parallelStream().filter(x -> isPrime(x)).forEach(x -> result.add(x));
+list.parallelStream().filter(x -> isPrime(x)).toList();
+```
+]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+]
+.rc[
+### Reduce
+<iframe frameborder=0 width=100% height=470px src="https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#reduce(java.util.function.BinaryOperator)"></iframe>
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+#### - Sequential
+]
+.rc[
+### Reduce
+#### Sequential
+> .ssize[`T reduce(T e, BinaryOperator<T> f)`]
+
+.img80[![Reduce](img/10_Reduce_01.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+#### - Sequential
+#### - Parallel
+]
+.rc[
+### Reduce
+#### Parallel
+> .ssize[`T reduce(T e, BinaryOperator<T> f)`]
+
+.img80[![Reduce](img/10_Reduce_02.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+#### - Sequential
+#### - Parallel
+]
+.rc[
+### Reduce
+#### Parallel
+> .ssize[`<U> U reduce(U e, BiFunction<U,? super T,U> f, BinaryOperator<U> g)`]
+
+.img80[![Reduce](img/10_Reduce_03.png)]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+#### - Sequential
+#### - Parallel
+#### - Properties
+]
+.rc[
+### Reduce
+#### Properties
+> .ssize[`<U> U reduce(U e, BiFunction<U,? super T,U> f, BinaryOperator<U> g)`]
+
+##### Parallelising Reduce
+To ensure equivalence in behaviour between sequential and parallel reduce:
+
+.col30[
+- __Identity `e`__
+- __Pure `f` & `g`__
+- __Associative `f` & `g`__
+- __Compatible `f` & `g`__
+]
+.col70.nol.deindent[
+- `g(e, x)`.cite[] must be equal to `x`
+- `f` and `g` must have no side-effect
+- `f(f(x, y), z)` must be equal to `f(x, f(y, z))` .mnote[(also `g`)]
+- [More about compatibility](https://docs.oracle.com/en/java/javase/17/docs/api/java.base/java/util/stream/Stream.html#reduce&#40;java.lang.Object,java.util.function.BiFunction,java.util.function.BinaryOperator&#41;)
+.nol.deindent[
+- Using our symbol, `g(x, f(e, y))` must be equal to `f(x, y)`
+]
+]
+]
+.rc[
+.ref[In the case of `T reduce(T e, BinaryOperator<T> f)`, then `e` must be the identity of `f` .mnote[(i.e., `f(e, x)` must be equal to `x`)].]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+#### - Sequential
+#### - Parallel
+#### - Properties
+#### - Examples
+]
+.rc[
+### Reduce
+#### Examples
+##### Sum
+.sssize[
+```java
+List<Integer> list = new ArrayList<Integer>();
+for (int i=1; i<=10000; i++) {
+  list.add(i);
+}
+list.stream().parallel().reduce(0, (acc, elem) -> acc + elem);
+```
+]
+
+##### Length
+.sssize[
+```java
+List<String> list = List.of("CS", "2030", "S")
+list.stream().parallel().reduce(0,
+    (acc, elem) -> acc + elem.length(),
+    (acc1, acc2) -> acc1 + acc2);
+```
+]
+]
+
+---
+
+### Parallel & Concurrent
+
+.lc[
+### Preliminary
+### IntStream
+### Considerations
+### Reduce
+### Timing
+]
+.rc[
+### Timing
+#### Code
+.sssize[
+```java[name=Timing.java|show=5,10-20|lite=14]
+import java.time.Duration;
+import java.time.Instant;
+import java.time.stream.IntStream;
+
+class Timing {
+  public static boolean isPrime(int n) {
+    return IntStream.range(2, (int)Math.sqrt(n) + 1)
+        .noneMatch(x -> n % x == 0);
+  }
+  public static void main(String[] args) {
+    Instant start = Instant.now();
+    long count = IntStream.range(2_000_000, 3_000_000)
+        .filter(x -> isPrime(x))
+      //.parallel()
+        .count();
+    Instant stop = Instant.now();
+    System.out.println("count: " + count);
+    System.out.println("time : " + Duration.between(start, stop).toMillis() + " ms");
+  }
+}
+```
+]
+]
+.abs.lt55.top3.wt44[
+.xssize[
+```java[copy=nones|lite=3]
+boolean isPrime(int n) {
+  return IntStream.range(2, (int)Math.sqrt(n) + 1)
+    //.parallel()
+      .noneMatch(x -> n % x == 0);
+}
+```
+]
+]
+
+---
+
+layout: false
+class: middle, end, fadein
+
+`jshell> /exit`
+
+`|  Goodbye`

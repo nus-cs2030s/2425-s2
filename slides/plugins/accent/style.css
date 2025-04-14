@@ -1,0 +1,34 @@
+.anim-tag {
+  display: none;
+}
+.anim-anchor {
+}
+.anim-target {
+  transition: all 0.5s
+}
+.anim-hide {
+  opacity: 0;
+}
+.anim-show {
+  opacity: 1;
+}
+.anim-div {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+.anim-btn {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  cursor: pointer;
+  opacity: 0.5;
+  transition: all 0.5s;
+}
+.anim-btn:hover {
+  opacity: 0.9;
+}
+.anim-shown {
+  color: var(--dgnclr);
+  opacity: 0.9;
+}
